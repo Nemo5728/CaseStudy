@@ -1280,13 +1280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15ec3a2bbc7c17346b356a7aaa686e5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Score: {fileID: 0}
-  RankingScore:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  Score: {fileID: 1355036162}
 --- !u!4 &1367517363
 Transform:
   m_ObjectHideFlags: 0
