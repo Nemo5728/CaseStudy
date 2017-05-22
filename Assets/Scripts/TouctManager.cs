@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class TouctManager : MonoBehaviour
 {
-    
+
     //Input用の変数
     private Vector2 MousePos;
     private Vector2 ReleasePos;
     private Vector2 TapPos;
-    
+
     public Vector3 WorldPos;
-    
+
     //レイを飛ばすか
     private bool bRay;
 
@@ -30,15 +30,29 @@ public class TouctManager : MonoBehaviour
         if (bRay == true)
         {
             //レイをタップされた場所に飛ばす
-            Ray ray = new Ray(new Vector3( 0.0f,0.0f,0.0f ), TapPos);
-            
-            //Rayが当たったオブジェクトの情報を入れる箱
-            RaycastHit hit;
+            Ray ray = new Ray(new Vector3(0.0f, 0.0f, 0.0f), TapPos);
+
             //Rayの飛ばせる距離
-            int distance = (int)Mathf.Sqrt( TapPos.x * TapPos.x + TapPos.y * TapPos.y);
+            int distance = (int)Mathf.Sqrt(TapPos.x * TapPos.x + TapPos.y * TapPos.y);
 
             //Rayの可視化    ↓Rayの原点　　　　↓Rayの方向　　　　　　　　　↓Rayの色
             Debug.DrawLine(ray.origin, ray.direction * distance, Color.red);
+
+            //当たった分の箱
+            RaycastHit[] hits = Physics.RaycastAll(ray, Mathf.Infinity);
+
+            //当たったやつの処理
+            foreach (var obj in hits)
+            {
+                if (Physics.Raycast(ray.origin, ray.direction, (float)distance))
+                {
+                    if (obj.collider.gameObject.tag == "Ball")
+                    {
+                        Destroy(obj.collider.gameObject);
+
+                    }
+                }
+            }
 
             bRay = false;
         }
