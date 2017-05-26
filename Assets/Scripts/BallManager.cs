@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallManager : MonoBehaviour {
+public class BallManager : MonoBehaviour
+{
 
     enum STATUS
     {
@@ -22,7 +23,7 @@ public class BallManager : MonoBehaviour {
     public GameObject BallSet;
 
     private Vector3 force;  //ボールを動かす力
-    private Vector3 center = new Vector3( 0.0f , 0.0f , 0.0f ); //中心に向かわせるために。
+    private Vector3 center = new Vector3(0.0f, 0.0f, 0.0f); //中心に向かわせるために。
 
 
     ////////////引っ張る時に使用する変数
@@ -31,7 +32,8 @@ public class BallManager : MonoBehaviour {
     private Vector3 pullVec = Vector3.zero;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
 
         //玉の速さをシューターから受け取り
         speed = BallSet.GetComponent<BallShooter>().ballSpeed;
@@ -44,63 +46,81 @@ public class BallManager : MonoBehaviour {
         status = STATUS.MOVE;
         oldStatus = STATUS.MOVE;
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
-        switch ( status )
+        switch (status)
         {
             case STATUS.STOP:   //強制的に止める場合。（多分使わない）
-            {
-                if (oldStatus != STATUS.STOP)
                 {
-                    GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    if (oldStatus != STATUS.STOP)
+                    {
+                        GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    }
+                    break;
                 }
-                break;
-            }
             case STATUS.MOVE:
-            {
-                if( oldStatus != STATUS.MOVE )
                 {
-                    GetComponent<Rigidbody>().AddForce(force);              //ドロップボール発射
+                    if (oldStatus != STATUS.MOVE)
+                    {
+                        GetComponent<Rigidbody>().AddForce(force);              //ドロップボール発射
+                    }
+                    break;
                 }
-                break;
-            }
             case STATUS.PULL:
-            {
-                Debug.Log(oldStatus);
-                //引っ張る方向へ力を加える
-                if (oldStatus != STATUS.PULL)
                 {
-                    GetComponent<Rigidbody>().velocity = Vector3.zero;
-                    startPoint = transform.position;        //現在の位置を設定                     
-                    endPoint = center;                      //引っ張られる目標地点を設定
-                    pullVec = endPoint - startPoint;
-                    float rot = Mathf.Sqrt( pullVec.x * pullVec.x + pullVec.y * pullVec.y );
+                    //Debug.Log(oldStatus);
+                    //引っ張る方向へ力を加える
+                    if (oldStatus != STATUS.PULL)
+                    {
+                        GetComponent<Rigidbody>().velocity = Vector3.zero;
+                        startPoint = transform.position;        //現在の位置を設定                     
+                        endPoint = center;                      //引っ張られる目標地点を設定
+                        pullVec = endPoint - startPoint;
 
-                    //速度を均等にするために(やべぇ・・・眠すぎるのか・・・できねぇ・・・眠い。。次ここから・・・5/25)
-                    pullVec.x = Mathf.Cos(Mathf.PI * rot) * 3;
-                    pullVec.y = Mathf.Sin(Mathf.PI * rot) * 3;
-                    pullVec.z = 0.0f;
+                        //速度を均等にするために(やべぇ・・・眠すぎるのか・・・できねぇ・・・眠い。。次ここから・・・5/25)
+                        pullVec = MoveBall(startPoint, endPoint, 1.1f);
 
-                    GetComponent<Rigidbody>().AddForce(pullVec, ForceMode.Impulse);
-                    Debug.Log("加速度" + GetComponent<Rigidbody>().velocity); 
+                        GetComponent<Rigidbody>().AddForce(pullVec, ForceMode.Impulse);
+                        Debug.Log("加速度" + GetComponent<Rigidbody>().velocity);
+                    }
+                    break;
                 }
-                break;
-            }
             case STATUS.STICK:
-            {
-                break;
-            }
+                {
+                    break;
+                }
             default:
-            {
-                break;
-            }
+                {
+                    break;
+                }
         }
         oldStatus = status;
     }
     public void StatusChangePull()
     {
         status = STATUS.PULL;
+    }
+
+    //fromからtoの方向へ移動する　強さ
+    public Vector3 MoveBall(Vector3 from, Vector3 to, float pow)
+    {
+        //変数定義
+        //返す値　　力
+        Vector3 _force = new Vector3(0.0f, 0.0f, 0.0f);
+
+        //距離
+        Vector3 Difference = to - from;
+
+        //角度
+        float fRad = Mathf.Atan2(Difference.x, Difference.y);
+
+        //題した角度の方向に移動する力
+        _force.x = Mathf.Sin(fRad) * pow;
+        _force.y = Mathf.Cos(fRad) * pow;
+        _force.z = 0.0f;
+
+        return _force;
     }
 }
