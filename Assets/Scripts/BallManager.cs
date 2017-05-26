@@ -5,7 +5,7 @@ using UnityEngine;
 public class BallManager : MonoBehaviour
 {
 
-    enum STATUS
+    public enum STATUS
     {
         STOP = 0,    //止まる
         MOVE,    //動く
@@ -13,8 +13,8 @@ public class BallManager : MonoBehaviour
         STICK    //くっつく（すいついてる感じなのでSTICKで）
     };
 
-    STATUS status;
-    STATUS oldStatus;
+    public STATUS status;
+    public STATUS oldStatus;
 
 
     private float speed;     //ドロップボールの速さ(今のところシューターから受け取り。)
@@ -122,5 +122,36 @@ public class BallManager : MonoBehaviour
         _force.z = 0.0f;
 
         return _force;
+    }
+
+    //当たった時に呼ばれる
+    void OnCollisionEnter(Collision col)
+    {
+        if (status == STATUS.PULL)
+        {
+            if (col.gameObject.name == "Core" || ColBall(col) == true)
+            {
+                //力を０に
+                GetComponent<Rigidbody>().velocity = Vector3.zero;
+                //止める
+                GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+                //状態を変更　くっついている
+                status = STATUS.STICK;
+            }
+        }
+    }
+
+    public STATUS GetStatus()
+    {
+        return status;
+    }
+
+    public bool ColBall(Collision col)
+    {
+        if (col.gameObject.CompareTag("Ball") && col.gameObject.GetComponent<BallManager>().GetStatus() == STATUS.STICK)
+        {
+            return true;
+        }
+        return false;
     }
 }
