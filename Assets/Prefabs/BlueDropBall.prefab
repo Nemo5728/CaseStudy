@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 135743464425445348}
   - component: {fileID: 23593095049248758}
   - component: {fileID: 54450534634849552}
+  - component: {fileID: 114750286773282796}
   m_Layer: 0
   m_Name: BlueDropBall
   m_TagString: Ball
@@ -97,6 +98,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 8
   m_CollisionDetection: 2
+--- !u!114 &114750286773282796
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1242441834362962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192702e1b879be54392b63b0edb0a4cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BallSet: {fileID: 1186192739284618, guid: fd99acc237f3f4042975339a889d4a90, type: 2}
+  lerpTime: 50
+  time: 1
 --- !u!135 &135743464425445348
 SphereCollider:
   m_ObjectHideFlags: 1

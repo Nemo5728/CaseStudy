@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 135827002353027894}
   - component: {fileID: 23890039103575270}
   - component: {fileID: 54732282733156850}
+  - component: {fileID: 114904544624299180}
   m_Layer: 0
   m_Name: GreenDropBall
   m_TagString: Ball
@@ -97,6 +98,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 8
   m_CollisionDetection: 2
+--- !u!114 &114904544624299180
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1224579796496416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192702e1b879be54392b63b0edb0a4cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BallSet: {fileID: 1186192739284618, guid: fd99acc237f3f4042975339a889d4a90, type: 2}
+  lerpTime: 50
+  time: 1
 --- !u!135 &135827002353027894
 SphereCollider:
   m_ObjectHideFlags: 1
