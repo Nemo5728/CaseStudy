@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//2017/05/23
+//玉の制御を全て玉に委ねたいので
+//シューターでは玉を発射した時の速度と発射位置を決めるだけにする。
+//玉側で受け取った後の挙動の制御をするため、もともと横山さんが設定した玉の挙動はBallManager.csに移しました。  門川
+
 public class BallShooter : MonoBehaviour
 {
     public GameObject redBall;     //ドロップボールのプレハブ
@@ -13,7 +18,6 @@ public class BallShooter : MonoBehaviour
     public float apearPosY;    //ドロップボールの出現位置限界Y
     public float ballSpeed;     //ドロップボールの速さ
     private float timeElapsed;  //時間経過
-    private Vector3 center;     //とりあえず中心に向かう
 
 
     void Start ()
@@ -61,36 +65,33 @@ public class BallShooter : MonoBehaviour
 
             int color = Random.Range(0, 4);
 
-            Vector3 force = center - transform.position;            //発射ベクトル設定
-            Vector3.Normalize(force);                               //ベクトルの正規化
-            force *= ballSpeed;                                     //ドロップボールの速さ調整
-
             switch (color)
             {
                 case 0:
                     GameObject redBalls = Instantiate(redBall) as GameObject;     //ドロップボールの複製
                     redBalls.transform.position = transform.position;          //ドロップボール発射位置設定
-                    redBalls.GetComponent<Rigidbody>().AddForce(force);        //ドロップボール発射
                     break;
 
                 case 1:
                     GameObject blueBalls = Instantiate(blueBall) as GameObject;     //ドロップボールの複製
                     blueBalls.transform.position = transform.position;          //ドロップボール発射位置設定
-                    blueBalls.GetComponent<Rigidbody>().AddForce(force);        //ドロップボール発射
                     break;
 
                 case 2:
                     GameObject yellowBalls = Instantiate(yellowBall) as GameObject;     //ドロップボールの複製
                     yellowBalls.transform.position = transform.position;          //ドロップボール発射位置設定
-                    yellowBalls.GetComponent<Rigidbody>().AddForce(force);        //ドロップボール発射
                     break;
 
                 case 3:
                     GameObject greenBalls = Instantiate(greenBall) as GameObject;     //ドロップボールの複製
                     greenBalls.transform.position = transform.position;          //ドロップボール発射位置設定
-                    greenBalls.GetComponent<Rigidbody>().AddForce(force);        //ドロップボール発射
                     break;
             }
         }
+    }
+
+    float GetBallSpeed()
+    {
+        return ballSpeed;
     }
 }

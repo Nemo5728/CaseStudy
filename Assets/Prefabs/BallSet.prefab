@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1186192739284618}
+  m_IsPrefabParent: 1
+--- !u!1 &1186192739284618
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4344516540295434}
+  - component: {fileID: 114159732638885364}
+  m_Layer: 0
+  m_Name: BallSet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4344516540295434
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1186192739284618}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114159732638885364
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1186192739284618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e9e04d2bb219643bf5dda2d721fc3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  redBall: {fileID: 1377634455796182, guid: 90a9bc96712f3f1419ae9daf199fccbc, type: 2}
+  blueBall: {fileID: 1242441834362962, guid: 560efe0ec9484404298d71208c051dba, type: 2}
+  yellowBall: {fileID: 1828507339651948, guid: 42b63f7f564429143908c0095bf6562d, type: 2}
+  greenBall: {fileID: 1224579796496416, guid: 482f9cdcb87e8024fadf3e3de49d75e0, type: 2}
+  timeOut: 1
+  apearPosX: 2.7
+  apearPosY: 6.7
+  ballSpeed: 5

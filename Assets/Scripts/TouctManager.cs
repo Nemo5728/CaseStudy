@@ -48,8 +48,14 @@ public class TouctManager : MonoBehaviour
                 {
                     if (obj.collider.gameObject.tag == "Ball")
                     {
-                        Destroy(obj.collider.gameObject);
+                        //コメントアウト（門川)
+                        //Destroy(obj.collider.gameObject);
 
+                        //追加（門川）
+                        BallManager ballmanager = obj.collider.gameObject.GetComponent<BallManager>();
+                        ballmanager.StatusChangePull();
+
+                        Debug.Log("レイが玉に当たった");
                     }
                 }
             }
@@ -98,8 +104,8 @@ public class TouctManager : MonoBehaviour
             //ワールド座標に変換
             TapPos = Camera.main.ScreenToWorldPoint(TapPos);
 
-            Debug.Log("ワールド座標" + WorldPos.ToString());
-            Debug.Log("押した" + TapPos.ToString());
+          //  Debug.Log("ワールド座標" + WorldPos.ToString());
+           // Debug.Log("押した" + TapPos.ToString());
             bRay = true;
         }
         //離されたら
@@ -109,10 +115,10 @@ public class TouctManager : MonoBehaviour
             //ワールド座標に変換
             ReleasePos = Camera.main.ScreenToWorldPoint(ReleasePos);
 
-            Debug.Log("離した" + ReleasePos.ToString());
+            //Debug.Log("離した" + ReleasePos.ToString());
 
 
-            Debug.Log("差" + (TapPos - ReleasePos).ToString());
+           // Debug.Log("差" + (TapPos - ReleasePos).ToString());
 
         }
     }
