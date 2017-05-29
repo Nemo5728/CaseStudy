@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallManager : MonoBehaviour
+public class Ball : MonoBehaviour
 {
-
     public enum STATUS
     {
         STOP = 0,    //止まる
@@ -13,9 +12,22 @@ public class BallManager : MonoBehaviour
         STICK    //くっつく（すいついてる感じなのでSTICKで）
     };
 
+    public enum COLOR
+    {
+        NONE = 0,
+        RED,
+        BLUE,
+        YELLOW,
+        GREEN,
+        MAX
+    };
+
+    //自分のステータス
     public STATUS status;
     public STATUS oldStatus;
 
+    //自分の色
+    public COLOR color;
 
     private float speed;     //ドロップボールの速さ(今のところシューターから受け取り。)
 
@@ -79,7 +91,6 @@ public class BallManager : MonoBehaviour
                         endPoint = center;                      //引っ張られる目標地点を設定
                         pullVec = endPoint - startPoint;
 
-                        //速度を均等にするために(やべぇ・・・眠すぎるのか・・・できねぇ・・・眠い。。次ここから・・・5/25)
                         pullVec = MoveBall(startPoint, endPoint, 1.1f);
 
                         GetComponent<Rigidbody>().AddForce(pullVec, ForceMode.Impulse);
@@ -131,12 +142,17 @@ public class BallManager : MonoBehaviour
         {
             if (col.gameObject.name == "Core" || ColBall(col) == true)
             {
+                //状態を変更　くっついている
+                status = STATUS.STICK;
                 //力を０に
                 GetComponent<Rigidbody>().velocity = Vector3.zero;
                 //止める
                 GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
-                //状態を変更　くっついている
-                status = STATUS.STICK;
+
+                //ボールを記憶しておく配列を用意（色の数だけ）
+                //各ボールのボール自身と位置を記憶
+                BallManager.SetStickBall( this.gameObject, color );
+                
             }
         }
     }
@@ -148,10 +164,15 @@ public class BallManager : MonoBehaviour
 
     public bool ColBall(Collision col)
     {
-        if (col.gameObject.CompareTag("Ball") && col.gameObject.GetComponent<BallManager>().GetStatus() == STATUS.STICK)
+        if (col.gameObject.CompareTag("Ball") && col.gameObject.GetComponent<Ball>().GetStatus() == STATUS.STICK)
         {
             return true;
         }
         return false;
+    }
+
+    public void SetColor( COLOR col )
+    {
+        color = col;
     }
 }
