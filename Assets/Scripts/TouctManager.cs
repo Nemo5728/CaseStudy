@@ -46,13 +46,14 @@ public class TouctManager : MonoBehaviour
             {
                 if (Physics.Raycast(ray.origin, ray.direction, (float)distance))
                 {
-                    if (obj.collider.gameObject.tag == "Ball")
+                    if (obj.collider.gameObject.tag == "Ball" )
+                    if( obj.collider.GetComponent<Ball>().GetStatus() == Ball.STATUS.MOVE )
                     {
                         //コメントアウト（門川)
                         //Destroy(obj.collider.gameObject);
 
                         //追加（門川）
-                        BallManager ballmanager = obj.collider.gameObject.GetComponent<BallManager>();
+                        Ball ballmanager = obj.collider.gameObject.GetComponent<Ball>();
                         ballmanager.StatusChangePull();
 
                         Debug.Log("レイが玉に当たった");

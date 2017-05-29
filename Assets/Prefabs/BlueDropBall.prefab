@@ -106,12 +106,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1242441834362962}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 192702e1b879be54392b63b0edb0a4cc, type: 3}
+  m_Script: {fileID: 11500000, guid: a9ed6045f84f148418d6a8b264884d4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  status: 0
+  oldStatus: 0
   BallSet: {fileID: 1186192739284618, guid: fd99acc237f3f4042975339a889d4a90, type: 2}
-  lerpTime: 50
-  time: 1
 --- !u!135 &135743464425445348
 SphereCollider:
   m_ObjectHideFlags: 1
