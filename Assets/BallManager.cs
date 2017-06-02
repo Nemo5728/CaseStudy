@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class BallManager : MonoBehaviour
 {
 
+    public GameObject Eraser;     //プレハブ
     public struct BALL
     {
         public GameObject BallObject;   //ゲームオブジェクト
@@ -46,17 +49,18 @@ public class BallManager : MonoBehaviour
                         if (_StickBall[i].use && i != j)
                         {
                             //くっついたのと他のと色を比較して同じなら
-                            if ( _StickBall[i].color == _StickBall[j].color )
+                            if (_StickBall[i].color == _StickBall[j].color)
                             {
                                 //Destroy(_StickBall[i].BallObject);
                                 //Destroy(_StickBall[j].BallObject);
                                 //ここにレイを飛ばす処理を書くi -> jに飛ばす
+                                RayTobasu(_StickBall[i].BallObject, _StickBall[j].BallObject);
 
                             }
                         }
                     }
                     //くっついたばかりじゃない状態にする
-                  _StickBall[i].put = false;
+                    _StickBall[i].put = false;
                 }
             }
 
@@ -79,27 +83,70 @@ public class BallManager : MonoBehaviour
 
         }
 
+
+    }
+
+    public static void DeleteBall(GameObject go)
+    {
+        for (int i = 0; i < 512; i++)
+        {
+            if (go == _StickBall[i].BallObject)
+            {
+                InitStickBall(i);
+            }
+        }
     }
     //消した後初期化
-    public void InitStickBall(int num)
+    public static void InitStickBall(int num)
     {
-        _StickBall[num].BallObject = null;
         _StickBall[num].color = Ball.COLOR.NONE;
         _StickBall[num].use = false;
         _StickBall[num].put = false;
+        Destroy(_StickBall[num].BallObject);
     }
 
-    //toからfromへ例を飛ばす
-    public void RayTobasu( Vector3 from, Vector3 to)
+    //toからfromへコリジョンを飛ばす
+    public void RayTobasu(GameObject from, GameObject to)
     {
-        //レイを飛ばす
-        Ray ray = new Ray(from, to);
-
-        Vector3 Length = from - to;
+        bool bEraser = true;
+        //レイをタップされた場所に飛ばす
+        Ray ray = new Ray(from.transform.position, to.transform.position);
 
         //Rayの飛ばせる距離
-        int distance = (int)Mathf.Sqrt(Length.x * Length.x + Length.y * Length.y);
-        
+        float distance = Mathf.Sqrt(to.transform.position.x * to.transform.position.x + to.transform.position.y * to.transform.position.y);
+
+        //Rayの可視化    ↓Rayの原点　　　　↓Rayの方向　　　　　　　　　↓Rayの色
+        Debug.DrawLine(ray.origin, ray.direction * distance, Color.blue, 4);
+
+        //当たった分の箱
+        RaycastHit[] hits = Physics.RaycastAll(ray, Mathf.Infinity);
+
+        //当たったやつの処理
+        foreach (var obj in hits)
+        {
+            if (Physics.Raycast(ray.origin, ray.direction, distance))
+            {
+                //コアがあったら飛ばさない
+                if (obj.collider.gameObject.name == "Core")
+                {
+                    Debug.Log("Coreにレイが当たった");
+                    bEraser = false;
+                }
+            }
+        }
+        if (bEraser)
+        {
+            //距離
+            Vector3 Difference = to.transform.position - from.transform.position;
+
+            //角度
+            float fRad = Mathf.Atan2(Difference.x, Difference.y);
+
+            //インスタンス生成
+            GameObject go = Instantiate(Eraser) as GameObject;
+            go.transform.position = from.transform.position;
+            go.GetComponent<BallEraser>().Shot(fRad, to);
+        }
     }
 }
 
