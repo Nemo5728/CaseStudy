@@ -26,43 +26,6 @@ public class TouctManager : MonoBehaviour
     void Update()
     {
         UpdateInput();
-        //レイを飛ばす
-        if (bRay == true)
-        {
-            //レイをタップされた場所に飛ばす
-            Ray ray = new Ray(new Vector3(0.0f, 0.0f, 0.0f), TapPos);
-
-            //Rayの飛ばせる距離
-            float distance = Mathf.Sqrt(TapPos.x * TapPos.x + TapPos.y * TapPos.y);
-
-            //Rayの可視化    ↓Rayの原点　　　　↓Rayの方向　　　　　　　　　↓Rayの色
-            Debug.DrawLine(ray.origin, ray.direction * distance, Color.red, 3);
-
-            //当たった分の箱
-            RaycastHit[] hits = Physics.RaycastAll(ray, Mathf.Infinity);
-
-            //当たったやつの処理
-            foreach (var obj in hits)
-            {
-                if (Physics.Raycast(ray.origin, ray.direction, (float)distance))
-                {
-                    if (obj.collider.gameObject.tag == "Ball" )
-                    if( obj.collider.GetComponent<Ball>().GetStatus() == Ball.STATUS.MOVE )
-                    {
-                        //コメントアウト（門川)
-                        //Destroy(obj.collider.gameObject);
-
-                        //追加（門川）
-                        Ball ballmanager = obj.collider.gameObject.GetComponent<Ball>();
-                        ballmanager.StatusChangePull();
-
-                        Debug.Log("レイが玉に当たった");
-                    }
-                }
-            }
-
-            bRay = false;
-        }
 
 
     }
