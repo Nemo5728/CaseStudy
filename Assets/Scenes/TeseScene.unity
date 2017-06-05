@@ -866,7 +866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c05d7f192923434aa4e14a457e5faae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Eraser: {fileID: 1220941015772024, guid: 6e5356563f012ad40830455edce89bf2, type: 2}
+  _Check: {fileID: 1761752839202154, guid: 8c5f0eb1ad325264fa9a04e9a362b9ed, type: 2}
 --- !u!1 &2067953272
 GameObject:
   m_ObjectHideFlags: 0
