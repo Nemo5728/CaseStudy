@@ -21,7 +21,7 @@ public class Ball : MonoBehaviour
         GREEN,
         MAX
     };
-
+    public int number;
     //自分のステータス
     public STATUS status;
     public STATUS oldStatus;
@@ -46,7 +46,6 @@ public class Ball : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
         //玉の速さをシューターから受け取り
         speed = BallSet.GetComponent<BallShooter>().ballSpeed;
 

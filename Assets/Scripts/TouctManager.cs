@@ -33,10 +33,10 @@ public class TouctManager : MonoBehaviour
             Ray ray = new Ray(new Vector3(0.0f, 0.0f, 0.0f), TapPos);
 
             //Rayの飛ばせる距離
-            int distance = (int)Mathf.Sqrt(TapPos.x * TapPos.x + TapPos.y * TapPos.y);
+            float distance = Mathf.Sqrt(TapPos.x * TapPos.x + TapPos.y * TapPos.y);
 
             //Rayの可視化    ↓Rayの原点　　　　↓Rayの方向　　　　　　　　　↓Rayの色
-            Debug.DrawLine(ray.origin, ray.direction * distance, Color.red);
+            Debug.DrawLine(ray.origin, ray.direction * distance, Color.red, 3);
 
             //当たった分の箱
             RaycastHit[] hits = Physics.RaycastAll(ray, Mathf.Infinity);
