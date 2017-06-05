@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class BallEraser : MonoBehaviour
 {
-
-    public GameObject _go;
+    public GameObject _toObj;
+    
+    public bool _ok;
 
     // Use this for initialization
     void Start()
     {
-
+        _ok = false;
     }
 
     // Update is called once per frame
@@ -20,7 +21,7 @@ public class BallEraser : MonoBehaviour
     }
 
     //自分を飛ばす    力　標的
-    public void Shot( float rad, GameObject go )
+    public void Shot(float rad, GameObject formobj, GameObject toobj)
     {
         Vector3 force;
 
@@ -29,13 +30,15 @@ public class BallEraser : MonoBehaviour
         force.z = 0.0f;
 
         GetComponent<Rigidbody>().velocity = force;
-
-        _go = go;
+        
+        _toObj = toobj;
+        
     }
+
     private void OnTriggerEnter(Collider other)
     {
         //ボールに当たったら消す
-        if (other.gameObject == _go)
+        if (other.gameObject == _toObj)
         {
             BallManager.DeleteBall(other.gameObject);
             Destroy(this.gameObject);
@@ -44,10 +47,9 @@ public class BallEraser : MonoBehaviour
         {
             BallManager.DeleteBall(other.gameObject);
         }
-
         if (other.gameObject.CompareTag("Frame"))
         {
-            BallManager.DeleteBall(other.gameObject);
+            Destroy(this.gameObject);
         }
     }
 

@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class BallManager : MonoBehaviour
 {
+    public GameObject _Check;     //プレハブ
 
-    public GameObject Eraser;     //プレハブ
     public struct BALL
     {
         public GameObject BallObject;   //ゲームオブジェクト
@@ -30,7 +30,6 @@ public class BallManager : MonoBehaviour
             _StickBall[i].put = false;
 
         }
-
     }
 
     // Update is called once per frame
@@ -93,6 +92,7 @@ public class BallManager : MonoBehaviour
             if (go == _StickBall[i].BallObject)
             {
                 InitStickBall(i);
+                break;
             }
         }
     }
@@ -108,45 +108,18 @@ public class BallManager : MonoBehaviour
     //toからfromへコリジョンを飛ばす
     public void RayTobasu(GameObject from, GameObject to)
     {
-        bool bEraser = true;
-        //レイをタップされた場所に飛ばす
-        Ray ray = new Ray(from.transform.position, to.transform.position);
+        //距離
+        Vector3 Difference = to.transform.position - from.transform.position;
 
-        //Rayの飛ばせる距離
-        float distance = Mathf.Sqrt(to.transform.position.x * to.transform.position.x + to.transform.position.y * to.transform.position.y);
+        //角度
+        float fRad = Mathf.Atan2(Difference.x, Difference.y);
 
-        //Rayの可視化    ↓Rayの原点　　　　↓Rayの方向　　　　　　　　　↓Rayの色
-        Debug.DrawLine(ray.origin, ray.direction * distance, Color.blue, 4);
+        //インスタンス生成
+        GameObject go = Instantiate(_Check) as GameObject;
+        go.transform.position = from.transform.position;
 
-        //当たった分の箱
-        RaycastHit[] hits = Physics.RaycastAll(ray, Mathf.Infinity);
-
-        //当たったやつの処理
-        foreach (var obj in hits)
-        {
-            if (Physics.Raycast(ray.origin, ray.direction, distance))
-            {
-                //コアがあったら飛ばさない
-                if (obj.collider.gameObject.name == "Core")
-                {
-                    Debug.Log("Coreにレイが当たった");
-                    bEraser = false;
-                }
-            }
-        }
-        if (bEraser)
-        {
-            //距離
-            Vector3 Difference = to.transform.position - from.transform.position;
-
-            //角度
-            float fRad = Mathf.Atan2(Difference.x, Difference.y);
-
-            //インスタンス生成
-            GameObject go = Instantiate(Eraser) as GameObject;
-            go.transform.position = from.transform.position;
-            go.GetComponent<BallEraser>().Shot(fRad, to);
-        }
+        go.GetComponent<CheckCollider>().Shot(fRad, from, to);
+        
     }
 }
 
