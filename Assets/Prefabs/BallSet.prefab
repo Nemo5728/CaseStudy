@@ -59,3 +59,4 @@ MonoBehaviour:
   apearPosX: 2.7
   apearPosY: 6.7
   ballSpeed: 5
+  BallManager: {fileID: 0}
