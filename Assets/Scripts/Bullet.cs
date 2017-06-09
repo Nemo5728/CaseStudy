@@ -7,14 +7,15 @@ namespace GodTouches{
 		private const float speed = 5.0f;
 		private Vector3 touch;
 		private Vector3 pos;
-		private Vector3 force;
+		public Vector3 force;
 		private Vector3 direction;
 		private int count = 0;
 		private const int deleteCnt = 50;
 		private Rigidbody _rigidbody;
 
-		// Use this for initialization
-		void Start () {
+
+        // Use this for initialization
+        void Start () {
 			transform.position = Vector3.zero;
 			transform.rotation = Quaternion.Euler(-90.0f, 0.0f, 0.0f);
 			touch = GodTouch.GetPosition();
@@ -25,7 +26,7 @@ namespace GodTouches{
 			force *= speed;
 			GetComponent<Rigidbody>().AddForce(force, ForceMode.VelocityChange);
 			_rigidbody = this.GetComponent<Rigidbody>();
-		}
+        }
 		
 		// Update is called once per frame
 		void Update () {
@@ -41,5 +42,12 @@ namespace GodTouches{
 		void onTriggerEnter(){
 			//動いてる弾を引っ張る処理
 		}
-	}
+
+        //横山追記　バレットの方向ベクトル取得
+        public Vector3 GetForce()
+        {
+            return force;
+        }
+        //
+    }
 }
