@@ -148,7 +148,7 @@ public class Ball : MonoBehaviour
 
 
                 //ボール同士の当たり判定時に綺麗にくっつけるための処理
-                if (col.gameObject.name == "Ball")
+                if (col.gameObject.tag == "Ball")
                 {
                     ////めり込んだ分の計算(スケール値は全て同じなのでどれか一つ取り出しただけ。)
                     float sinkValue = (GetComponent<SphereCollider>().radius * transform.localScale.x) * 2 -
