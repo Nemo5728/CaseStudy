@@ -9,7 +9,7 @@ namespace GodTouches
         private const float speed = 5.0f;
         private Vector3 touch;
         private Vector3 pos;
-        private Vector3 force;
+        public Vector3 force;
         private Vector3 direction;
         private int count = 0;
         private const int deleteCnt = 50;
@@ -57,5 +57,12 @@ namespace GodTouches
                 }
             }
         }
+
+        //横山追記　バレットの方向ベクトル取得
+        public Vector3 GetForce()
+        {
+            return force;
+        }
+        //
     }
 }
