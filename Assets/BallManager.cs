@@ -25,9 +25,7 @@ public class BallManager : MonoBehaviour
         //初期化
         for (int i = 0; i < 512; i++)
         {
-            _StickBall[i].BallObject = null;
-            _StickBall[i].use = false;
-            _StickBall[i].put = false;
+            InitStickBall(i);
 
         }
     }
@@ -45,7 +43,7 @@ public class BallManager : MonoBehaviour
                 {
                     for (int j = 0; j < 512; j++)
                     {
-                        if (_StickBall[i].use && i != j)
+                        if (_StickBall[j].use && i != j)
                         {
                             //くっついたのと他のと色を比較して同じなら
                             if (_StickBall[i].color == _StickBall[j].color)
