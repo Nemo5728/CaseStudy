@@ -43,6 +43,11 @@ public class Ball : MonoBehaviour
     private Vector3 endPoint = Vector3.zero;      //どこから引っ張られるか
     private Vector3 pullVec = Vector3.zero;
 
+    //重力
+    public float gravity1 = 50;     //くっつく前の引っ張る重力
+    public float gravity2 = 5000;   //後の引っ張る重力
+
+
     // Use this for initialization
     void Start()
     {
@@ -55,7 +60,7 @@ public class Ball : MonoBehaviour
         GetComponent<Rigidbody>().AddForce(force);              //ドロップボール発射
 
         status = STATUS.MOVE;
-        oldStatus = STATUS.MOVE;
+        oldStatus = status;
     }
 
     // Update is called once per frame
@@ -85,20 +90,38 @@ public class Ball : MonoBehaviour
                     //引っ張る方向へ力を加える
                     if (oldStatus != STATUS.PULL)
                     {
-                        GetComponent<Rigidbody>().velocity = Vector3.zero;
-                        startPoint = transform.position;        //現在の位置を設定                     
-                        endPoint = center;                      //引っ張られる目標地点を設定
-                        pullVec = endPoint - startPoint;
+                        //    GetComponent<Rigidbody>().velocity = Vector3.zero;
+                        //    startPoint = transform.position;        //現在の位置を設定                     
+                        //    endPoint = center;                      //引っ張られる目標地点を設定
+                        //    pullVec = endPoint - startPoint;
 
-                        pullVec = MoveBall(startPoint, endPoint, 1.1f);
+                        //    pullVec = MoveBall(startPoint, endPoint, 1.1f);
 
-                        GetComponent<Rigidbody>().AddForce(pullVec, ForceMode.Impulse);
-                        Debug.Log("加速度" + GetComponent<Rigidbody>().velocity);
+                        //    GetComponent<Rigidbody>().AddForce(pullVec, ForceMode.Impulse);
+                        //    Debug.Log("加速度" + GetComponent<Rigidbody>().velocity);
+
+                        GetComponent<Rigidbody>().GetComponent<Collider>().material = (PhysicMaterial)Resources.Load("Ball Physic Material2");
                     }
+
+                    float distance;
+                    Vector3 t1Angle;
+
+                    distance = Vector3.Distance(center, transform.position);
+                    t1Angle = center - transform.position;
+                    GetComponent<Rigidbody>().AddForce(t1Angle.normalized * ( gravity1 / Mathf.Pow( distance, 2 ) ) );
+
                     break;
                 }
             case STATUS.STICK:
                 {
+
+                    float distance;
+                    Vector3 t1Angle;
+
+                    distance = Vector3.Distance(center, transform.position);
+                    t1Angle = center - transform.position;
+                    GetComponent<Rigidbody>().AddForce(t1Angle.normalized * (gravity2 / Mathf.Pow(distance, 2)));
+
                     break;
                 }
             default:
@@ -148,7 +171,7 @@ public class Ball : MonoBehaviour
 
 
                 //ボール同士の当たり判定時に綺麗にくっつけるための処理
-                if (col.gameObject.tag == "Ball")
+              /*  if (col.gameObject.tag == "Ball")
                 {
                     ////めり込んだ分の計算(スケール値は全て同じなのでどれか一つ取り出しただけ。)
                     float sinkValue = (GetComponent<SphereCollider>().radius * transform.localScale.x) * 2 -
@@ -161,10 +184,16 @@ public class Ball : MonoBehaviour
 
                     //現在の位置から正しいところへ
                     transform.position += new Vector3(dirVec.x * sinkValue, dirVec.y * sinkValue, dirVec.z * sinkValue);
-                }
+                }*/
 
                 //止める
-                GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+                //GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+
+                //ボールを記憶しておく配列を用意（色の数だけ）
+                //各ボールのボール自身と位置を記憶
+                BallManager.SetStickBall( this.gameObject, color );
+                GetComponent<Rigidbody>().mass = 500.0f;
+                //GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
                 //GetComponent<Rigidbody>().isKinematic = true;
 
 
