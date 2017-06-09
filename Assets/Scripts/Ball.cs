@@ -108,7 +108,7 @@ public class Ball : MonoBehaviour
 
                     distance = Vector3.Distance(center, transform.position);
                     t1Angle = center - transform.position;
-                    GetComponent<Rigidbody>().AddForce(t1Angle.normalized * ( gravity1 / Mathf.Pow( distance, 2 ) ) );
+                    GetComponent<Rigidbody>().AddForce(t1Angle.normalized * (gravity1 / Mathf.Pow(distance, 2)));
 
                     break;
                 }
@@ -168,39 +168,13 @@ public class Ball : MonoBehaviour
                 status = STATUS.STICK;
                 //力を０に
                 GetComponent<Rigidbody>().velocity = Vector3.zero;
-
-
-                //ボール同士の当たり判定時に綺麗にくっつけるための処理
-              /*  if (col.gameObject.tag == "Ball")
-                {
-                    ////めり込んだ分の計算(スケール値は全て同じなのでどれか一つ取り出しただけ。)
-                    float sinkValue = (GetComponent<SphereCollider>().radius * transform.localScale.x) * 2 -
-                                      (Vector3.Distance(col.transform.position, transform.position));
-
-
-                    //方向ベクトルを求める。
-                    Vector3 dirVec = transform.position - col.transform.position;
-                    Vector3.Normalize(dirVec);        //正規化
-
-                    //現在の位置から正しいところへ
-                    transform.position += new Vector3(dirVec.x * sinkValue, dirVec.y * sinkValue, dirVec.z * sinkValue);
-                }*/
-
                 //止める
                 //GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
 
                 //ボールを記憶しておく配列を用意（色の数だけ）
                 //各ボールのボール自身と位置を記憶
-                BallManager.SetStickBall( this.gameObject, color );
-                GetComponent<Rigidbody>().mass = 500.0f;
-                //GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
-                //GetComponent<Rigidbody>().isKinematic = true;
-
-
-                //ボールを記憶しておく配列を用意（色の数だけ）
-                //各ボールのボール自身と位置を記憶
                 BallManager.SetStickBall(this.gameObject, color);
-
+                GetComponent<Rigidbody>().mass = 500.0f;
             }
         }
     }
@@ -219,7 +193,7 @@ public class Ball : MonoBehaviour
         return false;
     }
 
-    public void SetColor( COLOR col )
+    public void SetColor(COLOR col)
     {
         color = col;
     }
