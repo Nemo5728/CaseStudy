@@ -6,7 +6,10 @@ using UnityEngine;
 
 public class BallManager : MonoBehaviour
 {
-    public GameObject _Check;     //プレハブ
+    public GameObject _Check;     //プレハブ(チェック用のコライダー)
+    
+    /// ////////////////////////テスト
+    List<GameObject> colList = new List<GameObject>();
 
     public struct BALL
     {
@@ -26,7 +29,6 @@ public class BallManager : MonoBehaviour
         for (int i = 0; i < 512; i++)
         {
             InitStickBall(i);
-
         }
     }
 
@@ -35,10 +37,10 @@ public class BallManager : MonoBehaviour
     {
         for (int i = 0; i < 512; i++)
         {
-            //くっついているボール
+            //記憶されているボール（基本的にくっついた物のみ記憶しているはず）
             if (_StickBall[i].use)
             {
-                //くっついたばかりなら
+                //くっついたばかりのボールかどうか？
                 if (_StickBall[i].put == true)
                 {
                     for (int j = 0; j < 512; j++)
@@ -50,9 +52,8 @@ public class BallManager : MonoBehaviour
                             {
                                 //Destroy(_StickBall[i].BallObject);
                                 //Destroy(_StickBall[j].BallObject);
-                                //ここにレイを飛ばす処理を書くi -> jに飛ばす
+                                //コライダーを飛ばす。
                                 RayTobasu(_StickBall[i].BallObject, _StickBall[j].BallObject);
-
                             }
                         }
                     }
@@ -60,7 +61,6 @@ public class BallManager : MonoBehaviour
                     _StickBall[i].put = false;
                 }
             }
-
         }
     }
 
@@ -79,8 +79,6 @@ public class BallManager : MonoBehaviour
             }
 
         }
-
-
     }
 
     public static void DeleteBall(GameObject go)
@@ -89,23 +87,60 @@ public class BallManager : MonoBehaviour
         {
             if (go == _StickBall[i].BallObject)
             {
-                InitStickBall(i);
+                DeleteStickBall(i);
                 break;
             }
         }
     }
+
+    //くっついていた玉を再度引っ張られる状態に
+    public void allStickBallPull()
+    {
+        int count = 0;
+        foreach (Transform child in transform)
+        {
+            if( child.GetComponent<Ball>().GetStatus() == Ball.STATUS.STICK )
+            {
+                child.GetComponent<Ball>().StatusChangePull();
+            }
+            Debug.Log("Child[" + count + "]:" + child.name);
+            count++;
+        }
+    }
+
+
     //消した後初期化
     public static void InitStickBall(int num)
     {
         _StickBall[num].color = Ball.COLOR.NONE;
         _StickBall[num].use = false;
         _StickBall[num].put = false;
-        Destroy(_StickBall[num].BallObject);
+        //Destroy(_StickBall[num].BallObject);
+        //_StickBall[num].BallObject.GetComponent<SphereCollider>().isTrigger = true;
+    }
+
+    //消す予約。
+    public static void DeleteStickBall(int num)
+    {
+        _StickBall[num].color = Ball.COLOR.NONE;
+        _StickBall[num].use = false;
+        _StickBall[num].put = false;
+
+        //消える予約
+        _StickBall[num].BallObject.GetComponent<Ball>().StatusChangeDelete();
+        //Istrrigerで判定だけなくす（本来の使い方とは違う。istrrigerはトリガー判定を使うときのみ）
+        _StickBall[num].BallObject.GetComponent<SphereCollider>().isTrigger = true;
+        //ボールを見えなくする(ボールの3Dと2D）
+        _StickBall[num].BallObject.GetComponent<MeshRenderer>().enabled = false;
+        _StickBall[num].BallObject.GetComponent<MeshRenderer>().GetComponentInChildren<SpriteRenderer>().enabled = false;
     }
 
     //toからfromへコリジョンを飛ばす
     public void RayTobasu(GameObject from, GameObject to)
     {
+        //Debug.Log("from:" + from);
+        //Debug.Log("to:" + to);
+
         //距離
         Vector3 Difference = to.transform.position - from.transform.position;
 
@@ -117,7 +152,5 @@ public class BallManager : MonoBehaviour
         go.transform.position = from.transform.position;
 
         go.GetComponent<CheckCollider>().Shot(fRad, from, to);
-        
     }
 }
-

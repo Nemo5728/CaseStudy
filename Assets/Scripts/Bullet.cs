@@ -10,7 +10,6 @@ namespace GodTouches
         private Vector3 touch;
         private Vector3 pos;
         public Vector3 force;
-        private Vector3 direction;
         private int count = 0;
         private const int deleteCnt = 50;
         private Rigidbody _rigidbody;
@@ -34,7 +33,6 @@ namespace GodTouches
         void Update()
         {
             //GetComponent<Rigidbody>().AddForce(force);
-            Debug.Log("速度" + _rigidbody.velocity.magnitude);
             count++;
             if (count > deleteCnt)
             {
@@ -44,16 +42,17 @@ namespace GodTouches
 
         void OnTriggerEnter(Collider other)
         {
-
             if(other.gameObject.CompareTag("Ball"))
             {
                 Ball ball = other.gameObject.GetComponent<Ball>();
 
-                if(ball.GetStatus() == Ball.STATUS.MOVE)
+                //Debug.Log("other:"+ other);
+                //Debug.Log("-------------ball:" + ball);
+
+                if (ball.GetStatus() == Ball.STATUS.MOVE)
                 {
                     ball.StatusChangePull();
                     Destroy(gameObject);
-
                 }
             }
         }
