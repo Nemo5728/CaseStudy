@@ -153,6 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _toObj: {fileID: 0}
   _ok: 0
+  effect: {fileID: 1649497374410204, guid: 69fd6b7689c808f42a5835ef778b83ac, type: 2}
 --- !u!135 &135050870002329660
 SphereCollider:
   m_ObjectHideFlags: 1

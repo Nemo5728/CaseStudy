@@ -467,7 +467,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 1894054139943640, guid: b5f1db643290446f2b4f9d8fe057ab7b, type: 2}
-  effect: {fileID: 1154998134151576, guid: bd390f6ee9b23c341866e584a7e0c0f6, type: 2}
 --- !u!1 &793158228
 GameObject:
   m_ObjectHideFlags: 0
