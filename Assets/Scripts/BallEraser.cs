@@ -80,7 +80,7 @@ public class BallEraser : MonoBehaviour
         if ( count <= 1 )
         {
             Debug.Log("引っ張る");
-            //GetComponent<BallManager>().allStickBallPull();
+            BallManager.AllStickBallPull();
         }
     }
 }

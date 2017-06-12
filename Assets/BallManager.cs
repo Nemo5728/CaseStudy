@@ -11,6 +11,7 @@ public class BallManager : MonoBehaviour
     /// ////////////////////////テスト
     List<GameObject> colList = new List<GameObject>();
 
+    public static Transform _Trans;
     public struct BALL
     {
         public GameObject BallObject;   //ゲームオブジェクト
@@ -30,6 +31,7 @@ public class BallManager : MonoBehaviour
         {
             InitStickBall(i);
         }
+        _Trans = transform;
     }
 
     // Update is called once per frame
@@ -62,6 +64,7 @@ public class BallManager : MonoBehaviour
                 }
             }
         }
+        _Trans = transform;
     }
 
     //くっついた弾の情報をもらってくる
@@ -94,16 +97,27 @@ public class BallManager : MonoBehaviour
     }
 
     //くっついていた玉を再度引っ張られる状態に
-    public void allStickBallPull()
+    public static void AllStickBallPull()
     {
         int count = 0;
-        foreach (Transform child in transform)
+        bool init = true;
+        //子供を検索
+        foreach (Transform child in _Trans)
         {
+            //子供もプルにする
             if( child.GetComponent<Ball>().GetStatus() == Ball.STATUS.STICK )
             {
                 child.GetComponent<Ball>().StatusChangePull();
             }
-            Debug.Log("Child[" + count + "]:" + child.name);
+            //離れたから全部初期化
+            if(init)
+            {
+                for (int i = 0; i < 512; i++)
+                {
+                    InitStickBall(i);
+                }
+                init = false;
+            }
             count++;
         }
     }
