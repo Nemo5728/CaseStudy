@@ -8,7 +8,7 @@ namespace GodTouches{
 		public GameObject prefab;
 
         //横山追記
-        public GameObject effect;               //エフェクトのオブジェクトを入れる変数
+       //public GameObject effect;               //エフェクトのオブジェクトを入れる変数
         
 
         // Use this for initialization
@@ -23,8 +23,8 @@ namespace GodTouches{
 				GameObject bullets = Instantiate(prefab) as GameObject;
 
                 //横山追記
-                GameObject go = Instantiate(effect);        //エフェクトの生成
-                go.GetComponent<boltControll>().SetParent(/* transform.position, force */ bullets);     //エフェクト生成時に親子関係形成
+                //GameObject go = Instantiate(effect);        //エフェクトの生成
+                //go.GetComponent<boltControll>().SetParent(/* transform.position, force */ bullets);     //エフェクト生成時に親子関係形成
                                                                                                         //
             }
         }
