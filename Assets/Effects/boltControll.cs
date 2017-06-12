@@ -6,11 +6,9 @@ public class boltControll : MonoBehaviour {
 
     public GameObject bullet;
     public int reverseTime;                     //テクスチャ反転の間隔
-    //private Vector3 move;                        //エフェクトのスピード //AddForceのやり方に合わせているため現在は不要
     private SpriteRenderer mainRenderer;        //SpriteRendererをいじりたい
     private int timeCnt;                        //fpsカウント
 
-    public GameObject Core;
 
     // Use this for initialization
     void Start () {
@@ -21,20 +19,30 @@ public class boltControll : MonoBehaviour {
     }
 
 
-   public void SetParent(GameObject bullets) {
+   public void SetParent(GodTouches.Bullet bullets, Vector3 force) {
         transform.parent = bullets.transform;
-        //回転角調整   //調整必要
+
+        //回転角調整
         Vector3 baseVec = new Vector3(1.0f, 0.0f, 0.0f);
-        Vector3 force = bullet.GetComponent<GodTouches.Bullet>().force;
-        float angle = Vector3.Angle(baseVec, force);
-        Quaternion changeAngle = transform.rotation;
-        changeAngle.z += angle;
-        transform.rotation = changeAngle;
+        //Vector3 force = bullet.GetComponent<GodTouches.Bullet>().force;
+        Vector3.Normalize(force);
+
+        float x = force.x - baseVec.x;
+        float y = force.y - baseVec.y;
+
+        float rad = Mathf.Atan2(y, x);
+        float deg = rad * Mathf.Rad2Deg;
+
+        float changeRot = transform.rotation.z;
+        changeRot += deg;
+        this.transform.Rotate(new Vector3(0.0f, 0.0f, changeRot));
     }
 
 
     // Update is called once per frame
     void Update () {
+
+
         //時間経過におけるテクスチャの反転
         timeCnt++;
         if (timeCnt >= reverseTime)

@@ -485,7 +485,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 1894054139943640, guid: b5f1db643290446f2b4f9d8fe057ab7b, type: 2}
-  reverseTime: 0
+  reverseTime: 3
 --- !u!198 &198020685874803434
 ParticleSystem:
   m_ObjectHideFlags: 1

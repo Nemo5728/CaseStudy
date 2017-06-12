@@ -14,6 +14,10 @@ namespace GodTouches
         private const int deleteCnt = 50;
         private Rigidbody _rigidbody;
 
+        //横山追記
+        public GameObject effect;               //エフェクトのオブジェクトを入れる変数
+        //
+
         // Use this for initialization
         void Start()
         {
@@ -27,6 +31,10 @@ namespace GodTouches
             force *= speed;
             GetComponent<Rigidbody>().AddForce(force, ForceMode.VelocityChange);
             _rigidbody = this.GetComponent<Rigidbody>();
+
+            //横山追記
+            GameObject go = Instantiate(effect);        //エフェクトの生成
+            go.GetComponent<boltControll>().SetParent(/* transform.position, force */ this, force);     //エフェクト生成時に親子関係形成
         }
 
         // Update is called once per frame

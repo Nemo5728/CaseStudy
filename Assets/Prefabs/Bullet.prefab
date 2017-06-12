@@ -123,4 +123,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0dbad6624153d149baf69a49218f998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: {x: 0, y: 0, z: 0}
+  force: {x: 0, y: -3.33, z: 0}
+  effect: {fileID: 1154998134151576, guid: bd390f6ee9b23c341866e584a7e0c0f6, type: 2}
