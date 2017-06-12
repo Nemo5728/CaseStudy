@@ -6,7 +6,7 @@ namespace GodTouches
 {
     public class Bullet : MonoBehaviour
     {
-        private const float speed = 5.0f;
+        private const float speed = 20.0f;
         private Vector3 touch;
         private Vector3 pos;
         public Vector3 force;
@@ -27,7 +27,7 @@ namespace GodTouches
             pos = Camera.main.ScreenToWorldPoint(touch);
             force = pos;
             force.z = 0.0f;
-            Vector3.Normalize(force);
+            force = force.normalized;
             force *= speed;
             GetComponent<Rigidbody>().AddForce(force, ForceMode.VelocityChange);
             _rigidbody = this.GetComponent<Rigidbody>();
