@@ -2,14 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//ボールに当たったら消す用。主に挟んだボール同士で使う。
+
 public class BallEraser : MonoBehaviour
 {
     public GameObject _toObj;
     
     public bool _ok;
 
+    public GameObject _ball;
+
+    int count = 0;
+
     //横山追記
     public GameObject effect;               //エフェクトのオブジェクトを入れる変数
+
 
     // Use this for initialization
     void Start()
@@ -20,7 +27,6 @@ public class BallEraser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
 
     //自分を飛ばす    力　標的
@@ -40,7 +46,7 @@ public class BallEraser : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //ボールに当たったら消す
+        //目的地についた。
         if (other.gameObject == _toObj)
         {
             BallManager.DeleteBall(other.gameObject);
@@ -49,13 +55,15 @@ public class BallEraser : MonoBehaviour
             //横山追記
             GameObject go = Instantiate(effect);        //エフェクトの生成
         }
-        if (other.gameObject.CompareTag("Ball"))
+        //途中のボールに触れた(吸い付いてるボールのみ)
+        if (other.gameObject.CompareTag("Ball") && other.gameObject.GetComponent<Ball>().GetStatus() == Ball.STATUS.STICK )
         {
             BallManager.DeleteBall(other.gameObject);
 
             //横山追記
             GameObject go = Instantiate(effect);        //エフェクトの生成
         }
+
         if (other.gameObject.CompareTag("Frame"))
         {
             Destroy(this.gameObject);
@@ -63,5 +71,16 @@ public class BallEraser : MonoBehaviour
             GameObject go = Instantiate(effect);        //エフェクトの生成
         }
     }
-
+    void OnDestroy()
+    {
+        //消える寸前にオブジェクトの数が1以下なら全てのドロップからStick状態のものだけPull状態にする。
+        int ObjCount = this.transform.childCount;
+        Debug.Log("objCount:" + ObjCount);
+        //再度引っ張る処理
+        if ( count <= 1 )
+        {
+            Debug.Log("引っ張る");
+            //GetComponent<BallManager>().allStickBallPull();
+        }
+    }
 }

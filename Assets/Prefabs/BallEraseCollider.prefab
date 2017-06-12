@@ -151,6 +151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 921f412957ecced469ab566022757521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ballManager: {fileID: 1256873699265700, guid: 78c0823aed11b0543bc5a0a5812def8a,
+    type: 2}
   _toObj: {fileID: 0}
   _ok: 0
   effect: {fileID: 1649497374410204, guid: 69fd6b7689c808f42a5835ef778b83ac, type: 2}
