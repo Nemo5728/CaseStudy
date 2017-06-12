@@ -100,6 +100,9 @@ public class BallShooter : MonoBehaviour
                     greenBalls.transform.parent = BallManager.transform;
                     greenBalls.GetComponent<Ball>().SetColor(Ball.COLOR.GREEN);
                     break;
+
+			default:
+				break;
             }
         }
     }
