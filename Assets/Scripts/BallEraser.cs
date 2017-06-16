@@ -14,7 +14,6 @@ public class BallEraser : MonoBehaviour
 
     int count = 0;
 
-
     // Use this for initialization
     void Start()
     {

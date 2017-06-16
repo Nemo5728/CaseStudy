@@ -138,6 +138,7 @@ MonoBehaviour:
   gravity1: 50
   gravity2: 5000
   effect: {fileID: 1875193521062410, guid: 5aad5599fae2dbd4d90e269fd39d0267, type: 2}
+  score: {fileID: 1951646304109704, guid: f8a66748770ba4463b929ee5d4ef785a, type: 2}
 --- !u!135 &135743464425445348
 SphereCollider:
   m_ObjectHideFlags: 1

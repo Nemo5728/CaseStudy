@@ -49,7 +49,10 @@ public class Ball : MonoBehaviour
 
 	//横山追記
 	public GameObject effect;
-	//
+
+    //中山追記
+    public GameObject score;
+    private int scoreValue = 100;
 
     // Use this for initialization
     void Start()
@@ -171,7 +174,9 @@ public class Ball : MonoBehaviour
     {
         status = STATUS.DELETE;
 		GameObject go = Instantiate(effect);
+        GameObject gobj = Instantiate(score);
 		go.GetComponent<expControll>().Set(transform.position);
+        gobj.GetComponent<FlyText>().Create(transform.position, scoreValue);
     }
     public STATUS GetStatus()
     {
