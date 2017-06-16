@@ -170,8 +170,11 @@ public class Ball : MonoBehaviour
     public void StatusChangeDelete()
     {
         status = STATUS.DELETE;
+
+		//横山追記
 		GameObject go = Instantiate(effect);
 		go.GetComponent<expControll>().Set(transform.position);
+			
     }
     public STATUS GetStatus()
     {
