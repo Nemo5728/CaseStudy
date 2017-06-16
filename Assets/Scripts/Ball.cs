@@ -49,7 +49,9 @@ public class Ball : MonoBehaviour
 
 	//横山追記
 	public GameObject effect;
-	//
+	
+    public GameObject score;
+    private int scoreValue = 100;
 
     // Use this for initialization
     void Start()
@@ -174,7 +176,10 @@ public class Ball : MonoBehaviour
 		//横山追記
 		GameObject go = Instantiate(effect);
 		go.GetComponent<expControll>().Set(transform.position);
-			
+    
+    GameObject gobj = Instantiate(score);
+    gobj.GetComponent<FlyText>().Create(transform.position, scoreValue);
+
     }
     public STATUS GetStatus()
     {
