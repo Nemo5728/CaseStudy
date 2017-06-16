@@ -46,7 +46,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4329082501208514
 Transform:
   m_ObjectHideFlags: 1
@@ -154,6 +154,8 @@ MonoBehaviour:
   _Erase: {fileID: 1220941015772024, guid: 6e5356563f012ad40830455edce89bf2, type: 2}
   _toObj: {fileID: 0}
   _fromObj: {fileID: 0}
+  _viaObj: {fileID: 0}
+  _via: {x: 0, y: 0, z: 0}
 --- !u!135 &135469141122646170
 SphereCollider:
   m_ObjectHideFlags: 1

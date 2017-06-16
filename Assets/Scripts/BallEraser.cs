@@ -14,9 +14,6 @@ public class BallEraser : MonoBehaviour
 
     int count = 0;
 
-    //横山追記
-    public GameObject effect;               //エフェクトのオブジェクトを入れる変数
-
 
     // Use this for initialization
     void Start()
@@ -51,24 +48,16 @@ public class BallEraser : MonoBehaviour
         {
             BallManager.DeleteBall(other.gameObject);
             Destroy(this.gameObject);
-
-            //横山追記
-            GameObject go = Instantiate(effect);        //エフェクトの生成
         }
         //途中のボールに触れた(吸い付いてるボールのみ)
         if (other.gameObject.CompareTag("Ball") && other.gameObject.GetComponent<Ball>().GetStatus() == Ball.STATUS.STICK )
         {
             BallManager.DeleteBall(other.gameObject);
-
-            //横山追記
-            GameObject go = Instantiate(effect);        //エフェクトの生成
         }
 
         if (other.gameObject.CompareTag("Frame"))
         {
             Destroy(this.gameObject);
-            //横山追記
-            GameObject go = Instantiate(effect);        //エフェクトの生成
         }
     }
     void OnDestroy()

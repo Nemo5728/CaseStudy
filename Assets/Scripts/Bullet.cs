@@ -6,16 +6,18 @@ namespace GodTouches
 {
     public class Bullet : MonoBehaviour
     {
-        private const float speed = 20.0f;
+        private const float speed = 40.0f;
         private Vector3 touch;
         private Vector3 pos;
         public Vector3 force;
         private int count = 0;
         private const int deleteCnt = 50;
         private Rigidbody _rigidbody;
+        private bool used;
 
         //横山追記
         public GameObject effect;               //エフェクトのオブジェクトを入れる変数
+        private GameObject go;
         //
 
         // Use this for initialization
@@ -33,19 +35,23 @@ namespace GodTouches
             _rigidbody = this.GetComponent<Rigidbody>();
 
             //横山追記
-            GameObject go = Instantiate(effect);        //エフェクトの生成
-            go.GetComponent<boltControll>().SetParent(/* transform.position, force */ this, force);     //エフェクト生成時に親子関係形成
+            go = Instantiate(effect);        //エフェクトの生成
+            go.GetComponent<boltControll>().SetParent(this, force);     //エフェクト生成時に親子関係形成、方向ベクトル取得
+			//
         }
 
         // Update is called once per frame
         void Update()
         {
             //GetComponent<Rigidbody>().AddForce(force);
+
+			//横山追記
             count++;
             if (count > deleteCnt)
             {
                 Destroy(gameObject);
             }
+			//
         }
 
         void OnTriggerEnter(Collider other)
@@ -60,7 +66,12 @@ namespace GodTouches
                 if (ball.GetStatus() == Ball.STATUS.MOVE)
                 {
                     ball.StatusChangePull();
-                    Destroy(gameObject);
+
+                    //横山変更　当たり判定を消し、見かけ上はまだ存在しているように見せる
+                    go.GetComponent<boltControll>().SetDelete();
+                    GetComponent<MeshCollider>().enabled = false;
+                    //Destroy(gameObject);      //変更のためここで弾を削除させると困るのでコメントアウト
+					//
                 }
             }
         }

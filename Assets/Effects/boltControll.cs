@@ -5,17 +5,25 @@ using UnityEngine;
 public class boltControll : MonoBehaviour {
 
     public GameObject bullet;
+    public GameObject effect;
+    private ParticleSystem par01;
+    private ParticleSystem par02;
+    private ParticleSystem par03;
+    private ParticleSystem par04;
     public int reverseTime;                     //テクスチャ反転の間隔
     private SpriteRenderer mainRenderer;        //SpriteRendererをいじりたい
-    private int timeCnt;                        //fpsカウント
+    private int timeCnt1, timeCnt2;             //fpsカウント
+    private bool deleteFlag;                    //エフェクトの消滅判定
+    private GameObject go;
 
 
     // Use this for initialization
     void Start () {
         //初期化
         mainRenderer = gameObject.GetComponent<SpriteRenderer>();
-        timeCnt = -1;
+        timeCnt1 = timeCnt2 = -1;
         transform.position = Vector3.zero;
+        deleteFlag = false;
     }
 
 
@@ -24,7 +32,6 @@ public class boltControll : MonoBehaviour {
 
         //回転角調整
         Vector3 baseVec = new Vector3(1.0f, 0.0f, 0.0f);
-        //Vector3 force = bullet.GetComponent<GodTouches.Bullet>().force;
         Vector3.Normalize(force);
 
         float x = force.x - baseVec.x;
@@ -44,8 +51,8 @@ public class boltControll : MonoBehaviour {
 
 
         //時間経過におけるテクスチャの反転
-        timeCnt++;
-        if (timeCnt >= reverseTime)
+        timeCnt1++;
+        if (timeCnt1 >= reverseTime)
         {
             if (mainRenderer.flipY == true)
             {
@@ -55,7 +62,43 @@ public class boltControll : MonoBehaviour {
             {
                 mainRenderer.flipY = true;
             }
-            timeCnt = 0;
+            timeCnt1 = -1;
         }
+
+        //余韻を持たせて消滅
+        if (deleteFlag == true)
+        {
+            timeCnt2++;
+
+            if (timeCnt2 > 60)
+            {
+                
+                Destroy(gameObject);
+                timeCnt2 = -1;
+            }
+        }
+    }
+
+
+    //消滅時の必要な値設定
+    public void SetDelete()
+    {
+		par01 = transform.FindChild("par_tracks").GetComponent<ParticleSystem>();
+		par01.Stop();
+		par02 = transform.FindChild("par_spark_core").GetComponent<ParticleSystem>();
+		par02.Stop();
+		par03 = transform.FindChild("par_spark_L").GetComponent<ParticleSystem>();
+		par03.Stop();
+		par04 = transform.FindChild("par_spark_R").GetComponent<ParticleSystem>();
+		par04.Stop();
+
+		go = Instantiate(effect);
+		go.GetComponent<hitControll>().SetPosition(transform.position);
+
+		//transform.DetachChildren();	//光の護封剣発動！！かっこいいから消さないで！！
+
+
+		deleteFlag = true;
+        mainRenderer.enabled = false;   
     }
 }
