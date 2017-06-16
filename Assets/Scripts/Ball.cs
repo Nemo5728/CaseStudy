@@ -49,8 +49,7 @@ public class Ball : MonoBehaviour
 
 	//横山追記
 	public GameObject effect;
-
-    //中山追記
+	
     public GameObject score;
     private int scoreValue = 100;
 
@@ -173,10 +172,14 @@ public class Ball : MonoBehaviour
     public void StatusChangeDelete()
     {
         status = STATUS.DELETE;
+
+		//横山追記
 		GameObject go = Instantiate(effect);
-        GameObject gobj = Instantiate(score);
 		go.GetComponent<expControll>().Set(transform.position);
+
+        GameObject gobj = Instantiate(score);
         gobj.GetComponent<FlyText>().Create(transform.position, scoreValue);
+			
     }
     public STATUS GetStatus()
     {
