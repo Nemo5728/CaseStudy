@@ -176,10 +176,10 @@ public class Ball : MonoBehaviour
 		//横山追記
 		GameObject go = Instantiate(effect);
 		go.GetComponent<expControll>().Set(transform.position);
+    
+    GameObject gobj = Instantiate(score);
+    gobj.GetComponent<FlyText>().Create(transform.position, scoreValue);
 
-        GameObject gobj = Instantiate(score);
-        gobj.GetComponent<FlyText>().Create(transform.position, scoreValue);
-			
     }
     public STATUS GetStatus()
     {
