@@ -47,6 +47,10 @@ public class Ball : MonoBehaviour
     public float gravity1 = 50;     //くっつく前の引っ張る重力
     public float gravity2 = 5000;   //後の引っ張る重力
 
+	//横山追記
+	public GameObject effect;
+	//
+
     // Use this for initialization
     void Start()
     {
@@ -133,6 +137,7 @@ public class Ball : MonoBehaviour
 
 
 
+
                     /*
                     float distance;
                     Vector3 t1Angle;
@@ -165,6 +170,8 @@ public class Ball : MonoBehaviour
     public void StatusChangeDelete()
     {
         status = STATUS.DELETE;
+		GameObject go = Instantiate(effect);
+		go.GetComponent<expControll>().Set(transform.position);
     }
     public STATUS GetStatus()
     {

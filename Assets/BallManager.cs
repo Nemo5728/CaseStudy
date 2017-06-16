@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 
@@ -32,7 +33,7 @@ public class BallManager : MonoBehaviour
             InitStickBall(i);
         }
         _Trans = transform;
-    }
+	}
 
     // Update is called once per frame
     void Update()
@@ -147,10 +148,10 @@ public class BallManager : MonoBehaviour
         //ボールを見えなくする(ボールの3Dと2D）
         _StickBall[num].BallObject.GetComponent<MeshRenderer>().enabled = false;
         _StickBall[num].BallObject.GetComponent<MeshRenderer>().GetComponentInChildren<SpriteRenderer>().enabled = false;
-    }
+	}
 
-    //toからfromへコリジョンを飛ばす
-    public void RayTobasu(GameObject from, GameObject to)
+	//toからfromへコリジョンを飛ばす
+	public void RayTobasu(GameObject from, GameObject to)
     {
         //Debug.Log("from:" + from);
         //Debug.Log("to:" + to);

@@ -10,13 +10,13 @@ using UnityEngine;
 public class BallShooter : MonoBehaviour
 {
     public GameObject redBall;     //ドロップボールのプレハブ
-    public GameObject blueBall;     //ドロップボールのプレハブ
-    public GameObject yellowBall;     //ドロップボールのプレハブ
-    public GameObject greenBall;     //ドロップボールのプレハブ
+    public GameObject blueBall;    //ドロップボールのプレハブ
+    public GameObject yellowBall;  //ドロップボールのプレハブ
+    public GameObject greenBall;   //ドロップボールのプレハブ
 
     public float timeOut;       //目標時間
-    public float apearPosX;    //ドロップボールの出現位置限界X
-    public float apearPosY;    //ドロップボールの出現位置限界Y
+    public float apearPosX;     //ドロップボールの出現位置限界X
+    public float apearPosY;     //ドロップボールの出現位置限界Y
     public float ballSpeed;     //ドロップボールの速さ
 
     private float timeElapsed;  //時間経過
