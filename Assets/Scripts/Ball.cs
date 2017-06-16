@@ -20,6 +20,8 @@ public class Ball : MonoBehaviour
         BLUE,
         YELLOW,
         GREEN,
+        PURPLE,
+        OJAMA,
         MAX
     };
     //自分のステータス

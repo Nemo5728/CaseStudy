@@ -13,6 +13,10 @@ public class BallShooter : MonoBehaviour
     public GameObject blueBall;    //ドロップボールのプレハブ
     public GameObject yellowBall;  //ドロップボールのプレハブ
     public GameObject greenBall;   //ドロップボールのプレハブ
+    public GameObject purpleBall;   //ドロップボールのプレハブ
+    public GameObject ojamaBall;   //ドロップボールのプレハブ
+
+    private int _BALLMAX = 6;
 
     public float timeOut;       //目標時間
     public float apearPosX;     //ドロップボールの出現位置限界X
@@ -69,36 +73,53 @@ public class BallShooter : MonoBehaviour
             transform.position = pos;
             //発射位置ランダム設定ここまで
 
-            int color = Random.Range(0, 4);
+            int color = Random.Range(0, _BALLMAX);
 
+            //弾を生成
             switch (color)
             {
-                case 0:
+                case 0://赤
                     GameObject redBalls = Instantiate( redBall ) as GameObject;     //ドロップボールの複製
                     redBalls.transform.position = transform.position;          //ドロップボール発射位置設定
                     redBalls.transform.parent = BallManager.transform;
                     redBalls.GetComponent<Ball>().SetColor(Ball.COLOR.RED);
                     break;
 
-                case 1:
+                case 1://青
                     GameObject blueBalls = Instantiate(blueBall) as GameObject;     //ドロップボールの複製
                     blueBalls.transform.position = transform.position;          //ドロップボール発射位置設定
                     blueBalls.transform.parent = BallManager.transform;
                     blueBalls.GetComponent<Ball>().SetColor(Ball.COLOR.BLUE);
                     break;
 
-                case 2:
+                case 2://黄
                     GameObject yellowBalls = Instantiate(yellowBall) as GameObject;     //ドロップボールの複製
                     yellowBalls.transform.position = transform.position;          //ドロップボール発射位置設定
                     yellowBalls.transform.parent = BallManager.transform;
                     yellowBalls.GetComponent<Ball>().SetColor(Ball.COLOR.YELLOW);
                     break;
 
-                case 3:
+                case 3://緑
                     GameObject greenBalls = Instantiate(greenBall) as GameObject;     //ドロップボールの複製
                     greenBalls.transform.position = transform.position;          //ドロップボール発射位置設定
                     greenBalls.transform.parent = BallManager.transform;
                     greenBalls.GetComponent<Ball>().SetColor(Ball.COLOR.GREEN);
+                    break;
+
+                case 4://紫
+                    GameObject purpleBalls = Instantiate(purpleBall) as GameObject;     //ドロップボールの複製
+                    purpleBalls.transform.position = transform.position;          //ドロップボール発射位置設定
+                    purpleBalls.transform.parent = BallManager.transform;
+                    purpleBalls.GetComponent<Ball>().SetColor(Ball.COLOR.PURPLE);
+                    break;
+
+                case 5://お邪魔
+                    GameObject ojamaBalls = Instantiate(ojamaBall) as GameObject;     //ドロップボールの複製
+                    ojamaBalls.transform.position = transform.position;          //ドロップボール発射位置設定
+                    ojamaBalls.transform.parent = BallManager.transform;
+                    ojamaBalls.GetComponent<Ball>().SetColor(Ball.COLOR.OJAMA);
+                    break;
+                default:
                     break;
             }
         }
