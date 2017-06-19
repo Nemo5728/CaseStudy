@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FlyText : MonoBehaviour {
 
-    private int Socre;
+    private int score;
     private int count;          //諸々の基準となるカウンタ
     private float alpha;
 
@@ -12,6 +12,8 @@ public class FlyText : MonoBehaviour {
     public int deleteTime;
     public int fadeInTime;      //フェードインし終わる時間
     public int fadeOutTime;     //フェードアウトを始める時間
+
+    public GameObject _ScoreCanvas;
 
     private enum FADE
     {
@@ -30,13 +32,17 @@ public class FlyText : MonoBehaviour {
         count = 0;
         alpha = 0.0f;
         fade = FADE.IN;
+
+        //エラーチェック
+        if (deleteTime < fadeInTime || deleteTime < fadeOutTime){
+            Debug.LogError("エラー!!deleteTimeよりもfade関係のパラメタは少なくしてね！！");
+        }
 	}
 	
 	// Update is called once per frame
 	void Update () {
         //ゆっくりフェードで上がってファッと消える
         transform.position += new Vector3(0.0f, upRate, 0.0f);
-
 
         //フェード制御 インスペクタで微調整してね
         if (count < fadeInTime){
@@ -83,22 +89,18 @@ public class FlyText : MonoBehaviour {
 	}
 
     public void Create(Vector3 pos, int score){
-        transform.position = new Vector3(pos.x, pos.y, -5);
-        this.Socre = score;
-
-        //受け取ったスコアをいじるやつ
-        SetScore();
-    }
-
-    private void SetScore(){
         int hund, ten, one;
+        transform.position = new Vector3(pos.x, pos.y, -5);
 
-        hund = Socre / 100;
-        ten = Socre / 10 % 10;
-        one = Socre % 10;
+		hund = score / 100;
+		ten = score / 10 % 10;
+		one = score % 10;
 
-        _hund.GetComponent<number>().Create(hund);
-        _ten.GetComponent<number>().Create(ten);
-        _one.GetComponent<number>().Create(one);
+		_hund.GetComponent<number>().Create(hund);
+		_ten.GetComponent<number>().Create(ten);
+		_one.GetComponent<number>().Create(one);
+
+        _ScoreCanvas = GameObject.Find("Score_Board");
+		_ScoreCanvas.GetComponent<ScoreScript>().SetScore(score);
     }
 }
