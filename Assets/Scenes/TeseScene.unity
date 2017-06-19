@@ -556,6 +556,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1293178754}
   - component: {fileID: 1293178753}
+  - component: {fileID: 1293178755}
   m_Layer: 0
   m_Name: BackGround
   m_TagString: Untagged
@@ -616,6 +617,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1293178755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1293178752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf04bf79974d14247b1f1f363635c226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TitleBgm: {fileID: 8300000, guid: 5cc53b91a8fac5d43a72763a6c4efd3c, type: 3}
+  GameBgm: {fileID: 0}
+  ResultBgm: {fileID: 0}
 --- !u!1001 &1413674193
 Prefab:
   m_ObjectHideFlags: 0
