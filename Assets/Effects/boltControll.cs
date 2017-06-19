@@ -83,13 +83,13 @@ public class boltControll : MonoBehaviour {
     //消滅時の必要な値設定
     public void SetDelete()
     {
-		par01 = transform.FindChild("par_tracks").GetComponent<ParticleSystem>();
+		par01 = transform.Find("par_tracks").GetComponent<ParticleSystem>();
 		par01.Stop();
-		par02 = transform.FindChild("par_spark_core").GetComponent<ParticleSystem>();
+		par02 = transform.Find("par_spark_core").GetComponent<ParticleSystem>();
 		par02.Stop();
-		par03 = transform.FindChild("par_spark_L").GetComponent<ParticleSystem>();
+		par03 = transform.Find("par_spark_L").GetComponent<ParticleSystem>();
 		par03.Stop();
-		par04 = transform.FindChild("par_spark_R").GetComponent<ParticleSystem>();
+		par04 = transform.Find("par_spark_R").GetComponent<ParticleSystem>();
 		par04.Stop();
 
 		go = Instantiate(effect);

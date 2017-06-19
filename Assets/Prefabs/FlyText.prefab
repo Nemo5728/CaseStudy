@@ -214,6 +214,7 @@ MonoBehaviour:
   deleteTime: 60
   fadeInTime: 10
   fadeOutTime: 40
+  _ScoreCanvas: {fileID: 0}
   _hund: {fileID: 1785588619219616}
   _ten: {fileID: 1196374354152338}
   _one: {fileID: 1803272369858974}
