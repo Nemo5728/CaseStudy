@@ -61,7 +61,7 @@ public class CheckCollider : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //他の玉に当たった時にその玉が自分とくっついているかどうか、簡易計算させる(自分自身と触れ合った時は避ける）
-        if( other.gameObject.tag == "Ball" && other.gameObject != _viaObj )
+        if( other.gameObject.tag == "Ball" && other.gameObject != _viaObj && _viaObj != null)
         {
             /*
             Debug.Log("this:" + this);

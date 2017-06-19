@@ -23,21 +23,6 @@ namespace GodTouches
         // Use this for initialization
         void Start()
         {
-            transform.position = Vector3.zero;
-            transform.rotation = Quaternion.Euler(-90.0f, 0.0f, 0.0f);
-            touch = GodTouch.GetPosition();
-            pos = Camera.main.ScreenToWorldPoint(touch);
-            force = pos;
-            force.z = 0.0f;
-            force = force.normalized;
-            force *= speed;
-            GetComponent<Rigidbody>().AddForce(force, ForceMode.VelocityChange);
-            _rigidbody = this.GetComponent<Rigidbody>();
-
-            //横山追記
-            go = Instantiate(effect);        //エフェクトの生成
-            go.GetComponent<boltControll>().SetParent(this, force);     //エフェクト生成時に親子関係形成、方向ベクトル取得
-			//
         }
 
         // Update is called once per frame
@@ -81,6 +66,48 @@ namespace GodTouches
         {
             return force;
         }
-        //
+        //正面に発射
+        public void frontShot()
+        {
+            transform.position = Vector3.zero;
+            transform.rotation = Quaternion.Euler(-90.0f, 0.0f, 0.0f);
+            touch = GodTouch.GetPosition();
+            pos = Camera.main.ScreenToWorldPoint(touch);
+            force = pos;
+            force.z = 0.0f;
+            force = force.normalized;
+            force *= speed;
+            GetComponent<Rigidbody>().AddForce(force, ForceMode.VelocityChange);
+            _rigidbody = this.GetComponent<Rigidbody>();
+
+            //横山追記
+            go = Instantiate(effect);        //エフェクトの生成
+            go.GetComponent<boltControll>().SetParent(this, force);     //エフェクト生成時に親子関係形成、方向ベクトル取得
+        }
+        //後ろに発射
+        public void BackShot()
+        {
+            transform.position = Vector3.zero;
+            transform.rotation = Quaternion.Euler(-90.0f, 0.0f, 0.0f);
+            touch = GodTouch.GetPosition();
+            pos = Camera.main.ScreenToWorldPoint(touch);
+            force = pos;
+
+            //適当に反転（横山追記
+            force.x = -force.x;
+            force.y = -force.y;
+
+            force.z = 0.0f;
+            force = force.normalized;
+            force *= speed;
+
+            GetComponent<Rigidbody>().AddForce(force, ForceMode.VelocityChange);
+
+            _rigidbody = this.GetComponent<Rigidbody>();
+
+            //横山追記
+            go = Instantiate(effect);        //エフェクトの生成
+            go.GetComponent<boltControll>().SetParent(this, force);     //エフェクト生成時に親子関係形成、方向ベクトル取得
+        }
     }
 }

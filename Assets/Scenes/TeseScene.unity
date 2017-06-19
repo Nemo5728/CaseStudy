@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641252, b: 0.574817, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -471,6 +471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 1894054139943640, guid: b5f1db643290446f2b4f9d8fe057ab7b, type: 2}
+  prefab2: {fileID: 1894054139943640, guid: b5f1db643290446f2b4f9d8fe057ab7b, type: 2}
 --- !u!1 &793158228
 GameObject:
   m_ObjectHideFlags: 0
@@ -715,6 +716,18 @@ Prefab:
       propertyPath: ballSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114159732638885364, guid: fd99acc237f3f4042975339a889d4a90,
+        type: 2}
+      propertyPath: purpleBall
+      value: 
+      objectReference: {fileID: 1746036108600048, guid: b19a40258b3f2b244a5e132800855b37,
+        type: 2}
+    - target: {fileID: 114159732638885364, guid: fd99acc237f3f4042975339a889d4a90,
+        type: 2}
+      propertyPath: ojamaBall
+      value: 
+      objectReference: {fileID: 1897207324778224, guid: 3f4823ad6d5426340ac83f53c8084d11,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fd99acc237f3f4042975339a889d4a90, type: 2}
   m_IsPrefabParent: 0
@@ -866,22 +879,22 @@ Prefab:
     - target: {fileID: 224225174644206338, guid: 61b8735c16cc59848adbd37b9cbb58e6,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 187.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224225174644206338, guid: 61b8735c16cc59848adbd37b9cbb58e6,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 333.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224225174644206338, guid: 61b8735c16cc59848adbd37b9cbb58e6,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 375
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224225174644206338, guid: 61b8735c16cc59848adbd37b9cbb58e6,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 667
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224225174644206338, guid: 61b8735c16cc59848adbd37b9cbb58e6,
         type: 2}
@@ -906,12 +919,12 @@ Prefab:
     - target: {fileID: 224225174644206338, guid: 61b8735c16cc59848adbd37b9cbb58e6,
         type: 2}
       propertyPath: m_Pivot.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224225174644206338, guid: 61b8735c16cc59848adbd37b9cbb58e6,
         type: 2}
       propertyPath: m_Pivot.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1417647294716722, guid: 61b8735c16cc59848adbd37b9cbb58e6, type: 2}
       propertyPath: m_IsActive
@@ -925,17 +938,17 @@ Prefab:
     - target: {fileID: 224225174644206338, guid: 61b8735c16cc59848adbd37b9cbb58e6,
         type: 2}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224225174644206338, guid: 61b8735c16cc59848adbd37b9cbb58e6,
         type: 2}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224225174644206338, guid: 61b8735c16cc59848adbd37b9cbb58e6,
         type: 2}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114416507842928186, guid: 61b8735c16cc59848adbd37b9cbb58e6,
         type: 2}

@@ -41,7 +41,7 @@ public class BallManager : MonoBehaviour
         for (int i = 0; i < 512; i++)
         {
             //記憶されているボール（基本的にくっついた物のみ記憶しているはず）
-            if (_StickBall[i].use)
+            if (_StickBall[i].use && _StickBall[i].color != Ball.COLOR.OJAMA)
             {
                 //くっついたばかりのボールかどうか？
                 if (_StickBall[i].put == true)
