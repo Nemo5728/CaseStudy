@@ -61,7 +61,7 @@ public class Ball : MonoBehaviour
         //玉の速さをシューターから受け取り
         speed = BallSet.GetComponent<BallShooter>().ballSpeed;
 
-        force = center - transform.position;            //発射ベクトル設定
+        force = center - transform.position;                   //発射ベクトル設定
         Vector3.Normalize(force);                               //ベクトルの正規化
         force *= speed;                                         //ドロップボールの速さ調整
         GetComponent<Rigidbody>().AddForce(force);              //ドロップボール発射

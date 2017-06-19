@@ -55,9 +55,10 @@ MonoBehaviour:
   blueBall: {fileID: 1242441834362962, guid: 560efe0ec9484404298d71208c051dba, type: 2}
   yellowBall: {fileID: 1828507339651948, guid: 42b63f7f564429143908c0095bf6562d, type: 2}
   greenBall: {fileID: 1224579796496416, guid: 482f9cdcb87e8024fadf3e3de49d75e0, type: 2}
+  purpleBall: {fileID: 1746036108600048, guid: b19a40258b3f2b244a5e132800855b37, type: 2}
+  ojamaBall: {fileID: 1897207324778224, guid: 3f4823ad6d5426340ac83f53c8084d11, type: 2}
   timeOut: 1
   apearPosX: 2.7
   apearPosY: 6.7
   ballSpeed: 5
-  BallManager: {fileID: 1256873699265700, guid: 78c0823aed11b0543bc5a0a5812def8a,
-    type: 2}
+  BallManager: {fileID: 0}
