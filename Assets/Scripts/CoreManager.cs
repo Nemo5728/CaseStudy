@@ -6,6 +6,7 @@ namespace GodTouches{
 	public class CoreManager : MonoBehaviour {
 
 		public GameObject prefab;
+        public GameObject prefab2;
 
         // Use this for initialization
         void Start () {
@@ -17,6 +18,9 @@ namespace GodTouches{
 			if(GodTouch.GetPhase() == GodPhase.Began)
 			{
 				GameObject bullets = Instantiate(prefab) as GameObject;
+                bullets.GetComponent<Bullet>().frontShot();
+                GameObject bullets2 = Instantiate(prefab) as GameObject;
+                bullets2.GetComponent<Bullet>().BackShot();
             }
         }
 	}
