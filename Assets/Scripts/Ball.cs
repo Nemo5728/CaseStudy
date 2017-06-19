@@ -55,19 +55,27 @@ public class Ball : MonoBehaviour
     public GameObject score;
     private int scoreValue = 100;
 
+    //石川追記
+    GameObject g_SEManager;
+    SeController g_SEControl;
+
     // Use this for initialization
     void Start()
     {
         //玉の速さをシューターから受け取り
         speed = BallSet.GetComponent<BallShooter>().ballSpeed;
 
-        force = center - transform.position;            //発射ベクトル設定
+        force = center - transform.position;                   //発射ベクトル設定
         Vector3.Normalize(force);                               //ベクトルの正規化
         force *= speed;                                         //ドロップボールの速さ調整
         GetComponent<Rigidbody>().AddForce(force);              //ドロップボール発射
 
         status = STATUS.MOVE;
         oldStatus = status;
+        //石川追記
+        g_SEManager = GameObject.FindGameObjectWithTag("SE");
+        g_SEControl = g_SEManager.GetComponent<SeController>();
+
     }
 
     // Update is called once per frame
@@ -181,6 +189,9 @@ public class Ball : MonoBehaviour
 
         GameObject gobj = Instantiate(score);
         gobj.GetComponent<FlyText>().Create(transform.position, scoreValue);
+
+        //石川追記
+        g_SEControl.sePlayer("BallDelete");
 
     }
     public STATUS GetStatus()

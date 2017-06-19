@@ -20,9 +20,16 @@ namespace GodTouches
         private GameObject go;
         //
 
+        //石川追記
+        GameObject g_SEManager;
+        SeController g_SEControl;
+
         // Use this for initialization
         void Start()
         {
+            //石川追記
+            g_SEManager = GameObject.FindGameObjectWithTag("SE");
+            g_SEControl = g_SEManager.GetComponent<SeController>();
         }
 
         // Update is called once per frame
@@ -56,7 +63,10 @@ namespace GodTouches
                     go.GetComponent<boltControll>().SetDelete();
                     GetComponent<MeshCollider>().enabled = false;
                     //Destroy(gameObject);      //変更のためここで弾を削除させると困るのでコメントアウト
-					//
+                    //
+
+                    //石川追記
+                    g_SEControl.sePlayer("Hit");
                 }
             }
         }

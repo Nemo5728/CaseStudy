@@ -2,9 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SceneScript : MonoBehaviour {
+public class SceneScript : MonoBehaviour
+{
 
-	public void LoadSceneGame(){
-		Application.LoadLevel ("TeseScene");
-	}
+    //石川追記
+    GameObject g_SEManager;
+    SeController g_SEControl;
+
+    public void LoadSceneGame()
+    {
+
+        //石川追記
+        g_SEManager = GameObject.FindGameObjectWithTag("SE");
+        g_SEControl = g_SEManager.GetComponent<SeController>();
+
+        //石川追記
+        g_SEControl.sePlayer("Start");
+
+        Application.LoadLevel("TeseScene");
+    }
 }
