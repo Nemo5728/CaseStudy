@@ -64,6 +64,7 @@ public class BallEraser : MonoBehaviour
         //消える寸前にオブジェクトの数が1以下なら全てのドロップからStick状態のものだけPull状態にする。
         int ObjCount = this.transform.childCount;
         Debug.Log("objCount:" + ObjCount);
+
         //再度引っ張る処理
         if ( count <= 1 )
         {
