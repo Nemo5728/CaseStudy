@@ -18,11 +18,16 @@ public class CheckCollider : MonoBehaviour
     [SerializeField]
     Vector3 _via;   //中間経由地
 
+    //当たったボールを入れておく配列
+    public GameObject[] _BallObj = new GameObject[128];
 
     // Use this for initialization
     void Start()
     {
-
+        for(int i = 0; i < 128; i++ )
+        {
+            _BallObj[i] = null;
+        }
     }
 
     // Update is called once per frame
@@ -80,6 +85,14 @@ public class CheckCollider : MonoBehaviour
                 _viaObj = other.gameObject;
                 //経由した場所記憶（これ必要？）
                 _via = other.gameObject.transform.position;
+                for (int i = 0; i < 128; i++)
+                {
+                    if(_BallObj[i] == null)
+                    {
+                        _BallObj[i] = other.gameObject;
+                        break;
+                    }
+                }
             }
             else
             {
@@ -91,21 +104,34 @@ public class CheckCollider : MonoBehaviour
         //同じ色の玉に当たったら消える。(目的地）
         if (other.gameObject == _toObj)
         {
-            //距離
-            Vector3 Difference = _to - _from;
+            ////距離
+            //Vector3 Difference = _to - _from;
 
-            //角度
-            float fRad = Mathf.Atan2(Difference.x, Difference.y);
+            ////角度
+            //float fRad = Mathf.Atan2(Difference.x, Difference.y);
 
-            //インスタンス生成
-            GameObject go = Instantiate(_Erase) as GameObject;
-            go.transform.position = _from;
+            ////インスタンス生成
+            //GameObject go = Instantiate(_Erase) as GameObject;
+            //go.transform.position = _from;
 
-            //消すためのコライダー発生
-            go.GetComponent<BallEraser>().Shot(fRad, _fromObj, _toObj);
+            ////消すためのコライダー発生
+            //go.GetComponent<BallEraser>().Shot(fRad, _fromObj, _toObj);
 
             //目的地までついたので消える
             Destroy(this.gameObject);
+            //ボールを消す処理
+            for (int i = 0; i < 128; i++)
+            {
+                if (_BallObj[i] != null)
+                {
+                    BallManager.DeleteBall(_BallObj[i]);
+                }
+            }
+            BallManager.DeleteBall(_toObj);
+
+            BallManager.DeleteBall(_fromObj);
+
+            BallManager.AllStickBallPull();
         }
 
         //壁に当たったら消える。
