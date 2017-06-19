@@ -55,6 +55,10 @@ public class Ball : MonoBehaviour
     public GameObject score;
     private int scoreValue = 100;
 
+    //石川追記
+    GameObject g_SEManager;
+    SeController g_SEControl;
+
     // Use this for initialization
     void Start()
     {
@@ -68,6 +72,10 @@ public class Ball : MonoBehaviour
 
         status = STATUS.MOVE;
         oldStatus = status;
+        //石川追記
+        g_SEManager = GameObject.FindGameObjectWithTag("SE");
+        g_SEControl = g_SEManager.GetComponent<SeController>();
+
     }
 
     // Update is called once per frame
@@ -181,6 +189,9 @@ public class Ball : MonoBehaviour
 
         GameObject gobj = Instantiate(score);
         gobj.GetComponent<FlyText>().Create(transform.position, scoreValue);
+
+        //石川追記
+        g_SEControl.sePlayer("BallDelete");
 
     }
     public STATUS GetStatus()
