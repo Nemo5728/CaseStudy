@@ -14,16 +14,16 @@ public class ScoreScript : MonoBehaviour {
 	}
 
 	void Update(){
-        if(scorePool != 0){
+        if(scorePool > 0){
             g_Score += 10;
             scorePool -= 10;
         }
 
         int[] num = new int[5];
 
-        num[0] = g_Score / 10000;
-        num[1] = g_Score / 1000;
-        num[2] = g_Score / 100;
+        num[0] = g_Score / 10000 % 10;
+        num[1] = g_Score / 1000 % 10;
+        num[2] = g_Score / 100 % 10;
         num[3] = g_Score / 10 % 10;
         num[4] = g_Score % 10;
 
@@ -35,5 +35,6 @@ public class ScoreScript : MonoBehaviour {
 	// スコア足してね～
 	public void SetScore( int number ){
         scorePool += number;
+        g_Score += number;
 	}
 } 

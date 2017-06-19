@@ -92,7 +92,7 @@ public class FlyText : MonoBehaviour {
         int hund, ten, one;
         transform.position = new Vector3(pos.x, pos.y, -5);
 
-		hund = score / 100;
+		hund = score / 100 % 10;
 		ten = score / 10 % 10;
 		one = score % 10;
 
@@ -100,6 +100,7 @@ public class FlyText : MonoBehaviour {
 		_ten.GetComponent<number>().Create(ten);
 		_one.GetComponent<number>().Create(one);
 
+        Debug.Log("Call to Create");
         _ScoreCanvas = GameObject.Find("Score_Board");
 		_ScoreCanvas.GetComponent<ScoreScript>().SetScore(score);
     }
