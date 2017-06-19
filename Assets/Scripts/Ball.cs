@@ -49,9 +49,9 @@ public class Ball : MonoBehaviour
     public float gravity1 = 50;     //くっつく前の引っ張る重力
     public float gravity2 = 5000;   //後の引っ張る重力
 
-	//横山追記
-	public GameObject effect;
-	
+    //横山追記
+    public GameObject effect;
+
     public GameObject score;
     private int scoreValue = 100;
 
@@ -96,8 +96,8 @@ public class Ball : MonoBehaviour
                     //Debug.Log(oldStatus);
                     //引っ張る方向へ力を加える
 
-//                    if (oldStatus != STATUS.PULL)
-//                    {
+                    //                    if (oldStatus != STATUS.PULL)
+                    //                    {
                     GetComponent<Rigidbody>().velocity = Vector3.zero;
                     startPoint = transform.position;        //現在の位置を設定                     
                     endPoint = center;                      //引っ張られる目標地点を設定
@@ -107,8 +107,8 @@ public class Ball : MonoBehaviour
 
                     GetComponent<Rigidbody>().AddForce(pullVec, ForceMode.VelocityChange);
 
-                        //GetComponent<Rigidbody>().GetComponent<Collider>().material = (PhysicMaterial)Resources.Load("Ball Physic Material2");
-//                    }
+                    //GetComponent<Rigidbody>().GetComponent<Collider>().material = (PhysicMaterial)Resources.Load("Ball Physic Material2");
+                    //                    }
 
                     //float distance;
                     //Vector3 t1Angle;
@@ -136,7 +136,7 @@ public class Ball : MonoBehaviour
             case STATUS.DELETE:
                 {
                     //5秒後に消える
-                    Destroy( this.gameObject, 5.0f);
+                    Destroy(this.gameObject, 5.0f);
 
 
 
@@ -175,12 +175,12 @@ public class Ball : MonoBehaviour
     {
         status = STATUS.DELETE;
 
-		//横山追記
-		GameObject go = Instantiate(effect);
-		go.GetComponent<expControll>().Set(transform.position);
-    
-    GameObject gobj = Instantiate(score);
-    gobj.GetComponent<FlyText>().Create(transform.position, scoreValue);
+        //横山追記
+        GameObject go = Instantiate(effect);
+        go.GetComponent<expControll>().Set(transform.position);
+
+        GameObject gobj = Instantiate(score);
+        gobj.GetComponent<FlyText>().Create(transform.position, scoreValue);
 
     }
     public STATUS GetStatus()
@@ -227,7 +227,7 @@ public class Ball : MonoBehaviour
                 GetComponent<Rigidbody>().velocity = Vector3.zero;
 
                 ////めり込んだ分の計算
-                float sinkValue = (GetComponent<SphereCollider>().radius * transform.localScale.x) + ( col.gameObject.GetComponent<SphereCollider>().radius * transform.localScale.x) -
+                float sinkValue = (GetComponent<SphereCollider>().radius * transform.localScale.x) + (col.gameObject.GetComponent<SphereCollider>().radius * transform.localScale.x) -
                                   (Vector3.Distance(col.transform.position, transform.position));
 
                 float db__kakunin = GetComponent<SphereCollider>().radius * 2;
