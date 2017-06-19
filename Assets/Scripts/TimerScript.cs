@@ -23,7 +23,7 @@ public class TimerScript : MonoBehaviour {
             //画面遷移
         }
 
-		num[0] = (int)g_timer / 100;
+		num[0] = (int)g_timer / 100 % 10;
 		num[1] = (int)g_timer / 10 % 10;
 		num[2] = (int)g_timer % 10;
 
