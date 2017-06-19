@@ -11,6 +11,8 @@ public class CheckCollider : MonoBehaviour
     public GameObject _toObj;           //目的位置（同じ色のぼーる）
     public GameObject _fromObj;       //スタートの位置（自分）
     public GameObject _viaObj;          //中間経由したぼーる
+    public GameObject _Obj1;          //比較用1番目
+    public GameObject _Obj2;          //2
 
     Vector3 _from;  //自分
     Vector3 _to;    //目的地
@@ -18,6 +20,7 @@ public class CheckCollider : MonoBehaviour
     [SerializeField]
     Vector3 _via;   //中間経由地
 
+    private bool _bErase;
     //当たったボールを入れておく配列
     public GameObject[] _BallObj = new GameObject[128];
 
@@ -28,6 +31,7 @@ public class CheckCollider : MonoBehaviour
         {
             _BallObj[i] = null;
         }
+        _bErase = false;
     }
 
     // Update is called once per frame
@@ -41,8 +45,8 @@ public class CheckCollider : MonoBehaviour
     {
         Vector3 force;
 
-        force.x = Mathf.Sin(rad) * 10.0f;
-        force.y = Mathf.Cos(rad) * 10.0f;
+        force.x = Mathf.Sin(rad) * 25.0f;
+        force.y = Mathf.Cos(rad) * 25.0f;
         force.z = 0.0f;
 
         GetComponent<Rigidbody>().velocity = force;
@@ -61,21 +65,25 @@ public class CheckCollider : MonoBehaviour
         {
             Time.timeScale = 1;
         }
+
+        //比較用GO
+        _Obj1 = _fromObj;
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        /*
         //他の玉に当たった時にその玉が自分とくっついているかどうか、簡易計算させる(自分自身と触れ合った時は避ける）
         if( other.gameObject.tag == "Ball" && other.gameObject != _viaObj && _viaObj != null)
         {
-            /*
-            Debug.Log("this:" + this);
-            Debug.Log("from:" + _fromObj);
-            Debug.Log("to:" + _toObj);
-            Debug.Log("via:" + _viaObj);
-            Debug.Log("other:" + other);
-            Debug.Log("-------------------------");
-            //*/
+            
+           //Debug.Log("this:" + this);
+           //Debug.Log("from:" + _fromObj);
+           //Debug.Log("to:" + _toObj);
+           //Debug.Log("via:" + _viaObj);
+           //Debug.Log("other:" + other);
+           //Debug.Log("-------------------------");
+            //
             float BallDistance = Vector3.Distance( _viaObj.transform.position , other.gameObject.transform.position );
 
             //ボール同士の半径よりもDistanceの方が遠かったら確実につながってないので判定をやめる。
@@ -100,39 +108,72 @@ public class CheckCollider : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
-
-        //同じ色の玉に当たったら消える。(目的地）
-        if (other.gameObject == _toObj)
+        */
+        _Obj2 = other.gameObject;
+        if(_Obj1 != null && other.gameObject.tag == "Ball" && _Obj1 != _Obj2)
         {
-            ////距離
-            //Vector3 Difference = _to - _from;
-
-            ////角度
-            //float fRad = Mathf.Atan2(Difference.x, Difference.y);
-
-            ////インスタンス生成
-            //GameObject go = Instantiate(_Erase) as GameObject;
-            //go.transform.position = _from;
-
-            ////消すためのコライダー発生
-            //go.GetComponent<BallEraser>().Shot(fRad, _fromObj, _toObj);
-
-            //目的地までついたので消える
-            Destroy(this.gameObject);
-            //ボールを消す処理
-            for (int i = 0; i < 128; i++)
+            //生成されたballは例外としてスルーする
+            Vector3 center1 = _Obj1.transform.position;
+            Vector3 center2 = _Obj2.transform.position;
+            float rad1 = _Obj1.GetComponent<SphereCollider>().radius;
+            float rad2 = _Obj2.GetComponent<SphereCollider>().radius;
+            
+            //隣接していたら
+            if ((Vector3.Distance(center1, center2) <= rad1 + rad2))
             {
-                if (_BallObj[i] != null)
+                //消す配列に追加
+                for (int i = 0; i < 128; i++)
                 {
-                    BallManager.DeleteBall(_BallObj[i]);
+                    if (_BallObj[i] == null)
+                    {
+                        _BallObj[i] = _Obj1;
+                        break;
+                    }
                 }
+                _Obj1 = _Obj2;
+                _bErase = true;
             }
-            BallManager.DeleteBall(_toObj);
+            else
+            {
+                //ボール同士が繋がってないから消えてやめる。
+                Destroy(this.gameObject);
+            }
 
-            BallManager.DeleteBall(_fromObj);
+            //同じ色の玉に当たったら消える。(目的地）
+            if (other.gameObject == _toObj && _bErase)
+            {
+                ////距離
+                //Vector3 Difference = _to - _from;
 
-            BallManager.AllStickBallPull();
+                ////角度
+                //float fRad = Mathf.Atan2(Difference.x, Difference.y);
+
+                ////インスタンス生成
+                //GameObject go = Instantiate(_Erase) as GameObject;
+                //go.transform.position = _from;
+
+                ////消すためのコライダー発生
+                //go.GetComponent<BallEraser>().Shot(fRad, _fromObj, _toObj);
+
+                //目的地までついたので消える
+                Destroy(this.gameObject);
+                //ボールを消す処理
+                for (int i = 0; i < 128; i++)
+                {
+                    if (_BallObj[i] != null)
+                    {
+                        BallManager.DeleteBall(_BallObj[i]);
+                    }
+                }
+                BallManager.DeleteBall(_toObj);
+
+                BallManager.DeleteBall(_fromObj);
+
+                BallManager.AllStickBallPull();
+            }
+
         }
+        
 
         //壁に当たったら消える。
         else if (other.gameObject.CompareTag("Frame"))

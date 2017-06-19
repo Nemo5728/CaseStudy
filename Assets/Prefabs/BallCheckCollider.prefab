@@ -72,6 +72,8 @@ MonoBehaviour:
   _toObj: {fileID: 0}
   _fromObj: {fileID: 0}
   _viaObj: {fileID: 0}
+  _Obj1: {fileID: 0}
+  _Obj2: {fileID: 0}
   _via: {x: 0, y: 0, z: 0}
   _BallObj:
   - {fileID: 0}
@@ -212,5 +214,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
