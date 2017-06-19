@@ -104,34 +104,34 @@ public class CheckCollider : MonoBehaviour
         //同じ色の玉に当たったら消える。(目的地）
         if (other.gameObject == _toObj)
         {
-            //距離
-            Vector3 Difference = _to - _from;
+            ////距離
+            //Vector3 Difference = _to - _from;
 
-            //角度
-            float fRad = Mathf.Atan2(Difference.x, Difference.y);
+            ////角度
+            //float fRad = Mathf.Atan2(Difference.x, Difference.y);
 
-            //インスタンス生成
-            GameObject go = Instantiate(_Erase) as GameObject;
-            go.transform.position = _from;
+            ////インスタンス生成
+            //GameObject go = Instantiate(_Erase) as GameObject;
+            //go.transform.position = _from;
 
-            //消すためのコライダー発生
-            go.GetComponent<BallEraser>().Shot(fRad, _fromObj, _toObj);
+            ////消すためのコライダー発生
+            //go.GetComponent<BallEraser>().Shot(fRad, _fromObj, _toObj);
 
             //目的地までついたので消える
             Destroy(this.gameObject);
-            ////ボールを消す処理
-            //for(int i = 0; i < 128; i++)
-            //{
-            //    if(_BallObj[i] != null)
-            //    {
-            //        BallManager.DeleteBall(_BallObj[i]);
-            //    }
-            //}
-            //BallManager.DeleteBall(_toObj);
+            //ボールを消す処理
+            for (int i = 0; i < 128; i++)
+            {
+                if (_BallObj[i] != null)
+                {
+                    BallManager.DeleteBall(_BallObj[i]);
+                }
+            }
+            BallManager.DeleteBall(_toObj);
 
-            //BallManager.DeleteBall(_fromObj);
+            BallManager.DeleteBall(_fromObj);
 
-            //BallManager.AllStickBallPull();
+            BallManager.AllStickBallPull();
         }
 
         //壁に当たったら消える。
