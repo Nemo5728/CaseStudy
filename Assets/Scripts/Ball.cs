@@ -51,6 +51,7 @@ public class Ball : MonoBehaviour
 
     //横山追記
     public GameObject effect;
+	//
 
     public GameObject score;
     private int scoreValue = 100;
