@@ -20,9 +20,14 @@ public class BallManager : MonoBehaviour
         public bool use;                //使ってるか
         public bool put;                //くっついた
     }
-
     //くっついているボールの情報を入れる
     public static BALL[] _StickBall = new BALL[512];
+
+    static bool bAllPull = false;     //引っ張って良いかどうか？
+
+    public static float allPullTime = 0.3f;
+
+    static float allPullCnt = 0.0f;
 
     // Use this for initialization
     void Start()
@@ -66,6 +71,19 @@ public class BallManager : MonoBehaviour
             }
         }
         _Trans = transform;
+
+        //再度引っ張る処理
+        if( bAllPull )
+        {
+            allPullCnt += Time.deltaTime;
+
+            if( allPullCnt > allPullTime)
+            {
+                AllStickBallPull();
+                bAllPull = false;
+                allPullCnt = 0.0f;
+            }
+        }
     }
 
     //くっついた弾の情報をもらってくる
@@ -123,6 +141,12 @@ public class BallManager : MonoBehaviour
         }
     }
 
+    public static void bAllStickBallPull()
+    {
+        allPullCnt = 0.0f;
+        bAllPull = true;
+    }
+
 
     //消した後初期化
     public static void InitStickBall(int num)
@@ -141,14 +165,22 @@ public class BallManager : MonoBehaviour
         _StickBall[num].use = false;
         _StickBall[num].put = false;
 
-        //消える予約
+        //消えている状態にする。
         _StickBall[num].BallObject.GetComponent<Ball>().StatusChangeDelete();
+
+        /*
         //Istrrigerで判定だけなくす（本来の使い方とは違う。istrrigerはトリガー判定を使うときのみ）
         _StickBall[num].BallObject.GetComponent<SphereCollider>().isTrigger = true;
+
         //ボールを見えなくする(ボールの3Dと2D）
         _StickBall[num].BallObject.GetComponent<MeshRenderer>().enabled = false;
         _StickBall[num].BallObject.GetComponent<MeshRenderer>().GetComponentInChildren<SpriteRenderer>().enabled = false;
-	}
+
+        //輪郭の削除
+        _StickBall[num].BallObject.transform.Find("ballFixed").gameObject.SetActive(false);
+        _StickBall[num].BallObject.transform.Find("ballMag").gameObject.SetActive(false);
+        */
+    }
 
 	//toからfromへコリジョンを飛ばす
 	public void RayTobasu(GameObject from, GameObject to)
