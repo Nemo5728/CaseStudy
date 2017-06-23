@@ -58,6 +58,10 @@ namespace GodTouches
                 if (ball.GetStatus() == Ball.STATUS.MOVE)
                 {
                     ball.StatusChangePull();
+                    
+                    //輪郭と光の表示
+                    ball.transform.Find("ballFixed").gameObject.SetActive(true);
+                    ball.transform.Find("ballMag").gameObject.SetActive(true);
 
                     //横山変更　当たり判定を消し、見かけ上はまだ存在しているように見せる
                     go.GetComponent<boltControll>().SetDelete();
