@@ -755,6 +755,12 @@ MonoBehaviour:
   g_BackGroundImage:
   - {fileID: 1267800081}
   - {fileID: 191988358}
+  g_BackGroundImageList:
+  - {fileID: 21300000, guid: 88f26f52ee52488428a8c24f6a032a34, type: 3}
+  - {fileID: 21300000, guid: 4dd80b23e0dce814fb4184dffd915bf3, type: 3}
+  - {fileID: 21300000, guid: 5054da30800d2ea4a8b1d6f059d98d4f, type: 3}
+  - {fileID: 21300000, guid: ad2144059dd03b140b7bc782b3375eb6, type: 3}
+  - {fileID: 21300000, guid: 35488fe058f0d0d4387ed45fd2693cfc, type: 3}
   g_ScrollSpeed: 5
 --- !u!222 &639359866
 CanvasRenderer:
@@ -842,6 +848,16 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114832928650829014, guid: fa809b9f5f0d8e741b34b2fbbf5b577e,
+        type: 2}
+      propertyPath: g_BackGroundImageList.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114184963415606456, guid: fa809b9f5f0d8e741b34b2fbbf5b577e,
+        type: 2}
+      propertyPath: g_BackGroundImageList.Array.size
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 224069478992040920, guid: fa809b9f5f0d8e741b34b2fbbf5b577e,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -932,6 +948,66 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114832928650829014, guid: fa809b9f5f0d8e741b34b2fbbf5b577e,
+        type: 2}
+      propertyPath: g_BackGroundImageList.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 88f26f52ee52488428a8c24f6a032a34,
+        type: 3}
+    - target: {fileID: 114184963415606456, guid: fa809b9f5f0d8e741b34b2fbbf5b577e,
+        type: 2}
+      propertyPath: g_BackGroundImageList.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 88f26f52ee52488428a8c24f6a032a34,
+        type: 3}
+    - target: {fileID: 114832928650829014, guid: fa809b9f5f0d8e741b34b2fbbf5b577e,
+        type: 2}
+      propertyPath: g_BackGroundImageList.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 4dd80b23e0dce814fb4184dffd915bf3,
+        type: 3}
+    - target: {fileID: 114184963415606456, guid: fa809b9f5f0d8e741b34b2fbbf5b577e,
+        type: 2}
+      propertyPath: g_BackGroundImageList.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 4dd80b23e0dce814fb4184dffd915bf3,
+        type: 3}
+    - target: {fileID: 114832928650829014, guid: fa809b9f5f0d8e741b34b2fbbf5b577e,
+        type: 2}
+      propertyPath: g_BackGroundImageList.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 5054da30800d2ea4a8b1d6f059d98d4f,
+        type: 3}
+    - target: {fileID: 114184963415606456, guid: fa809b9f5f0d8e741b34b2fbbf5b577e,
+        type: 2}
+      propertyPath: g_BackGroundImageList.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 5054da30800d2ea4a8b1d6f059d98d4f,
+        type: 3}
+    - target: {fileID: 114832928650829014, guid: fa809b9f5f0d8e741b34b2fbbf5b577e,
+        type: 2}
+      propertyPath: g_BackGroundImageList.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: ad2144059dd03b140b7bc782b3375eb6,
+        type: 3}
+    - target: {fileID: 114184963415606456, guid: fa809b9f5f0d8e741b34b2fbbf5b577e,
+        type: 2}
+      propertyPath: g_BackGroundImageList.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: ad2144059dd03b140b7bc782b3375eb6,
+        type: 3}
+    - target: {fileID: 114832928650829014, guid: fa809b9f5f0d8e741b34b2fbbf5b577e,
+        type: 2}
+      propertyPath: g_BackGroundImageList.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: 35488fe058f0d0d4387ed45fd2693cfc,
+        type: 3}
+    - target: {fileID: 114184963415606456, guid: fa809b9f5f0d8e741b34b2fbbf5b577e,
+        type: 2}
+      propertyPath: g_BackGroundImageList.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: 35488fe058f0d0d4387ed45fd2693cfc,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fa809b9f5f0d8e741b34b2fbbf5b577e, type: 2}
   m_IsPrefabParent: 0
@@ -1566,6 +1642,12 @@ MonoBehaviour:
   g_BackGroundImage:
   - {fileID: 983966133}
   - {fileID: 1036316975}
+  g_BackGroundImageList:
+  - {fileID: 21300000, guid: 88f26f52ee52488428a8c24f6a032a34, type: 3}
+  - {fileID: 21300000, guid: 4dd80b23e0dce814fb4184dffd915bf3, type: 3}
+  - {fileID: 21300000, guid: 5054da30800d2ea4a8b1d6f059d98d4f, type: 3}
+  - {fileID: 21300000, guid: ad2144059dd03b140b7bc782b3375eb6, type: 3}
+  - {fileID: 21300000, guid: 35488fe058f0d0d4387ed45fd2693cfc, type: 3}
   g_ScrollSpeed: 3
 --- !u!222 &2033452939
 CanvasRenderer:
