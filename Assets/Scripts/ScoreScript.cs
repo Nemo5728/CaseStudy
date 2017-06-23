@@ -35,6 +35,10 @@ public class ScoreScript : MonoBehaviour {
 	// スコア足してね～
 	public void SetScore( int number ){
         scorePool += number;
-        g_Score += number;
+        //g_Score += number;
 	}
+
+    public int GetScore(){
+        return g_Score;
+    }
 } 
