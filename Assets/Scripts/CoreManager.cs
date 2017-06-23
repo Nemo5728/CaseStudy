@@ -25,13 +25,18 @@ namespace GodTouches{
 		void Update () {
 			if(GodTouch.GetPhase() == GodPhase.Began)
 			{
+                GameObject search = null;
+
                 //石川追記
                 g_SEControl.sePlayer("Shot");
 
-                GameObject bullets = Instantiate(prefab) as GameObject;
-                bullets.GetComponent<Bullet>().frontShot();
-                GameObject bullets2 = Instantiate(prefab) as GameObject;
-                bullets2.GetComponent<Bullet>().BackShot();
+                search = GameObject.FindGameObjectWithTag("bullet");
+                if(search == null){
+					GameObject bullets = Instantiate(prefab) as GameObject;
+					bullets.GetComponent<Bullet>().frontShot();
+					GameObject bullets2 = Instantiate(prefab) as GameObject;
+					bullets2.GetComponent<Bullet>().BackShot();   
+                }
             }
         }
 	}
