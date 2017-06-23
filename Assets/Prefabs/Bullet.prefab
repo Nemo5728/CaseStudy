@@ -125,4 +125,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: {x: 0, y: 0, z: 0}
   deleteCnt: 30
-  effect: {fileID: 1175622785181874, guid: 9027d141d9703db46a45528a36db7589, type: 2}
+  effect: {fileID: 1286442112954136, guid: 8c85b30aa32385940b67221258d829fd, type: 2}
