@@ -11,7 +11,7 @@ namespace GodTouches
         private Vector3 pos;
         public Vector3 force;
         private int count = 0;
-        private const int deleteCnt = 50;
+        public int deleteCnt = 50;
         private Rigidbody _rigidbody;
         private bool used;
 
