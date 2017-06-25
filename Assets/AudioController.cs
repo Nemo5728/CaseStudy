@@ -48,6 +48,5 @@ public class AudioController : MonoBehaviour
         }
         //念のため再生処理
         GetComponent<AudioSource>().Play();
-        Debug.Log("通ったよ");
     }
 }
