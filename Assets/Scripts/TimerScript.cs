@@ -20,7 +20,8 @@ public class TimerScript : MonoBehaviour {
 
         g_timer -= Time.deltaTime;
         if(g_timer <= 0){
-            //画面遷移
+            //画面遷移]
+            Application.LoadLevel("ResultScene");
         }
 
 		num[0] = (int)g_timer / 100 % 10;
