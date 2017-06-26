@@ -13,6 +13,9 @@ namespace GodTouches
         //ランキングのスコアテキスト
         public Text[] RankingScore = new Text[5];
 
+        //石川追記
+        GameObject g_BGMManager;
+        AudioController g_BGMControl;
         //Imageのサイズと位置を設定
         void SetImage(float PosX, float PosY, float Width, float Height, GameObject go)
         {
@@ -24,6 +27,7 @@ namespace GodTouches
             Vector2 pos = rt.localPosition;
             //位置変更
             rt.localPosition = new Vector3(PosX, PosY, 0.0f);
+
 
         }
 
@@ -43,6 +47,12 @@ namespace GodTouches
             GameObject Window01 = GameObject.Find("Window01");
             SetImage(pos.x, pos.y, size.x, size.y, Window01);
 
+
+            //石川追記
+            g_BGMManager = GameObject.FindGameObjectWithTag("BGM");
+            g_BGMControl = g_BGMManager.GetComponent<AudioController>();
+
+            g_BGMControl.bgmPlayer("ResultScene");
             //2
             pos.x = 0.0f;
             pos.y = 0.0f;
