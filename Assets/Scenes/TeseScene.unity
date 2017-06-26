@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4465785, g: 0.49641252, b: 0.574817, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -547,6 +547,7 @@ MonoBehaviour:
     type: 2}
   prefab2Bonus: {fileID: 1342287011536812, guid: ad3bf77d0128d254d91c59c1fc575f8f,
     type: 2}
+  _transAm: {fileID: 1614685449661332, guid: d52e57b92577b2a4abfb4cb300b9e13c, type: 2}
   BonusStartScore: 5000
   BonusStartTime: 10
 --- !u!1 &793158228

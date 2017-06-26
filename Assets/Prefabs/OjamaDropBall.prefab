@@ -53,7 +53,7 @@ GameObject:
   - component: {fileID: 4297496323067720}
   - component: {fileID: 212804944390197640}
   m_Layer: 0
-  m_Name: RedBallImage
+  m_Name: OjamaBallImage
   m_TagString: BallImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -283,7 +283,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 510baec840a096143abfc37ca85dc613, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d7582dc14bbeaa242a8bb5425688764f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

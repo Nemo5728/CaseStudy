@@ -13,6 +13,8 @@ namespace GodTouches
         public GameObject prefab1Bonus;       //正面
         public GameObject prefab2Bonus;      //後ろ
 
+        public GameObject _transAm; //トランザムプレハブ
+
         private GameObject score;
 
         //石川追記
@@ -67,6 +69,10 @@ namespace GodTouches
 
                 //石川追記
                 g_SEControl.sePlayer("PowerUpSe");
+
+                //トランザム生成
+                GameObject TAgo = Instantiate(_transAm) as GameObject;
+                TAgo.transform.position = new Vector3(0.0f,0.0f,0.0f);
             }
 
             //ボーナス終了判定

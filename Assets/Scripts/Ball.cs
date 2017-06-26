@@ -197,8 +197,8 @@ public class Ball : MonoBehaviour
                             GameObject go = Instantiate(effect);
                             go.GetComponent<expControll>().Set(transform.position);
 
-                            GameObject gobj = Instantiate(score);
-                            gobj.GetComponent<FlyText>().Create(transform.position, scoreValue);
+                            //GameObject gobj = Instantiate(score);
+                            //gobj.GetComponent<FlyText>().Create(transform.position, scoreValue);
 
                             //石川追記
                             g_SEControl.sePlayer("BallDelete");

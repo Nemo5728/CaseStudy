@@ -8,47 +8,36 @@ public class ScoreDataScript : MonoBehaviour
 {
 
     public int[] g_ScoreData;
-    TextAsset g_ScoreList;
+    private string[] g_Ranking =
+    {
+        "hoge1\n",
+        "hoge2\n",
+        "hoge3\n",
+        "hoge4\n",
+        "hoge5\n",
+    };
     public Text _socre; //今回のスコア
     void Start()
     {
-        ReadScoreData();
+        ReadScore();
         Sort(ScoreScript._score);
-        WriteScoreData();
+        SaveScore();
         _socre.text = "Your Score:" + ScoreScript._score.ToString();
     }
 
-    public void ReadScoreData()
+    void SaveScore()
     {
-        //ReadScoreData
         for (int i = 0; i < g_ScoreData.Length; i++)
         {
-            g_ScoreData[i] = 0;
-        }
-
-        char[] kugiri = { '\n' };
-
-        g_ScoreList = Resources.Load("score1") as TextAsset;
-
-        string[] scoreData = g_ScoreList.text.Split(kugiri);
-
-        for (int i = 0; (i < g_ScoreData.Length) && (i < scoreData.Length); i++)
-        {
-            g_ScoreData[i] = int.Parse(scoreData[i]);
+            PlayerPrefs.SetInt(g_Ranking[i], g_ScoreData[i]);
         }
     }
-
-    public void WriteScoreData()
+    void ReadScore()
     {
-        TextAsset csv = Resources.Load("score1") as TextAsset;
-        StreamWriter sw = new StreamWriter(Application.dataPath + "/Resources/" + csv.name + ".csv", false);
-        sw.WriteLine(g_ScoreData[0]);
-        sw.WriteLine(g_ScoreData[1]);
-        sw.WriteLine(g_ScoreData[2]);
-        sw.WriteLine(g_ScoreData[3]);
-        sw.WriteLine(g_ScoreData[4]);
-        sw.Flush();
-        sw.Close();
+        for (int i = 0; i < g_ScoreData.Length; i++)
+        {
+            g_ScoreData[i] = PlayerPrefs.GetInt(g_Ranking[i], 0);
+        }
     }
 
     void Sort(int newScore)
