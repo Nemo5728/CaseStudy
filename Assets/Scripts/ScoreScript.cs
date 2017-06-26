@@ -34,7 +34,7 @@ public class ScoreScript : MonoBehaviour {
 
 	// スコア足してね～
 	public void SetScore( int number ){
-        Debug.Log("スコア加算" + number.ToString());
+
         scorePool += number;
         //g_Score += number;
 	}
