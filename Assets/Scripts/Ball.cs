@@ -69,9 +69,21 @@ public class Ball : MonoBehaviour
     //一回だけ実行させるための糞コード
     bool bOne = true;
 
+    GameObject ballImage;
+
     // Use this for initialization
     void Start()
     {
+        //子のイメージを探す
+        foreach (Transform child in transform)
+        {
+            if( child.tag == "BallImage" )
+            {
+                ballImage = child.gameObject;
+            }
+        }
+
+
         //玉の速さをシューターから受け取り
         speed = BallSet.GetComponent<BallShooter>().ballSpeed;
 
@@ -107,6 +119,10 @@ public class Ball : MonoBehaviour
                     {
                         GetComponent<Rigidbody>().AddForce(force);              //ドロップボール発射
                     }
+
+                    //イメージの回転(イメージオブジェクトはスタートで取得)
+                    ballImage.transform.Rotate(new Vector3(0, 0, 5));
+
                     break;
                 }
             case STATUS.PULL:
@@ -255,6 +271,7 @@ public class Ball : MonoBehaviour
     {
         return status;
     }
+
     public void FreezePositionMove()
     {
         //止める
