@@ -21,6 +21,7 @@ namespace GodTouches{
         public int BonusStartTime;
         private float BonusTime;
         private int scorePool = 0;
+        private float timeleft = 1.0f;
 
         private enum BULLETSTATE
 		{
@@ -45,16 +46,26 @@ namespace GodTouches{
 		
 		// Update is called once per frame
 		void Update () {
+            //ボーナススタート判定
             if(BonusStartScore <= scorePool && bulletstate != BULLETSTATE.BONUS){
                 bulletstate = BULLETSTATE.BONUS;
                 BonusTime = BonusStartTime;
             }
 
+            //ボーナス終了判定
             BonusTime -= Time.deltaTime;
             if(BonusTime < 0 && bulletstate != BULLETSTATE.NORMAL){
                 bulletstate = BULLETSTATE.NORMAL;
                 scorePool = 0;
             }
+
+            //ボーナス中処理
+            timeleft -= Time.deltaTime;
+            if (timeleft <= 0.0f && bulletstate == BULLETSTATE.BONUS)
+			{
+				timeleft = 1.0f;
+				scorePool -= BonusStartScore / BonusStartTime;
+			}
 
 			if(GodTouch.GetPhase() == GodPhase.Began)
 			{
