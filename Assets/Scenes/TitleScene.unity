@@ -218,6 +218,26 @@ Prefab:
       propertyPath: m_TagString
       value: BGM
       objectReference: {fileID: 0}
+    - target: {fileID: 114990581548176340, guid: 4afd29ce83b12a4418cbb087fa35c358,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114990581548176340, guid: 4afd29ce83b12a4418cbb087fa35c358,
+        type: 2}
+      propertyPath: PowerUpSe
+      value: 
+      objectReference: {fileID: 8300000, guid: 9a2ca1aa7f2553a4997f80296fc03622, type: 3}
+    - target: {fileID: 114990581548176340, guid: 4afd29ce83b12a4418cbb087fa35c358,
+        type: 2}
+      propertyPath: PowerDownSe
+      value: 
+      objectReference: {fileID: 8300000, guid: 790c92fede5da934c8e5c31777da7d8f, type: 3}
+    - target: {fileID: 82676126972551548, guid: 4afd29ce83b12a4418cbb087fa35c358,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4afd29ce83b12a4418cbb087fa35c358, type: 2}
   m_IsPrefabParent: 0
