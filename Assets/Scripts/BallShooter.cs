@@ -25,15 +25,17 @@ public class BallShooter : MonoBehaviour
 
     private float timeElapsed;  //時間経過
 
-    //試し
+    public float _normalRate;       //目標時間
+    public float _bonusRate;       //目標時間
+                                   //試し
     public GameObject BallManager;
 
     //ボールの情報を入れておく
     public static GameObject[] _Ball = new GameObject[512];
 
-    void Start ()
+    void Start()
     {
-	}
+    }
 
     void Update()
     {
@@ -79,7 +81,7 @@ public class BallShooter : MonoBehaviour
             switch (color)
             {
                 case 0://赤
-                    GameObject redBalls = Instantiate( redBall ) as GameObject;     //ドロップボールの複製
+                    GameObject redBalls = Instantiate(redBall) as GameObject;     //ドロップボールの複製
                     redBalls.transform.position = transform.position;          //ドロップボール発射位置設定
                     redBalls.transform.parent = BallManager.transform;
                     redBalls.GetComponent<Ball>().SetColor(Ball.COLOR.RED);
@@ -122,6 +124,15 @@ public class BallShooter : MonoBehaviour
                 default:
                     break;
             }
+        }
+        //ボーナスタイム中なら
+        if (GodTouches.CoreManager.GetState() == GodTouches.CoreManager.BULLETSTATE.BONUS)
+        {
+            timeOut = _bonusRate;
+        }
+        else
+        {
+            timeOut = _normalRate;
         }
     }
 
