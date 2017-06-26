@@ -8,13 +8,14 @@ public class ScoreDataScript : MonoBehaviour
 {
 
     public int[] g_ScoreData;
-    public TextAsset g_ScoreList;
+    TextAsset g_ScoreList;
     public Text _socre; //今回のスコア
     void Start()
     {
         ReadScoreData();
-        Sort(Random.Range(0, 10000));
+        Sort(ScoreScript._score);
         WriteScoreData();
+        _socre.text = "Your Score:" + ScoreScript._score.ToString();
     }
 
     public void ReadScoreData()
