@@ -3,18 +3,25 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public class ScoreScript : MonoBehaviour {
-	public Image[] g_ScoreBoard;
-	public Sprite[] g_ScoreNumber;
+public class ScoreScript : MonoBehaviour
+{
+    public Image[] g_ScoreBoard;
+    public Sprite[] g_ScoreNumber;
 
-	private int g_Score = 0;
+    private int g_Score = 0;
     private int scorePool = 0;
 
-	void Start(){
-	}
+    public static int _score;
 
-	void Update(){
-        if(scorePool > 0){
+    void Start()
+    {
+        _score = 0;
+    }
+
+    void Update()
+    {
+        if (scorePool > 0)
+        {
             g_Score += 10;
             scorePool -= 10;
         }
@@ -27,19 +34,24 @@ public class ScoreScript : MonoBehaviour {
         num[3] = g_Score / 10 % 10;
         num[4] = g_Score % 10;
 
-        for (int i = 0; i < 5; i ++){
+        for (int i = 0; i < 5; i++)
+        {
             g_ScoreBoard[i].sprite = g_ScoreNumber[num[i]];
-        }
-	}
 
-	// スコア足してね～
-	public void SetScore( int number ){
+        }
+        _score = g_Score;
+    }
+
+    // スコア足してね～
+    public void SetScore(int number)
+    {
 
         scorePool += number;
         //g_Score += number;
-	}
+    }
 
-    public int GetScore(){
+    public int GetScore()
+    {
         return g_Score;
     }
-} 
+}
