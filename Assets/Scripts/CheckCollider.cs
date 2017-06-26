@@ -14,7 +14,10 @@ public class CheckCollider : MonoBehaviour
     public GameObject _Obj1;          //比較用1番目
     public GameObject _Obj2;          //2
 
-    Vector3 _from;  //自分
+	//横山追記
+	public GameObject effect;               //エフェクトのオブジェクトを入れる変数
+
+	Vector3 _from;  //自分
     Vector3 _to;    //目的地
 
     [SerializeField]
@@ -27,8 +30,8 @@ public class CheckCollider : MonoBehaviour
     //当たったボールを入れておく配列
     public GameObject[] _BallObj = new GameObject[128];
 
-    // Use this for initialization
-    void Start()
+	// Use this for initialization
+	void Start()
     {
         for (int i = 0; i < 128; i++)
         {
@@ -228,10 +231,14 @@ public class CheckCollider : MonoBehaviour
                 _fromObj.transform.Find("ballFixed").gameObject.SetActive(true);
                 _fromObj.transform.Find("ballMag").gameObject.SetActive(true);
 
+				GameObject fromGo = Instantiate(effect);        //エフェクトの生成
+				fromGo.GetComponent<chainControll>().Set(_fromObj.transform.position, _toObj.transform.position);     //エフェクト生成時に親子関係形成、方向ベクトル取得
+				GameObject toGo = Instantiate(effect);        //エフェクトの生成
+				toGo.GetComponent<chainControll>().Set(_toObj.transform.position, _fromObj.transform.position);     //エフェクト生成時に親子関係形成、方向ベクトル取得
 
-            }
+			}
 
-        }
+		}
 
 
         //壁に当たったら消える。
