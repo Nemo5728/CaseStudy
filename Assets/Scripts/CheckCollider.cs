@@ -163,7 +163,7 @@ public class CheckCollider : MonoBehaviour
                 //目的地までついたので消える
                 Destroy(this.gameObject);
                 float addScoreNum = 100.0f;
-                if( BallManager._LastDeleteTime < 0.5f )
+                if( BallManager._LastDeleteTime < 1.5f )
                 {
                     for (int i = 0; i < 128; i++)
                     {
@@ -171,16 +171,16 @@ public class CheckCollider : MonoBehaviour
                         {
                             BallManager.DeleteBall(_BallObj[i]);
                             GameObject gobj = Instantiate(score);
-                            gobj.GetComponent<FlyText>().Create(_BallObj[i].transform.position, (int)(addScoreNum * (1.5f - BallManager._LastDeleteTime)));
+                            gobj.GetComponent<FlyText>().Create(_BallObj[i].transform.position, (int)(addScoreNum * 1.5f));
                         }
                     }
                     BallManager.DeleteBall(_toObj);
                     GameObject gobjto = Instantiate(score);
-                    gobjto.GetComponent<FlyText>().Create(_toObj.transform.position, (int)(addScoreNum * (1.5f - BallManager._LastDeleteTime)));
+                    gobjto.GetComponent<FlyText>().Create(_toObj.transform.position, (int)(addScoreNum * 1.5f));
 
                     BallManager.DeleteBall(_fromObj);
                     GameObject gobjfrom = Instantiate(score);
-                    gobjfrom.GetComponent<FlyText>().Create(_fromObj.transform.position, (int)(addScoreNum * (1.5f - BallManager._LastDeleteTime)));
+                    gobjfrom.GetComponent<FlyText>().Create(_fromObj.transform.position, (int)(addScoreNum * 1.5f));
 
                     BallManager.AllStickBallPull();
                 }
