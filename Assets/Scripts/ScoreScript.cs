@@ -38,4 +38,8 @@ public class ScoreScript : MonoBehaviour {
         scorePool += number;
         //g_Score += number;
 	}
+
+    public int GetScore(){
+        return g_Score;
+    }
 } 

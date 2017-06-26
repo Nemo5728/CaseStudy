@@ -214,13 +214,21 @@ public class CheckCollider : MonoBehaviour
                     if (_BallObj[i] != null)
                     {
                         BallManager.DeleteBall(_BallObj[i]);
+                        _BallObj[i].transform.Find("ballFixed").gameObject.SetActive(true);
+                        _BallObj[i].transform.Find("ballMag").gameObject.SetActive(true);
                     }
                 }
                 BallManager.DeleteBall(_toObj);
 
                 BallManager.DeleteBall(_fromObj);
 
-                BallManager.AllStickBallPull();
+                _toObj.transform.Find("ballFixed").gameObject.SetActive(true);
+                _toObj.transform.Find("ballMag").gameObject.SetActive(true);
+
+                _fromObj.transform.Find("ballFixed").gameObject.SetActive(true);
+                _fromObj.transform.Find("ballMag").gameObject.SetActive(true);
+
+
             }
 
         }

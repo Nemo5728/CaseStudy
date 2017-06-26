@@ -8,6 +8,8 @@ TagManager:
   - Ball
   - particles
   - explosion
+  - SE
+  - bullet
   layers:
   - Default
   - TransparentFX

@@ -14,6 +14,7 @@ public class FlyText : MonoBehaviour {
     public int fadeOutTime;     //フェードアウトを始める時間
 
     public GameObject _ScoreCanvas;
+    private GameObject _Core;
 
     private enum FADE
     {
@@ -103,5 +104,8 @@ public class FlyText : MonoBehaviour {
         //Debug.Log("Call to Create");
         _ScoreCanvas = GameObject.Find("Score_Board");
 		_ScoreCanvas.GetComponent<ScoreScript>().SetScore(score);
+
+        _Core = GameObject.Find("Core");
+        _Core.GetComponent<GodTouches.CoreManager>().SetScore(score);
     }
 }

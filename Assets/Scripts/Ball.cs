@@ -59,6 +59,13 @@ public class Ball : MonoBehaviour
     GameObject g_SEManager;
     SeController g_SEControl;
 
+    bool Delete = false;
+
+    float deleteCnt = 0;
+
+    //一回だけ実行させるための糞コード
+    bool bOne = true;
+
     // Use this for initialization
     void Start()
     {
@@ -142,10 +149,41 @@ public class Ball : MonoBehaviour
                 }
             case STATUS.DELETE:
                 {
-                    //5秒後に消える
-                    Destroy(this.gameObject, 5.0f);
+                    deleteCnt += Time.deltaTime;
 
+                    if (deleteCnt > 0.5f)
+                    {
+                        if (bOne)
+                        {
+                            //5秒後に消える
+                            Destroy(this.gameObject);
 
+                            //Istrrigerで判定だけなくす（本来の使い方とは違う。istrrigerはトリガー判定を使うときのみ）
+                            GetComponent<SphereCollider>().isTrigger = true;
+
+                            //ボールを見えなくする(ボールの3Dと2D）
+                            GetComponent<MeshRenderer>().enabled = false;
+                            GetComponent<MeshRenderer>().GetComponentInChildren<SpriteRenderer>().enabled = false;
+
+                            //輪郭の削除
+                            transform.Find("ballFixed").gameObject.SetActive(false);
+                            transform.Find("ballMag").gameObject.SetActive(false);
+
+                            //横山追記
+                            GameObject go = Instantiate(effect);
+                            go.GetComponent<expControll>().Set(transform.position);
+
+                            GameObject gobj = Instantiate(score);
+                            gobj.GetComponent<FlyText>().Create(transform.position, scoreValue);
+
+                            //石川追記
+                            g_SEControl.sePlayer("BallDelete");
+
+                            bOne = false;
+
+                            BallManager.bAllStickBallPull();
+                        }
+                    }
 
 
 
@@ -243,6 +281,10 @@ public class Ball : MonoBehaviour
         {
             if (col.gameObject.name == "Core" || ColBall(col) == true)
             {
+                //輪郭の表示
+                transform.Find("ballFixed").gameObject.SetActive(true);
+                transform.Find("ballMag").gameObject.SetActive(false);
+
                 //状態を変更　くっついている
                 status = STATUS.STICK;
                 //力を０に
