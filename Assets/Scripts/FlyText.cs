@@ -100,7 +100,7 @@ public class FlyText : MonoBehaviour {
 		_ten.GetComponent<number>().Create(ten);
 		_one.GetComponent<number>().Create(one);
 
-        Debug.Log("Call to Create");
+        //Debug.Log("Call to Create");
         _ScoreCanvas = GameObject.Find("Score_Board");
 		_ScoreCanvas.GetComponent<ScoreScript>().SetScore(score);
     }

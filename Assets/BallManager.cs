@@ -12,6 +12,10 @@ public class BallManager : MonoBehaviour
     /// ////////////////////////テスト
     List<GameObject> colList = new List<GameObject>();
 
+    //前回ballが消えた時間との差
+    public static float _LastDeleteTime;
+
+
     public static Transform _Trans;
     public struct BALL
     {
@@ -33,7 +37,9 @@ public class BallManager : MonoBehaviour
             InitStickBall(i);
         }
         _Trans = transform;
-	}
+        _LastDeleteTime = 0.0f;
+
+    }
 
     // Update is called once per frame
     void Update()
@@ -66,6 +72,7 @@ public class BallManager : MonoBehaviour
             }
         }
         _Trans = transform;
+        _LastDeleteTime += Time.deltaTime;
     }
 
     //くっついた弾の情報をもらってくる
@@ -148,7 +155,10 @@ public class BallManager : MonoBehaviour
         //ボールを見えなくする(ボールの3Dと2D）
         _StickBall[num].BallObject.GetComponent<MeshRenderer>().enabled = false;
         _StickBall[num].BallObject.GetComponent<MeshRenderer>().GetComponentInChildren<SpriteRenderer>().enabled = false;
-	}
+
+        
+       
+    }
 
 	//toからfromへコリジョンを飛ばす
 	public void RayTobasu(GameObject from, GameObject to)

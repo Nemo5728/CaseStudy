@@ -20,7 +20,10 @@ public class CheckCollider : MonoBehaviour
     [SerializeField]
     Vector3 _via;   //中間経由地
 
+    public GameObject score;
+
     private bool _bErase;
+    private int _cnt;
     //当たったボールを入れておく配列
     public GameObject[] _BallObj = new GameObject[128];
 
@@ -32,6 +35,7 @@ public class CheckCollider : MonoBehaviour
             _BallObj[i] = null;
         }
         _bErase = false;
+        _cnt = 0;
     }
 
     // Update is called once per frame
@@ -130,6 +134,7 @@ public class CheckCollider : MonoBehaviour
                         break;
                     }
                 }
+                _cnt++;
                 _Obj1 = _Obj2;
                 _bErase = true;
             }
@@ -140,7 +145,7 @@ public class CheckCollider : MonoBehaviour
             }
 
             //同じ色の玉に当たったら消える。(目的地）
-            if (other.gameObject == _toObj && _bErase)
+            if (other.gameObject == _toObj && _bErase && _cnt >= 2)
             {
                 ////距離
                 //Vector3 Difference = _to - _from;
@@ -157,6 +162,52 @@ public class CheckCollider : MonoBehaviour
 
                 //目的地までついたので消える
                 Destroy(this.gameObject);
+                float addScoreNum = 100.0f;
+                if( BallManager._LastDeleteTime < 0.5f )
+                {
+                    for (int i = 0; i < 128; i++)
+                    {
+                        if (_BallObj[i] != null)
+                        {
+                            BallManager.DeleteBall(_BallObj[i]);
+                            GameObject gobj = Instantiate(score);
+                            gobj.GetComponent<FlyText>().Create(_BallObj[i].transform.position, (int)(addScoreNum * (1.5f - BallManager._LastDeleteTime)));
+                        }
+                    }
+                    BallManager.DeleteBall(_toObj);
+                    GameObject gobjto = Instantiate(score);
+                    gobjto.GetComponent<FlyText>().Create(_toObj.transform.position, (int)(addScoreNum * (1.5f - BallManager._LastDeleteTime)));
+
+                    BallManager.DeleteBall(_fromObj);
+                    GameObject gobjfrom = Instantiate(score);
+                    gobjfrom.GetComponent<FlyText>().Create(_fromObj.transform.position, (int)(addScoreNum * (1.5f - BallManager._LastDeleteTime)));
+
+                    BallManager.AllStickBallPull();
+                }
+                else
+                {
+                    for (int i = 0; i < 128; i++)
+                    {
+                        if (_BallObj[i] != null)
+                        {
+                            BallManager.DeleteBall(_BallObj[i]);
+                            GameObject gobj = Instantiate(score);
+                            gobj.GetComponent<FlyText>().Create(_BallObj[i].transform.position, (int)addScoreNum);
+                        }
+                    }
+                    BallManager.DeleteBall(_toObj);
+                    GameObject gobjto = Instantiate(score);
+                    gobjto.GetComponent<FlyText>().Create(_toObj.transform.position, (int)addScoreNum);
+
+                    BallManager.DeleteBall(_fromObj);
+                    GameObject gobjfrom = Instantiate(score);
+                    gobjfrom.GetComponent<FlyText>().Create(_fromObj.transform.position, (int)addScoreNum);
+
+                    BallManager.AllStickBallPull();
+                }
+                BallManager._LastDeleteTime = 0.0f;
+
+
                 //ボールを消す処理
                 for (int i = 0; i < 128; i++)
                 {

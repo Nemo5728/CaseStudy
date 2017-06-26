@@ -15,21 +15,31 @@ public class TimerScript : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		int[] num = new int[3];
-
+	void Update ()
+    {
         g_timer -= Time.deltaTime;
-        if(g_timer <= 0){
-            //画面遷移
+        if (g_timer >= 0.0f)
+        {
+            int[] num = new int[3];
+
+            if (g_timer <= 0)
+            {
+                //画面遷移
+            }
+
+            num[0] = (int)g_timer / 100 % 10;
+            num[1] = (int)g_timer / 10 % 10;
+            num[2] = (int)g_timer % 10;
+
+            for (int i = 0; i < 3; i++)
+            {
+                g_TimerBoard[i].sprite = g_TimerNumber[num[i]];
+            }
+
         }
-
-		num[0] = (int)g_timer / 100 % 10;
-		num[1] = (int)g_timer / 10 % 10;
-		num[2] = (int)g_timer % 10;
-
-		for (int i = 0; i < 3; i++)
-		{
-			g_TimerBoard[i].sprite = g_TimerNumber[num[i]];
-		}
+        else
+        {
+            g_timer = 0.0f;
+        }
 	}
 }
