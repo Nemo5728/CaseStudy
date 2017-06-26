@@ -28,25 +28,25 @@ public class SeController : MonoBehaviour
             case "Shot":
             {
                     GetComponent<AudioSource>().PlayOneShot(ShotSe,0.5f);
-                    Debug.Log("弾を撃ったよ！");
+                    //Debug.Log("弾を撃ったよ！");
                     break;
             }
             case "BallDelete":
             {
                     GetComponent<AudioSource>().PlayOneShot(BallDeleteSe,0.5f);
-                    Debug.Log("弾が消えるよ！");
+                    //Debug.Log("弾が消えるよ！");
                     break;
             }
             case "Hit":
             {
                     GetComponent<AudioSource>().PlayOneShot(HitSe);
-                    Debug.Log("弾が当たったよ！");
+                    //Debug.Log("弾が当たったよ！");
                     break;
             }
             case "Start":
             {
                     GetComponent<AudioSource>().PlayOneShot(StartSe);
-                    Debug.Log("ゲームが始まるよ！");
+                    //Debug.Log("ゲームが始まるよ！");
                     break;
             }
         }

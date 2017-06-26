@@ -72,7 +72,10 @@ MonoBehaviour:
   _toObj: {fileID: 0}
   _fromObj: {fileID: 0}
   _viaObj: {fileID: 0}
+  _Obj1: {fileID: 0}
+  _Obj2: {fileID: 0}
   _via: {x: 0, y: 0, z: 0}
+  score: {fileID: 1951646304109704, guid: cbf59cf8c7ca64d8c9b54ac995b21d31, type: 2}
   _BallObj:
   - {fileID: 0}
   - {fileID: 0}

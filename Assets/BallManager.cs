@@ -12,6 +12,10 @@ public class BallManager : MonoBehaviour
     /// ////////////////////////テスト
     List<GameObject> colList = new List<GameObject>();
 
+    //前回ballが消えた時間との差
+    public static float _LastDeleteTime;
+
+
     public static Transform _Trans;
     public struct BALL
     {
@@ -38,7 +42,9 @@ public class BallManager : MonoBehaviour
             InitStickBall(i);
         }
         _Trans = transform;
-	}
+        _LastDeleteTime = 0.0f;
+
+    }
 
     // Update is called once per frame
     void Update()
@@ -71,6 +77,7 @@ public class BallManager : MonoBehaviour
             }
         }
         _Trans = transform;
+        _LastDeleteTime += Time.deltaTime;
 
         //再度引っ張る処理
         if( bAllPull )
@@ -176,6 +183,8 @@ public class BallManager : MonoBehaviour
         _StickBall[num].BallObject.GetComponent<MeshRenderer>().enabled = false;
         _StickBall[num].BallObject.GetComponent<MeshRenderer>().GetComponentInChildren<SpriteRenderer>().enabled = false;
 
+        
+       
         //輪郭の削除
         _StickBall[num].BallObject.transform.Find("ballFixed").gameObject.SetActive(false);
         _StickBall[num].BallObject.transform.Find("ballMag").gameObject.SetActive(false);

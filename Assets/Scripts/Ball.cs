@@ -27,7 +27,7 @@ public class Ball : MonoBehaviour
     //自分のステータス
     public STATUS status;
     public STATUS oldStatus;
-
+    private static float _LastDelTime = 0.0f;
     //自分の色
     public COLOR color;
 
@@ -82,7 +82,6 @@ public class Ball : MonoBehaviour
         //石川追記
         g_SEManager = GameObject.FindGameObjectWithTag("SE");
         g_SEControl = g_SEManager.GetComponent<SeController>();
-
     }
 
     // Update is called once per frame
@@ -219,7 +218,30 @@ public class Ball : MonoBehaviour
 
     public void StatusChangeDelete()
     {
-        status = STATUS.DELETE;
+        if (status != STATUS.DELETE)
+        {
+            status = STATUS.DELETE;
+
+            //横山追記
+            GameObject go = Instantiate(effect);
+            go.GetComponent<expControll>().Set(transform.position);
+
+            //if( BallManager._LastDeleteTime < 0.5f )
+            //{
+            //    GameObject gobj = Instantiate(score);
+            //    gobj.GetComponent<FlyText>().Create(transform.position, (int)((float)scoreValue * 1.5f - BallManager._LastDeleteTime));
+            //}
+            //else
+            //{
+            //    GameObject gobj = Instantiate(score);
+            //    gobj.GetComponent<FlyText>().Create(transform.position, scoreValue);
+
+            //}
+            //BallManager._LastDeleteTime = 0;
+            //Debug.Log("Fly");
+            //石川追記
+            g_SEControl.sePlayer("BallDelete");
+        }
     }
     public STATUS GetStatus()
     {
