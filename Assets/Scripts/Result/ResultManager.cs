@@ -13,9 +13,12 @@ namespace GodTouches
         //ランキングのスコアテキスト
         public Text[] RankingScore = new Text[5];
 
+        public float _Time;
+
         //石川追記
         GameObject g_BGMManager;
         AudioController g_BGMControl;
+
         //Imageのサイズと位置を設定
         void SetImage(float PosX, float PosY, float Width, float Height, GameObject go)
         {
@@ -27,7 +30,6 @@ namespace GodTouches
             Vector2 pos = rt.localPosition;
             //位置変更
             rt.localPosition = new Vector3(PosX, PosY, 0.0f);
-
 
         }
 
@@ -62,12 +64,17 @@ namespace GodTouches
 
             GameObject Window02 = GameObject.Find("Window02");
             SetImage(pos.x, pos.y, size.x, size.y, Window02);
+
+            _Time = 0.0f;
         }
 
         // Update is called once per frame
         void Update()
         {
-            if(GodTouch.GetPhase() == GodPhase.Began){
+
+            _Time += Time.deltaTime;
+            if (GodTouch.GetPhase() == GodPhase.Began && _Time >= 3.0f)
+            {
                 Application.LoadLevel("TitleScene");
             }
         }
