@@ -9,6 +9,9 @@ using UnityEngine;
 
 public class BallShooter : MonoBehaviour
 {
+    //ボール
+    public GameObject[] ballObjects;
+
     public GameObject redBall;     //ドロップボールのプレハブ
     public GameObject blueBall;    //ドロップボールのプレハブ
     public GameObject yellowBall;  //ドロップボールのプレハブ
@@ -47,11 +50,13 @@ public class BallShooter : MonoBehaviour
 
     void Update()
     {
-        _cntBall = Ball._moveBallCnt;
+        Check();
+        //_cntBall = Ball._moveBallCnt;
         timeElapsed += Time.deltaTime;  //時間更新
 
         float timeCount = timer.GetComponent<TimerScript>().GetTime();
-        if(timeCount <= rushStart){
+        if (timeCount <= rushStart)
+        {
             timeOut = 0.8f;
             _ballMax = _rushMax;
         }
@@ -92,7 +97,7 @@ public class BallShooter : MonoBehaviour
 
             int color = Random.Range(0, _BALLMAX);
 
-            if(_cntBall < _ballMax)
+            if (_cntBall < _ballMax)
             {
 
                 //弾を生成
@@ -158,5 +163,20 @@ public class BallShooter : MonoBehaviour
     float GetBallSpeed()
     {
         return ballSpeed;
+    }
+
+    //シーン上のBallタグが付いたオブジェクトを数える
+    public void Check()
+    {
+        _cntBall = 0;
+        ballObjects = GameObject.FindGameObjectsWithTag("Ball");
+        //Debug.Log(ballObjects.Length); //tagObjects.Lengthはオブジェクトの数
+        foreach (GameObject go in ballObjects)
+        {
+            if(go.GetComponent<Ball>().status == Ball.STATUS.MOVE)
+            {
+                _cntBall++;
+            }
+        }
     }
 }
