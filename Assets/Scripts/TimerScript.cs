@@ -47,5 +47,9 @@ public class TimerScript : MonoBehaviour
             g_TimerBoard[i].sprite = g_TimerNumber[num[i]];
         }
 
+	}
+
+    public float GetTime(){
+        return g_timer;
     }
 }

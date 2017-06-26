@@ -16,6 +16,8 @@ public class BallShooter : MonoBehaviour
     public GameObject purpleBall;   //ドロップボールのプレハブ
     public GameObject ojamaBall;   //ドロップボールのプレハブ
 
+    public GameObject timer;
+
     private int _BALLMAX = 6;
 
     public float timeOut;       //目標時間
@@ -31,6 +33,9 @@ public class BallShooter : MonoBehaviour
     public GameObject BallManager;
 
     public int _cntBall;
+    public int _ballMax = 10;
+    public int _rushMax = 15;
+    public float rushStart = 40.0f;
 
     //ボールの情報を入れておく
     public static GameObject[] _Ball = new GameObject[512];
@@ -44,6 +49,12 @@ public class BallShooter : MonoBehaviour
     {
         _cntBall = Ball._moveBallCnt;
         timeElapsed += Time.deltaTime;  //時間更新
+
+        float timeCount = timer.GetComponent<TimerScript>().GetTime();
+        if(timeCount <= rushStart){
+            timeOut = 0.8f;
+            _ballMax = _rushMax;
+        }
 
         //if目標時間に到達したか否か
         if (timeElapsed >= timeOut)
@@ -81,7 +92,7 @@ public class BallShooter : MonoBehaviour
 
             int color = Random.Range(0, _BALLMAX);
 
-            if(_cntBall <= 9)
+            if(_cntBall < _ballMax)
             {
 
                 //弾を生成

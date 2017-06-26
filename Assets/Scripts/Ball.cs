@@ -123,6 +123,29 @@ public class Ball : MonoBehaviour
                     //イメージの回転(イメージオブジェクトはスタートで取得)
                     ballImage.transform.Rotate(new Vector3(0, 0, 5));
 
+                    //ボールが止まらないようにする処理をこんな感じで。
+                    //if(GetComponent<Rigidbody>().velocity.x < 0.02f || GetComponent<Rigidbody>().velocity.y < 0.02f)
+                    //{
+                    //    Vector3 selfVelocity = GetComponent<Rigidbody>().velocity;
+
+                    //    selfVelocity.x = 0.2f;
+                    //    selfVelocity.y = 0.2f;
+                    //    selfVelocity.z = 0.0f;
+
+                    //    GetComponent<Rigidbody>().AddForce(selfVelocity , ForceMode.VelocityChange);
+                    //}
+                    //if (GetComponent<Rigidbody>().velocity.x < -0.02f || GetComponent<Rigidbody>().velocity.y < -0.02f)
+                    //{
+                    //    Vector3 selfVelocity = GetComponent<Rigidbody>().velocity;
+
+                    //    selfVelocity.x = 0.2f;
+                    //    selfVelocity.y = 0.2f;
+                    //    selfVelocity.z = 0.0f;
+
+                    //    GetComponent<Rigidbody>().AddForce(selfVelocity, ForceMode.VelocityChange);
+                    //}
+
+
                     break;
                 }
             case STATUS.PULL:
