@@ -29,21 +29,18 @@ public class AudioController : MonoBehaviour
             {
                     GetComponent<AudioSource>().Stop();
                     GetComponent<AudioSource>().clip = TitleBgm;
-                    Debug.Log("タイトルBGM入った");
                     break;
             }
             case"TeseScene":
             {
                     GetComponent<AudioSource>().Stop();
                     GetComponent<AudioSource>().clip = GameBgm;
-                    Debug.Log("ゲームBGM入った");
                     break;
             }
             case"ResultScene":
             {
                     GetComponent<AudioSource>().Stop();
                     GetComponent<AudioSource>().clip = ResultBgm;
-                    Debug.Log("リザルトBGM入った");
                     break;
             }
             default:

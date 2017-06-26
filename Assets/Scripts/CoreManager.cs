@@ -64,6 +64,9 @@ namespace GodTouches
             {
                 bulletstate = BULLETSTATE.BONUS;
                 BonusTime = BonusStartTime;
+
+                //石川追記
+                g_SEControl.sePlayer("PowerUpSe");
             }
 
             //ボーナス終了判定
@@ -72,6 +75,9 @@ namespace GodTouches
             {
                 bulletstate = BULLETSTATE.NORMAL;
                 scorePool = 0;
+
+                //石川追記
+                g_SEControl.sePlayer("PowerDownSe");
             }
 
             //ボーナス中処理
