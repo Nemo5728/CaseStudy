@@ -24,6 +24,9 @@ public class Ball : MonoBehaviour
         OJAMA,
         MAX
     };
+
+    public static int _moveBallCnt = 0;
+
     //自分のステータス
     public STATUS status;
     public STATUS oldStatus;
@@ -82,6 +85,7 @@ public class Ball : MonoBehaviour
         //石川追記
         g_SEManager = GameObject.FindGameObjectWithTag("SE");
         g_SEControl = g_SEManager.GetComponent<SeController>();
+        _moveBallCnt++;
     }
 
     // Update is called once per frame
@@ -107,6 +111,10 @@ public class Ball : MonoBehaviour
                 }
             case STATUS.PULL:
                 {
+                    if (oldStatus == STATUS.MOVE)
+                    {
+                        _moveBallCnt--;
+                    }
                     //Debug.Log(oldStatus);
                     //引っ張る方向へ力を加える
 
