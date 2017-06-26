@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 114573667824246238}
   m_Layer: 0
   m_Name: BgmManager
-  m_TagString: Untagged
+  m_TagString: BGM
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,7 +112,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.66
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -194,7 +194,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -274,7 +274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TitleBgm: {fileID: 8300000, guid: 0351c123d2eeaf6498eb33c5a425e819, type: 3}
   GameBgm: {fileID: 8300000, guid: 5cc53b91a8fac5d43a72763a6c4efd3c, type: 3}
-  ResultBgm: {fileID: 0}
+  ResultBgm: {fileID: 8300000, guid: 9f0b183fec9237344bc092559fdeebc3, type: 3}
 --- !u!114 &114990581548176340
 MonoBehaviour:
   m_ObjectHideFlags: 1

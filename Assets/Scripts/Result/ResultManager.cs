@@ -11,6 +11,10 @@ public class ResultManager : MonoBehaviour
     //ランキングのスコアテキスト
     public Text[] RankingScore = new Text[5];
 
+    //石川追記
+    GameObject g_BGMManager;
+    AudioController g_BGMControl;
+
     //Imageのサイズと位置を設定
     void SetImage( float PosX, float PosY, float Width, float Height, GameObject go )
     {
@@ -50,6 +54,13 @@ public class ResultManager : MonoBehaviour
 
         GameObject Window02 = GameObject.Find("Window02");
         SetImage(pos.x, pos.y, size.x, size.y, Window02);
+
+        //石川追記
+        g_BGMManager = GameObject.FindGameObjectWithTag("BGM");
+        g_BGMControl = g_BGMManager.GetComponent<AudioController>();
+
+        g_BGMControl.bgmPlayer("ResultScene");
+        //
     }
 	
 	// Update is called once per frame

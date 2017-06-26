@@ -10,6 +10,7 @@ TagManager:
   - explosion
   - SE
   - bullet
+  - BGM
   layers:
   - Default
   - TransparentFX

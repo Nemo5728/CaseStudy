@@ -17,6 +17,9 @@ namespace GodTouches{
         GameObject g_SEManager;
         SeController g_SEControl;
 
+        GameObject g_BGMManager;
+        AudioController g_BGMControl;
+
         public int BonusStartScore;
         public int BonusStartTime;
         private float BonusTime;
@@ -38,6 +41,11 @@ namespace GodTouches{
             //石川追記
             g_SEManager = GameObject.FindGameObjectWithTag("SE");
             g_SEControl = g_SEManager.GetComponent<SeController>();
+
+            g_BGMManager = GameObject.FindGameObjectWithTag("BGM");
+            g_BGMControl = g_BGMManager.GetComponent<AudioController>();
+
+            g_BGMControl.bgmPlayer("TeseScene");
 
             score = GameObject.Find("Score_Board");
             bulletstate = BULLETSTATE.NORMAL;
