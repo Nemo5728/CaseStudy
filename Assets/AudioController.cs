@@ -27,27 +27,32 @@ public class AudioController : MonoBehaviour
         {
             case"TitleScene":
             {
+                    GetComponent<AudioSource>().Stop();
                     GetComponent<AudioSource>().clip = TitleBgm;
+                    Debug.Log("タイトルBGM流すよ！");
                     break;
             }
             case"TeseScene":
             {
+                    GetComponent<AudioSource>().Stop();
                     GetComponent<AudioSource>().clip = GameBgm;
+                    Debug.Log("ゲームBGM流すよ！");
                     break;
             }
             case"ResultScene":
             {
+                    GetComponent<AudioSource>().Stop();
                     GetComponent<AudioSource>().clip = ResultBgm;
+                    Debug.Log("リザルトBGM流すよ！");
                     break;
             }
             default:
             {
-                    Debug.Log("sceneName:"+ sceneName+"_error:入っちゃいけないBGM呼び出し～");
+                    Debug.Log("sceneName:"+ sceneName+"_error:入っちゃいけないBGM呼び出しだよ！");
                     break;
             }
         }
         //念のため再生処理
         GetComponent<AudioSource>().Play();
-        Debug.Log("通ったよ");
     }
 }

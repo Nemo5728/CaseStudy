@@ -49,6 +49,11 @@ public class SeController : MonoBehaviour
                     Debug.Log("ゲームが始まるよ！");
                     break;
             }
+            default:
+            {
+                    Debug.Log("SeChange:" + SeChange + "_error:入っちゃいけないSE呼び出しだよ！");
+                    break;
+            }
         }
     }
 }

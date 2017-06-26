@@ -11,23 +11,28 @@ namespace GodTouches{
         //石川追記
         GameObject g_SEManager;
         SeController g_SEControl;
+        GameObject g_BGMManager;
+        AudioController g_BGMControl;
 
         // Use this for initialization
         void Start () {
 
             //石川追記
-            g_SEManager = GameObject.FindGameObjectWithTag("SE");
-            g_SEControl = g_SEManager.GetComponent<SeController>();
+            g_BGMManager = GameObject.FindGameObjectWithTag("BGM");
+            g_BGMControl = g_BGMManager.GetComponent<AudioController>();
+
+            g_BGMControl.bgmPlayer("TeseScene");
+        }
+
+        // Update is called once per frame
+
+        private void Awake()
+        {
 
         }
-		
-		// Update is called once per frame
-		void Update () {
+        void Update () {
 			if(GodTouch.GetPhase() == GodPhase.Began)
 			{
-                //石川追記
-                g_SEControl.sePlayer("Shot");
-
                 GameObject bullets = Instantiate(prefab) as GameObject;
                 bullets.GetComponent<Bullet>().frontShot();
                 GameObject bullets2 = Instantiate(prefab) as GameObject;

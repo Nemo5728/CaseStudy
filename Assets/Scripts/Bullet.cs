@@ -30,6 +30,7 @@ namespace GodTouches
             //石川追記
             g_SEManager = GameObject.FindGameObjectWithTag("SE");
             g_SEControl = g_SEManager.GetComponent<SeController>();
+            g_SEControl.sePlayer("Shot");
         }
 
         // Update is called once per frame
