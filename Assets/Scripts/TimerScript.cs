@@ -7,11 +7,13 @@ public class TimerScript : MonoBehaviour {
 	public Image[] g_TimerBoard;
 	public Sprite[] g_TimerNumber;
 
-    float g_timer = 100;
+    private float g_timer = 100;
+    private float loadTime = 2.0f;
+    public GameObject canvas;
 
 	// Use this for initialization
 	void Start () {
-		
+        
 	}
 	
 	// Update is called once per frame
@@ -25,8 +27,12 @@ public class TimerScript : MonoBehaviour {
                 //画面遷移
             }
         if(g_timer <= 0){
-            //画面遷移]
-            Application.LoadLevel("ResultScene");
+            //画面遷移
+            loadTime -= Time.deltaTime;
+            canvas.GetComponent<StartManager>().SetTimeupActive();
+            if (loadTime <= 0.0f){
+                Application.LoadLevel("ResultScene");
+            }
         }
 
             num[0] = (int)g_timer / 100 % 10;
