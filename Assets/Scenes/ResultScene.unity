@@ -1263,6 +1263,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1367517363}
   - component: {fileID: 1367517362}
+  - component: {fileID: 1367517364}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -1283,11 +1284,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Score: {fileID: 1355036162}
   RankingScore:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1794973053}
+  - {fileID: 983858129}
+  - {fileID: 2145088227}
+  - {fileID: 721397999}
+  - {fileID: 1832060484}
+  _Time: 0
 --- !u!4 &1367517363
 Transform:
   m_ObjectHideFlags: 0
@@ -1301,6 +1303,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1367517364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1367517361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a4bea657d130164d8f9e9934e61c7d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  g_ScoreData: 0000000000000000000000000000000000000000
+  g_ScoreList: {fileID: 4900000, guid: 7e7e54cebd528ca429bd0fb790c91bdf, type: 3}
 --- !u!1 &1499325310
 GameObject:
   m_ObjectHideFlags: 0
