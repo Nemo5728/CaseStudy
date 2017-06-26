@@ -37,6 +37,7 @@ public class BallShooter : MonoBehaviour
 
     void Start()
     {
+        Ball._moveBallCnt = 0;
     }
 
     void Update()
