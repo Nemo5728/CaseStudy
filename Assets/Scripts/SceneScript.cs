@@ -19,6 +19,6 @@ public class SceneScript : MonoBehaviour
         //石川追記
         g_SEControl.sePlayer("Start");
 
-        Application.LoadLevel("TeseScene");
+        Application.LoadLevel("TutorialScene");
     }
 }
