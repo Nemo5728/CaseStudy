@@ -94,9 +94,18 @@ public class BallShooter : MonoBehaviour
             pos.y = y;
             transform.position = pos;
             //発射位置ランダム設定ここまで
-
-            int color = Random.Range(0, _BALLMAX);
-
+            int color;
+            //ボーナスタイム中なら
+            if (GodTouches.CoreManager.GetState() == GodTouches.CoreManager.BULLETSTATE.BONUS)
+            {
+                //お邪魔以外のプラネット出るよ
+                color = Random.Range(0, _BALLMAX - 1);
+            }
+            else
+            {
+                color = Random.Range(0, _BALLMAX);
+            }
+            
             if (_cntBall < _ballMax)
             {
 
