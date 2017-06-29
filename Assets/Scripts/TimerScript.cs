@@ -8,7 +8,7 @@ public class TimerScript : MonoBehaviour
     public Image[] g_TimerBoard;
     public Sprite[] g_TimerNumber;
 
-    private float g_timer = 100;
+    private float g_timer = 10;
     private float loadTime = 2.0f;
     public GameObject canvas;
 
