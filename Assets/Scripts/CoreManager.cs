@@ -72,7 +72,7 @@ namespace GodTouches
 
                 //トランザム生成
                 GameObject TAgo = Instantiate(_transAm) as GameObject;
-                TAgo.transform.position = new Vector3(0.0f,0.0f,0.0f);
+                TAgo.transform.position = new Vector3(0.0f,0.0f,-0.5f);
             }
 
             //ボーナス終了判定
