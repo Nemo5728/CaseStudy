@@ -24,7 +24,7 @@ namespace GodTouches{
         // Update is called once per frame
         void Update(){
             updateTexture += Time.deltaTime;
-            if (updateTexture >= 0.2f)
+            if (updateTexture >= 0.2f && touch)
             {
                 if (spriteCnt < 9 && spriteCnt > 0)
                 {
@@ -43,7 +43,7 @@ namespace GodTouches{
                 touch = false;
             }
 
-            if(GodTouch.GetPhase() == GodPhase.Began && !touch)
+            if(GodTouch.GetPhase() == GodPhase.Began)
             {
                 spriteCnt++;
                 updateTexture = 0.0f;
@@ -53,21 +53,20 @@ namespace GodTouches{
 
         public void PrevButton()
         {
-            if (!touch)
-            {
-	            if (spriteCnt <= 1)
-	            {
-	                spriteCnt = -1;
-	            }
-	            else
-	            {
-	                spriteCnt -= 2;
-	            }
-                touch = true;
-            }
+            if (spriteCnt <= 1)
+	        {
+	            spriteCnt = -1;
+	        }
+	        else
+	        {
+	            spriteCnt -= 2;
+	        }
+            updateTexture = 0.0f;
+            touch = true;
         }
 
         public void SkipButton(){
+            updateTexture = 0.0f;
             Application.LoadLevel("TeseScene");
         }
     }
