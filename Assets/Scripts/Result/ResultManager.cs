@@ -36,18 +36,7 @@ namespace GodTouches
         // Use this for initialization
         void Start()
         {
-            Vector2 pos;
-            Vector2 size;
-
-            //window1の位置設定
-            pos.x = 0.0f;
-            pos.y = Screen.height / 10 * 1 * 4;
-
-            size.x = Screen.width - 90;
-            size.y = Screen.height / 6;
-
-            GameObject Window01 = GameObject.Find("Window01");
-            SetImage(pos.x, pos.y, size.x, size.y, Window01);
+            
 
 
             //石川追記
@@ -55,16 +44,6 @@ namespace GodTouches
             g_BGMControl = g_BGMManager.GetComponent<AudioController>();
 
             g_BGMControl.bgmPlayer("ResultScene");
-            //2
-            pos.x = 0.0f;
-            pos.y = 0.0f;
-
-            size.x = Screen.width - 50;
-            size.y = Screen.height / 2 + 20;
-
-            GameObject Window02 = GameObject.Find("Window02");
-            SetImage(pos.x, pos.y, size.x, size.y, Window02);
-
             _Time = 0.0f;
         }
 
