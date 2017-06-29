@@ -25,6 +25,7 @@ public class Ball : MonoBehaviour
         MAX
     };
 
+    public float speed;
     public static int _moveBallCnt = 0;
 
     //自分のステータス
@@ -34,7 +35,7 @@ public class Ball : MonoBehaviour
     //自分の色
     public COLOR color;
 
-    private float speed;     //ドロップボールの速さ(今のところシューターから受け取り。)
+    public float _magnitude;     //ドロップボールの速さ(今のところシューターから受け取り。)
 
     //あまり外部から取得するのは良くないけど、シューターから値を受け取りたいため。
     public GameObject BallSet;//（Setと書いてあるがシューターのスクリプト
@@ -118,6 +119,31 @@ public class Ball : MonoBehaviour
                     if (oldStatus != STATUS.MOVE)
                     {
                         GetComponent<Rigidbody>().AddForce(force);              //ドロップボール発射
+                    }
+                    //Debug.Log(GetComponent<Rigidbody>().velocity.magnitude.ToString());
+                    _magnitude = GetComponent<Rigidbody>().velocity.magnitude;
+                    if (GetComponent<Rigidbody>().velocity.magnitude < 5.0f && GetComponent<Rigidbody>().velocity.magnitude > 1.0f)
+                    {
+                        Vector3 vec = GetComponent<Rigidbody>().velocity;
+                        vec.x = vec.x * 1.01f;
+                        vec.y = vec.y * 1.01f;
+                        vec.z = vec.z * 1.01f;
+                        GetComponent<Rigidbody>().velocity = vec;
+                    }
+                    else if (GetComponent<Rigidbody>().velocity.magnitude > 10.0f)
+                    {
+                        Vector3 vec = GetComponent<Rigidbody>().velocity;
+                        vec.x = vec.x * 0.99f;
+                        vec.y = vec.y * 0.99f;
+                        vec.z = vec.z * 0.99f;
+                        GetComponent<Rigidbody>().velocity = vec;
+                    }
+                    if (GetComponent<Rigidbody>().velocity.magnitude < 1.0f)
+                    {
+                        force = center - transform.position;                   //発射ベクトル設定
+                        Vector3.Normalize(force);                               //ベクトルの正規化
+                        force *= speed;                                         //ドロップボールの速さ調整
+                        GetComponent<Rigidbody>().AddForce(force);
                     }
 
                     //イメージの回転(イメージオブジェクトはスタートで取得)
