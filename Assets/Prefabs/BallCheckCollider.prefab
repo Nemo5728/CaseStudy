@@ -74,7 +74,14 @@ MonoBehaviour:
   _viaObj: {fileID: 0}
   _Obj1: {fileID: 0}
   _Obj2: {fileID: 0}
-  effect: {fileID: 1867348616538746, guid: daf08d8ddacc4ac46844fd72f8555954, type: 2}
+  effectYellow: {fileID: 1867348616538746, guid: daf08d8ddacc4ac46844fd72f8555954,
+    type: 2}
+  effectRed: {fileID: 1175380992499782, guid: 702ef2a32433b584cb25d379ebf9d36f, type: 2}
+  effectGreen: {fileID: 1444597653123404, guid: e77ad369708dd4347bb1e4f5da1482fd,
+    type: 2}
+  effectBlue: {fileID: 1542993123334606, guid: 9ddc07cc73fc1384c9c5048676768a88, type: 2}
+  effectPurple: {fileID: 1826052229168098, guid: 22022b417263e984e8979e5fd34f0c71,
+    type: 2}
   _via: {x: 0, y: 0, z: 0}
   score: {fileID: 1951646304109704, guid: cbf59cf8c7ca64d8c9b54ac995b21d31, type: 2}
   _BallObj:

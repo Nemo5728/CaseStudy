@@ -15,7 +15,12 @@ public class CheckCollider : MonoBehaviour
     public GameObject _Obj2;          //2
 
 	//横山追記
-	public GameObject effect;               //エフェクトのオブジェクトを入れる変数
+	public GameObject effectYellow;               //エフェクトのオブジェクトを入れる変数
+	public GameObject effectRed;			    //エフェクトのオブジェクトを入れる変数
+	public GameObject effectGreen;               //エフェクトのオブジェクトを入れる変数
+	public GameObject effectBlue;               //エフェクトのオブジェクトを入れる変数
+	public GameObject effectPurple;               //エフェクトのオブジェクトを入れる変数
+
 
 	Vector3 _from;  //自分
     Vector3 _to;    //目的地
@@ -231,11 +236,46 @@ public class CheckCollider : MonoBehaviour
                 _fromObj.transform.Find("ballFixed").gameObject.SetActive(true);
                 _fromObj.transform.Find("ballMag").gameObject.SetActive(true);
 
-				GameObject fromGo = Instantiate(effect);        //エフェクトの生成
-				fromGo.GetComponent<chainControll>().Set(_fromObj.transform.position, _toObj.transform.position);     //エフェクト生成時に親子関係形成、方向ベクトル取得
-				GameObject toGo = Instantiate(effect);        //エフェクトの生成
-				toGo.GetComponent<chainControll>().Set(_toObj.transform.position, _fromObj.transform.position);     //エフェクト生成時に親子関係形成、方向ベクトル取得
 
+				if(_toObj.GetComponent<Ball>().color == Ball.COLOR.YELLOW)
+				{
+					GameObject fromGo = Instantiate(effectYellow);        //エフェクトの生成
+					fromGo.GetComponent<chainControll>().Set(_fromObj.transform.position, _toObj.transform.position);     //エフェクト生成時に親子関係形成、方向ベクトル取得
+					GameObject toGo = Instantiate(effectYellow);        //エフェクトの生成
+					toGo.GetComponent<chainControll>().Set(_toObj.transform.position, _fromObj.transform.position);     //エフェクト生成時に親子関係形成、方向ベクトル取得
+				}
+
+				else if(_toObj.GetComponent<Ball>().color == Ball.COLOR.RED)
+				{
+					GameObject fromGo = Instantiate(effectRed);        //エフェクトの生成
+					fromGo.GetComponent<chainControll>().Set(_fromObj.transform.position, _toObj.transform.position);     //エフェクト生成時に親子関係形成、方向ベクトル取得
+					GameObject toGo = Instantiate(effectRed);        //エフェクトの生成
+					toGo.GetComponent<chainControll>().Set(_toObj.transform.position, _fromObj.transform.position);     //エフェクト生成時に親子関係形成、方向ベクトル取得
+				}
+
+				else if (_toObj.GetComponent<Ball>().color == Ball.COLOR.GREEN)
+				{
+					GameObject fromGo = Instantiate(effectGreen);        //エフェクトの生成
+					fromGo.GetComponent<chainControll>().Set(_fromObj.transform.position, _toObj.transform.position);     //エフェクト生成時に親子関係形成、方向ベクトル取得
+					GameObject toGo = Instantiate(effectGreen);        //エフェクトの生成
+					toGo.GetComponent<chainControll>().Set(_toObj.transform.position, _fromObj.transform.position);     //エフェクト生成時に親子関係形成、方向ベクトル取得
+				}
+
+				else if (_toObj.GetComponent<Ball>().color == Ball.COLOR.BLUE)
+				{
+					GameObject fromGo = Instantiate(effectBlue);        //エフェクトの生成
+					fromGo.GetComponent<chainControll>().Set(_fromObj.transform.position, _toObj.transform.position);     //エフェクト生成時に親子関係形成、方向ベクトル取得
+					GameObject toGo = Instantiate(effectBlue);        //エフェクトの生成
+					toGo.GetComponent<chainControll>().Set(_toObj.transform.position, _fromObj.transform.position);     //エフェクト生成時に親子関係形成、方向ベクトル取得
+				}
+
+				else if(_toObj.GetComponent<Ball>().color == Ball.COLOR.PURPLE)
+				{
+					GameObject fromGo = Instantiate(effectPurple);        //エフェクトの生成
+					fromGo.GetComponent<chainControll>().Set(_fromObj.transform.position, _toObj.transform.position);     //エフェクト生成時に親子関係形成、方向ベクトル取得
+					GameObject toGo = Instantiate(effectPurple);        //エフェクトの生成
+					toGo.GetComponent<chainControll>().Set(_toObj.transform.position, _fromObj.transform.position);     //エフェクト生成時に親子関係形成、方向ベクトル取得
+				}
 			}
 
 		}
