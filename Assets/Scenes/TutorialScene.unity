@@ -577,7 +577,7 @@ MonoBehaviour:
   sprite:
   - {fileID: 21300000, guid: c48c5884a26c447868ce76d6f2427df8, type: 3}
   - {fileID: 21300000, guid: 803397b20c7d94601a7a5761abd93720, type: 3}
-  - {fileID: 21300000, guid: 8cb178370b9cd485e92866774ce9ffc6, type: 3}
+  - {fileID: 21300000, guid: 4e687bcc204a2f54dbe8bff1e05b4122, type: 3}
   - {fileID: 21300000, guid: 4383935500adb4cd68dfbe6a5ec6bc78, type: 3}
   - {fileID: 21300000, guid: cb62d5d91e8074bbabccbed4088495c1, type: 3}
   - {fileID: 21300000, guid: b0aa7896a2c1c4512a90d32972dd5fb7, type: 3}
