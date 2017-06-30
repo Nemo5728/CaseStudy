@@ -106,7 +106,7 @@ public class BallShooter : MonoBehaviour
                 color = Random.Range(0, _BALLMAX);
             }
             
-            if (_cntBall < _ballMax)
+            if (_cntBall < _ballMax && StartManager._b)
             {
 
                 //弾を生成

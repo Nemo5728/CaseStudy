@@ -94,7 +94,7 @@ namespace GodTouches
                 scorePool -= BonusStartScore / BonusStartTime;
             }
 
-            if (GodTouch.GetPhase() == GodPhase.Began)
+            if (GodTouch.GetPhase() == GodPhase.Began && StartManager._b)
             {
                 GameObject search = null;
 
