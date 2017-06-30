@@ -8,9 +8,11 @@ public class TimerScript : MonoBehaviour
     public Image[] g_TimerBoard;
     public Sprite[] g_TimerNumber;
 
-    private float g_timer = 100;
+    private float g_timer = 10;
     private float loadTime = 2.0f;
     public GameObject canvas;
+    public float fadeRate = 0.2f;
+    private bool fadeStart = false;
 
     // Use this for initialization
     void Start()
@@ -30,9 +32,11 @@ public class TimerScript : MonoBehaviour
             //画面遷移
             loadTime -= Time.deltaTime;
             canvas.GetComponent<StartManager>().SetTimeupActive();
-            if (loadTime <= 0.0f)
+            if (loadTime <= 0.0f && !fadeStart)
             {
-                Application.LoadLevel("ResultScene");
+                //Application.LoadLevel("ResultScene");
+                FadeManager.Instance.LoadLevel("ResultScene", fadeRate);
+                fadeStart = true;
             }
 
         }

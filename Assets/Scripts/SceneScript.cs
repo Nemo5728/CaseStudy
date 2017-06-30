@@ -9,6 +9,8 @@ public class SceneScript : MonoBehaviour
     GameObject g_SEManager;
     SeController g_SEControl;
 
+    public float fadeRate = 0.2f;
+
     public void LoadSceneGame()
     {
 
@@ -19,6 +21,7 @@ public class SceneScript : MonoBehaviour
         //石川追記
         g_SEControl.sePlayer("Start");
 
-        Application.LoadLevel("TutorialScene");
+        //Application.LoadLevel("TutorialScene");
+        FadeManager.Instance.LoadLevel("TutorialScene", fadeRate);
     }
 }

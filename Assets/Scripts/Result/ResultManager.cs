@@ -14,6 +14,7 @@ namespace GodTouches
         public Text[] RankingScore = new Text[5];
 
         public float _Time;
+        public float fadeRate = 0.2f;
 
         //石川追記
         GameObject g_BGMManager;
@@ -54,7 +55,8 @@ namespace GodTouches
             _Time += Time.deltaTime;
             if (GodTouch.GetPhase() == GodPhase.Began && _Time >= 3.0f)
             {
-                Application.LoadLevel("TitleScene");
+                //Application.LoadLevel("TitleScene");
+                FadeManager.Instance.LoadLevel("TitleScene", fadeRate);
             }
         }
     }
