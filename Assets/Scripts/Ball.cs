@@ -140,7 +140,7 @@ public class Ball : MonoBehaviour
                     }
                     if (GetComponent<Rigidbody>().velocity.magnitude < 1.0f)
                     {
-                        force = center - transform.position;                   //発射ベクトル設定
+                        force = new Vector3( Random.Range(0.0f,5.0f), Random.Range(0.0f, 5.0f), 0.0f);                   //発射ベクトル設定
                         Vector3.Normalize(force);                               //ベクトルの正規化
                         force *= speed;                                         //ドロップボールの速さ調整
                         GetComponent<Rigidbody>().AddForce(force);

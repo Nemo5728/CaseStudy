@@ -57,7 +57,8 @@ public class BallShooter : MonoBehaviour
         float timeCount = timer.GetComponent<TimerScript>().GetTime();
         if (timeCount <= rushStart)
         {
-            timeOut = 0.8f;
+            _normalRate = 0.8f;
+            _bonusRate = 0.2f;
             _ballMax = _rushMax;
         }
 
