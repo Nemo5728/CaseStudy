@@ -210,11 +210,6 @@ public class CheckCollider : MonoBehaviour
 
                 BallManager._LastDeleteTime = 0.0f;
                 
-				GameObject fromGo = Instantiate(effect);        //エフェクトの生成
-				fromGo.GetComponent<chainControll>().Set(_fromObj.transform.position, _toObj.transform.position);     //エフェクト生成時に親子関係形成、方向ベクトル取得
-				GameObject toGo = Instantiate(effect);        //エフェクトの生成
-				toGo.GetComponent<chainControll>().Set(_toObj.transform.position, _fromObj.transform.position); 
-
 				if(_toObj.GetComponent<Ball>().color == Ball.COLOR.YELLOW)
 				{
 					GameObject fromGo = Instantiate(effectYellow);        //エフェクトの生成
