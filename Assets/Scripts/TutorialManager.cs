@@ -6,6 +6,7 @@ using UnityEngine.UI;
 namespace GodTouches{
     public class TutorialManager : MonoBehaviour{
         public Sprite[] sprite;
+        public float fadeRate = 0.2f;
 
         private Image image;
         private GameObject gameobject;
@@ -37,7 +38,8 @@ namespace GodTouches{
                 }
                 else if (spriteCnt >= 9)
                 {
-                    Application.LoadLevel("TeseScene");
+                    //Application.LoadLevel("TeseScene");
+                    FadeManager.Instance.LoadLevel("TeseScene", fadeRate);
                 }
 
                 touch = false;
@@ -67,7 +69,8 @@ namespace GodTouches{
 
         public void SkipButton(){
             updateTexture = 0.0f;
-            Application.LoadLevel("TeseScene");
+            //Application.LoadLevel("TeseScene");
+            FadeManager.Instance.LoadLevel("TeseScene", fadeRate);
         }
     }
 }
