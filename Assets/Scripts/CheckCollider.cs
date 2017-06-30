@@ -180,10 +180,7 @@ public class CheckCollider : MonoBehaviour
                     BallManager.DeleteBall(_toObj);
                     GameObject gobjto = Instantiate(score);
                     gobjto.GetComponent<FlyText>().Create(_toObj.transform.position, (int)(addScoreNum * 1.5f));
-
-                    BallManager.DeleteBall(_fromObj);
-                    GameObject gobjfrom = Instantiate(score);
-                    gobjfrom.GetComponent<FlyText>().Create(_fromObj.transform.position, (int)(addScoreNum * 1.5f));
+                    
 
                     BallManager.AllStickBallPull();
                 }
@@ -201,36 +198,13 @@ public class CheckCollider : MonoBehaviour
                     BallManager.DeleteBall(_toObj);
                     GameObject gobjto = Instantiate(score);
                     gobjto.GetComponent<FlyText>().Create(_toObj.transform.position, (int)addScoreNum);
-
-                    BallManager.DeleteBall(_fromObj);
-                    GameObject gobjfrom = Instantiate(score);
-                    gobjfrom.GetComponent<FlyText>().Create(_fromObj.transform.position, (int)addScoreNum);
+                    
 
                     BallManager.AllStickBallPull();
                 }
+
                 BallManager._LastDeleteTime = 0.0f;
-
-
-                //ボールを消す処理
-                for (int i = 0; i < 128; i++)
-                {
-                    if (_BallObj[i] != null)
-                    {
-                        BallManager.DeleteBall(_BallObj[i]);
-                        _BallObj[i].transform.Find("ballFixed").gameObject.SetActive(true);
-                        _BallObj[i].transform.Find("ballMag").gameObject.SetActive(true);
-                    }
-                }
-                BallManager.DeleteBall(_toObj);
-
-                BallManager.DeleteBall(_fromObj);
-
-                _toObj.transform.Find("ballFixed").gameObject.SetActive(true);
-                _toObj.transform.Find("ballMag").gameObject.SetActive(true);
-
-                _fromObj.transform.Find("ballFixed").gameObject.SetActive(true);
-                _fromObj.transform.Find("ballMag").gameObject.SetActive(true);
-
+                
 				GameObject fromGo = Instantiate(effect);        //エフェクトの生成
 				fromGo.GetComponent<chainControll>().Set(_fromObj.transform.position, _toObj.transform.position);     //エフェクト生成時に親子関係形成、方向ベクトル取得
 				GameObject toGo = Instantiate(effect);        //エフェクトの生成
