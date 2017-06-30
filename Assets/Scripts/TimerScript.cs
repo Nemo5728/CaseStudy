@@ -35,18 +35,6 @@ public class TimerScript : MonoBehaviour
             g_timer -= Time.deltaTime;
             int[] num = new int[3];
 
-            if (g_timer < 0)
-            {
-                g_timer = 0;
-                //画面遷移
-                loadTime -= Time.deltaTime;
-                canvas.GetComponent<StartManager>().SetTimeupActive();
-                if (loadTime <= 0.0f)
-                {
-                    Application.LoadLevel("ResultScene");
-                }
-
-            }
 
 
             num[0] = (int)g_timer / 100 % 10;
@@ -59,8 +47,20 @@ public class TimerScript : MonoBehaviour
             }
 
         }
+        if (g_timer <= 0)
+        {
+            g_timer = 0;
+            //画面遷移
+            loadTime -= Time.deltaTime;
+            canvas.GetComponent<StartManager>().SetTimeupActive();
+            if (loadTime <= 0.0f)
+            {
+                Application.LoadLevel("ResultScene");
+            }
 
-	}
+        }
+
+    }
 
     public float GetTime(){
         return g_timer;
