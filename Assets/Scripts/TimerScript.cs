@@ -79,4 +79,8 @@ public class TimerScript : MonoBehaviour
     {
         bTimerPause = bPause;
     }
+
+	public void PlusTime( float plusTime ){
+		g_timer += plusTime;
+	}
 }
