@@ -18,6 +18,7 @@ public class BallShooter : MonoBehaviour
     public GameObject greenBall;   //ドロップボールのプレハブ
     public GameObject purpleBall;   //ドロップボールのプレハブ
     public GameObject ojamaBall;   //ドロップボールのプレハブ
+    public GameObject bomb;   //ドロップボールのプレハブ
 
     public GameObject timer;
 
@@ -189,4 +190,14 @@ public class BallShooter : MonoBehaviour
             }
         }
     }
+
+    //爆弾追加する関数
+    public void BombSet()
+    {
+        GameObject go = Instantiate(bomb) as GameObject;     //ドロップボールの複製
+        go.transform.position = transform.position;          //ドロップボール発射位置設定
+        go.transform.parent = BallManager.transform;
+        go.GetComponent<Ball>().SetColor(Ball.COLOR.BOMB);
+    }
+
 }

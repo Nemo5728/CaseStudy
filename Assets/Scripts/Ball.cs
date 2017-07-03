@@ -22,6 +22,7 @@ public class Ball : MonoBehaviour
         GREEN,
         PURPLE,
         OJAMA,
+        BOMB,
         MAX
     };
 
@@ -209,6 +210,13 @@ public class Ball : MonoBehaviour
             case STATUS.STICK:
                 {
                     GetComponent<Rigidbody>().velocity = Vector3.zero;
+                   
+                    //爆弾はくっついたら爆発
+                    if( color == COLOR.BOMB )
+                    {
+                        BallManager bm = GameObject.Find("BallManager").GetComponent<BallManager>();
+                        bm.SetExplosion(transform.position);
+                    }
                     //フリーズ状態中も力だけは加えておく
                     //GetComponent<Rigidbody>().velocity = Vector3.zero;
                     //startPoint = transform.position;        //現在の位置を設定                     

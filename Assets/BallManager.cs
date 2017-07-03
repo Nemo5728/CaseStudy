@@ -15,8 +15,10 @@ public class BallManager : MonoBehaviour
     //前回ballが消えた時間との差
     public static float _LastDeleteTime;
 
+    public GameObject _bombCol;
 
     public static Transform _Trans;
+
     public struct BALL
     {
         public GameObject BallObject;   //ゲームオブジェクト
@@ -24,6 +26,7 @@ public class BallManager : MonoBehaviour
         public bool use;                //使ってるか
         public bool put;                //くっついた
     }
+
     //くっついているボールの情報を入れる
     public static BALL[] _StickBall = new BALL[512];
 
@@ -209,4 +212,11 @@ public class BallManager : MonoBehaviour
 
         go.GetComponent<CheckCollider>().Shot(fRad, from, to);
     }
+
+    public void SetExplosion( Vector3 pos )
+    {
+        GameObject go = Instantiate(_bombCol) as GameObject;     //ドロップボールの複製
+        go.transform.position = pos;          //ドロップボール発射位置設定
+    }
+    
 }
