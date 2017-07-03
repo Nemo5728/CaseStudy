@@ -12,6 +12,7 @@ public class PauseScript : MonoBehaviour
     public bool bPause = false;
 
     private GameObject Timer_Board;
+    private GameObject PauseUi;
 
     // Use this for initialization
     void Start()
@@ -19,23 +20,35 @@ public class PauseScript : MonoBehaviour
         //タイムボードの取得
         Timer_Board = GameObject.Find("Timer_Board");
 
+        //ポーズのUIの取得
+        PauseUi = GameObject.Find("PauseUi");
+
+        //デバッグ画面の見栄えの問題。
+        PauseUi.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+
+        //trueにしていないと取得できなかったので。。。
+        PauseUi.SetActive(false);
+
+
+        Debug.Log( PauseUi );
+
         //各オブジェクトを取得
         foreach (Transform child in transform)
         {
             if (child.name == "Core")
             {
                 Core = child.gameObject;
-                Debug.Log("コア格納");
+                //Debug.Log("コア格納");
             }
             else if (child.name == "BallSet")
             {
                 BallSet = child.gameObject;
-                Debug.Log("ボールセット格納");
+                //Debug.Log("ボールセット格納");
             }
             else if (child.name == "BallManager")
             {
                 BallManager = child.gameObject;
-                Debug.Log("ボールマネージャー格納");
+                //Debug.Log("ボールマネージャー格納");
             }
         }
     }
@@ -59,5 +72,7 @@ public class PauseScript : MonoBehaviour
         BallSet.SetActive(!bPause);
         BallManager.SetActive(!bPause);
         Timer_Board.GetComponent<TimerScript>().TimerPauseChange(!bPause);
+
+        PauseUi.SetActive(bPause);
     }
 }
