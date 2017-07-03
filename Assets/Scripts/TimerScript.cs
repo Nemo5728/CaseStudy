@@ -14,6 +14,9 @@ public class TimerScript : MonoBehaviour
     public float fadeRate = 0.2f;
     private bool fadeStart = false;
 
+    //石川追記
+    public bool bTimerPause = true;
+
     // Use this for initialization
     void Start()
     {
@@ -34,7 +37,9 @@ public class TimerScript : MonoBehaviour
     {
         if(StartManager._b)
         {
+            if(bTimerPause)
             g_timer -= Time.deltaTime;
+
             int[] num = new int[3];
 
 
@@ -68,5 +73,10 @@ public class TimerScript : MonoBehaviour
 
     public float GetTime(){
         return g_timer;
+    }
+
+    public void TimerPauseChange(bool bPause)
+    {
+        bTimerPause = bPause;
     }
 }
