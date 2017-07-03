@@ -49,7 +49,6 @@ public class StartManager : MonoBehaviour
         {
             _b = true;
         }
-
     }
 
     public void SetTimeupActive()
