@@ -117,42 +117,42 @@ public class BallShooter : MonoBehaviour
                     case 0://赤
                         GameObject redBalls = Instantiate(redBall) as GameObject;     //ドロップボールの複製
                         redBalls.transform.position = transform.position;          //ドロップボール発射位置設定
-                        redBalls.transform.parent = BallManager.transform;
+                        redBalls.transform.parent = GameObject.Find("BallManager").transform;
                         redBalls.GetComponent<Ball>().SetColor(Ball.COLOR.RED);
                         break;
 
                     case 1://青
                         GameObject blueBalls = Instantiate(blueBall) as GameObject;     //ドロップボールの複製
                         blueBalls.transform.position = transform.position;          //ドロップボール発射位置設定
-                        blueBalls.transform.parent = BallManager.transform;
+                        blueBalls.transform.parent = GameObject.Find("BallManager").transform;
                         blueBalls.GetComponent<Ball>().SetColor(Ball.COLOR.BLUE);
                         break;
 
                     case 2://黄
                         GameObject yellowBalls = Instantiate(yellowBall) as GameObject;     //ドロップボールの複製
                         yellowBalls.transform.position = transform.position;          //ドロップボール発射位置設定
-                        yellowBalls.transform.parent = BallManager.transform;
+                        yellowBalls.transform.parent = GameObject.Find("BallManager").transform;
                         yellowBalls.GetComponent<Ball>().SetColor(Ball.COLOR.YELLOW);
                         break;
 
                     case 3://緑
                         GameObject greenBalls = Instantiate(greenBall) as GameObject;     //ドロップボールの複製
                         greenBalls.transform.position = transform.position;          //ドロップボール発射位置設定
-                        greenBalls.transform.parent = BallManager.transform;
+                        greenBalls.transform.parent = GameObject.Find("BallManager").transform;
                         greenBalls.GetComponent<Ball>().SetColor(Ball.COLOR.GREEN);
                         break;
 
                     case 4://紫
                         GameObject purpleBalls = Instantiate(purpleBall) as GameObject;     //ドロップボールの複製
                         purpleBalls.transform.position = transform.position;          //ドロップボール発射位置設定
-                        purpleBalls.transform.parent = BallManager.transform;
+                        purpleBalls.transform.parent = GameObject.Find("BallManager").transform;
                         purpleBalls.GetComponent<Ball>().SetColor(Ball.COLOR.PURPLE);
                         break;
 
                     case 5://お邪魔
                         GameObject ojamaBalls = Instantiate(ojamaBall) as GameObject;     //ドロップボールの複製
                         ojamaBalls.transform.position = transform.position;          //ドロップボール発射位置設定
-                        ojamaBalls.transform.parent = BallManager.transform;
+                        ojamaBalls.transform.parent = GameObject.Find("BallManager").transform;
                         ojamaBalls.GetComponent<Ball>().SetColor(Ball.COLOR.OJAMA);
                         break;
                     default:
@@ -196,7 +196,7 @@ public class BallShooter : MonoBehaviour
     {
         GameObject go = Instantiate(bomb) as GameObject;     //ドロップボールの複製
         go.transform.position = transform.position;          //ドロップボール発射位置設定
-        go.transform.parent = BallManager.transform;
+        go.transform.parent = GameObject.Find("BallManager").transform;
         go.GetComponent<Ball>().SetColor(Ball.COLOR.BOMB);
     }
 
