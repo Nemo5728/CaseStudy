@@ -96,12 +96,22 @@ namespace GodTouches
 
             if (GodTouch.GetPhase() == GodPhase.Began && StartManager._b)
             {
+                Vector3 touch = GodTouch.GetPosition();
+
+                if(touch.x > 352.0f && touch.y >= 630.0f )
+                {
+                    bulletstate = BULLETSTATE.NONE;
+                }
+
                 GameObject search = null;
 
                 switch (bulletstate)
                 {
                     case BULLETSTATE.NORMAL:
                         {
+                            //石川追記
+                            g_SEControl.sePlayer("Shot");
+
                             transform.Find("CoreImage").gameObject.SetActive(true);
                             transform.Find("CoreImage2").gameObject.SetActive(false);
                             search = GameObject.FindGameObjectWithTag("bullet");
@@ -111,24 +121,20 @@ namespace GodTouches
                                 bullets.GetComponent<Bullet>().frontShot();
                                 GameObject bullets2 = Instantiate(prefab1) as GameObject;
                                 bullets2.GetComponent<Bullet>().BackShot();
-
-
-                                //石川追記
-                                g_SEControl.sePlayer("Shot");
                             }
                             break;
                         }
                     case BULLETSTATE.BONUS:
                         {
+                            //石川追記
+                            g_SEControl.sePlayer("Shot");
+
                             transform.Find("CoreImage").gameObject.SetActive(false);
                             transform.Find("CoreImage2").gameObject.SetActive(true);
                             GameObject bullets = Instantiate(prefab1Bonus) as GameObject;
                             bullets.GetComponent<Bullet>().frontShot();
                             GameObject bullets2 = Instantiate(prefab1Bonus) as GameObject;
                             bullets2.GetComponent<Bullet>().BackShot();
-                            //石川追記
-                            g_SEControl.sePlayer("Shot");
-
                             break;
                         }
                     case BULLETSTATE.NONE:

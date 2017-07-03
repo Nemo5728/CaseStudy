@@ -49,7 +49,7 @@ public class StartManager : MonoBehaviour
         {
             _b = true;
         }
-        Debug.Log(timeupSprite.active.ToString());
+        //Debug.Log(timeupSprite.active.ToString());
     }
 
     public void SetTimeupActive()
