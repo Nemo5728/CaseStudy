@@ -69,4 +69,9 @@ public class TimerScript : MonoBehaviour
     public float GetTime(){
         return g_timer;
     }
+
+	public void PlusTime( float plusTime ){
+		g_timer += plusTime;
+	}
+
 }
