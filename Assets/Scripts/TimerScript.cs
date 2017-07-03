@@ -13,6 +13,7 @@ public class TimerScript : MonoBehaviour
     public GameObject canvas;
     public float fadeRate = 0.2f;
     private bool fadeStart = false;
+    private float _bombTime;//爆弾出すカウントみたいなの
 
     // Use this for initialization
     void Start()
@@ -21,6 +22,8 @@ public class TimerScript : MonoBehaviour
         num[0] = (int)g_timer / 100 % 10;
         num[1] = (int)g_timer / 10 % 10;
         num[2] = (int)g_timer % 10;
+
+        _bombTime = 0;
 
         for (int i = 0; i < 3; i++)
         {
@@ -34,6 +37,15 @@ public class TimerScript : MonoBehaviour
     {
         if(StartManager._b)
         {
+            _bombTime += Time.deltaTime;
+            if(_bombTime >= 20.0f)
+            {
+                _bombTime = 0.0f;
+                BallShooter ba = GameObject.Find( "BallSet" ).GetComponent<BallShooter>();
+                ba.BombSet();
+            }
+
+
             g_timer -= Time.deltaTime;
             int[] num = new int[3];
 

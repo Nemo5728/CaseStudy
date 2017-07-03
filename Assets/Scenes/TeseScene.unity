@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4465785, g: 0.49641252, b: 0.574817, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1238,6 +1238,12 @@ Prefab:
       propertyPath: timer
       value: 
       objectReference: {fileID: 1755734424}
+    - target: {fileID: 114159732638885364, guid: fd99acc237f3f4042975339a889d4a90,
+        type: 2}
+      propertyPath: bomb
+      value: 
+      objectReference: {fileID: 1843124505875028, guid: 55845dbb52e2b644490a0c966213903d,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fd99acc237f3f4042975339a889d4a90, type: 2}
   m_IsPrefabParent: 0
@@ -2156,6 +2162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Check: {fileID: 1761752839202154, guid: 8c5f0eb1ad325264fa9a04e9a362b9ed, type: 2}
+  _bombCol: {fileID: 1409334290500050, guid: 4dd8f2d6e3e6bf1429b292700e90fe55, type: 2}
 --- !u!4 &1951136323
 Transform:
   m_ObjectHideFlags: 0
