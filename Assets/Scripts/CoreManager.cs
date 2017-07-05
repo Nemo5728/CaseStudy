@@ -131,9 +131,11 @@ namespace GodTouches
 
             if (GodTouch.GetPhase() == GodPhase.Began && StartManager._b)
             {
+                //ポーズUIの所だけ触れないように。
                 Vector3 touch = GodTouch.GetPosition();
 
-                if(touch.x > 352.0f && touch.y >= 630.0f )
+
+                if (touch.x > 442.0f && touch.y >= 386.0f )
                 {
                     bulletstate = BULLETSTATE.NONE;
                 }
