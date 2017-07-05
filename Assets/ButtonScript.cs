@@ -9,9 +9,7 @@ public class ButtonScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        Debug.Log(GetComponent<Image>().color);
         GetComponent<Image>().color = new Color( 0.0f , 0.0f , 0.0f , 0.0f );
-        Debug.Log(GetComponent<Image>().color);
     }
 
     // Update is called once per frame
@@ -22,12 +20,10 @@ public class ButtonScript : MonoBehaviour {
     public void bDispImageOn()
     {
         GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-        Debug.Log("表示");
     }
     public void bDispImageOff()
     {
         GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-        Debug.Log("非表示");
     }
     public void ButtonAction()
     {
