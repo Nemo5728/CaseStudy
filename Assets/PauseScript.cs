@@ -22,15 +22,10 @@ public class PauseScript : MonoBehaviour
 
         //ポーズのUIの取得
         PauseUi = GameObject.Find("PauseUi");
-
-        //デバッグ画面の見栄えの問題。
-        PauseUi.gameObject.GetComponent<SpriteRenderer>().enabled = true;
-
         //trueにしていないと取得できなかったので。。。
         PauseUi.SetActive(false);
 
 
-        Debug.Log( PauseUi );
 
         //各オブジェクトを取得
         foreach (Transform child in transform)
@@ -56,12 +51,6 @@ public class PauseScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (bPause)
-        {
-        }
-        else
-        {
-        }
     }
 
     public void bPauseChange()
@@ -74,5 +63,37 @@ public class PauseScript : MonoBehaviour
         Timer_Board.GetComponent<TimerScript>().TimerPauseChange(!bPause);
 
         PauseUi.SetActive(bPause);
+    }
+
+    public void pauseMenuAction( string name )
+    {
+        {
+            if( name == "ResumeButton" )
+            {
+                //押されたら絶対閉じるように。
+                bPause = false;
+
+                Core.SetActive(!bPause);
+                BallSet.SetActive(!bPause);
+                BallManager.SetActive(!bPause);
+                Timer_Board.GetComponent<TimerScript>().TimerPauseChange(!bPause);
+
+                PauseUi.SetActive(bPause);
+            }
+            else if (name == "RetryButton")
+            {
+                //Application.LoadLevel("TutorialScene");
+                FadeManager.Instance.LoadLevel("TeseScene", 0.2f);
+            }
+            else if (name == "ExitButton")
+            {
+                //Application.LoadLevel("TutorialScene");
+                FadeManager.Instance.LoadLevel("TitleScene", 0.2f);
+            }
+            else
+            {
+                Debug.Log("ポーズで指示の無いメニューを押している。");
+            }
+        }
     }
 }
