@@ -39,6 +39,22 @@ namespace GodTouches
 
         private BULLETSTATE bulletstate;
         public static BULLETSTATE _state;
+
+		//揺らすやつ
+		private float rightRange;
+		private float leftRange;
+		private float upRange;
+		private float bottomRange;
+		public float shakeRange;
+
+		private bool shakeEnable = false;
+		public float shakeTime;
+		private float shakeCount;
+
+		private Vector3 defaultPos;
+		private float shakeX;
+		private float shakeY;
+
         // Use this for initialization
         void Start()
         {
@@ -56,6 +72,8 @@ namespace GodTouches
             bulletstate = BULLETSTATE.NORMAL;
             BonusTime = 0;
             _state = bulletstate;
+
+            SetShakeRange();
         }
 
         // Update is called once per frame
@@ -93,6 +111,23 @@ namespace GodTouches
                 timeleft = 1.0f;
                 scorePool -= BonusStartScore / BonusStartTime;
             }
+
+            //揺らします
+			if (shakeEnable)
+			{
+				shakeCount -= Time.deltaTime;
+				if (shakeCount <= 0)
+				{
+					shakeEnable = false;
+					transform.position = defaultPos;
+					shakeX = 0.0f;
+					shakeY = 0.0f;
+				}
+
+				shakeX = Random.Range(leftRange, rightRange);
+				shakeY = Random.Range(bottomRange, upRange);
+				transform.position = new Vector3(shakeX, shakeY, transform.position.z);
+			}
 
             if (GodTouch.GetPhase() == GodPhase.Began && StartManager._b)
             {
@@ -160,5 +195,37 @@ namespace GodTouches
         {
             return _state;
         }
+
+        //揺らすやつ
+		public void ShakeCore()
+		{
+			shakeEnable = true;
+			shakeCount = shakeTime;
+			defaultPos = transform.position;
+		}
+
+		private void SetShakeRange()
+		{
+			Vector3 pos = transform.position;
+			rightRange = pos.x + shakeRange;
+			leftRange = pos.x - shakeRange;
+			upRange = pos.y + shakeRange;
+			bottomRange = pos.y - shakeRange;
+		}
+
+        public bool GetShake()
+        {
+            return shakeEnable;
+        }
+
+		public float GetShakeX()
+		{
+			return shakeX;
+		}
+
+		public float GetShakeY()
+		{
+			return shakeY;
+		}
     }
 }

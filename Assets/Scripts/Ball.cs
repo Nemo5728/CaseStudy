@@ -394,7 +394,11 @@ public class Ball : MonoBehaviour
                 //ボールを記憶しておく配列を用意（色の数だけ）
                 //各ボールのボール自身と位置を記憶
                 BallManager.SetStickBall(this.gameObject, color);
-                //GetComponent<Rigidbody>().mass = 500.0f;
+				//GetComponent<Rigidbody>().mass = 500.0f;
+
+				//コアを揺らす
+				GameObject gameobject = GameObject.Find("Core");
+				gameobject.GetComponent<GodTouches.CoreManager>().ShakeCore();
             }
         }
     }

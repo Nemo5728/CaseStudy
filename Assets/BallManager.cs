@@ -36,6 +36,11 @@ public class BallManager : MonoBehaviour
 
     static float allPullCnt = 0.0f;
 
+    //手抜き
+    public GameObject core;
+
+    private Vector3[] defaultPos = new Vector3[512];
+
     // Use this for initialization
     void Start()
     {
@@ -55,6 +60,11 @@ public class BallManager : MonoBehaviour
         for (int i = 0; i < 512; i++)
         {
             //記憶されているボール（基本的にくっついた物のみ記憶しているはず）
+            if(_StickBall[i].use && _StickBall[i].put)
+            {
+                defaultPos[i] = _StickBall[i].BallObject.transform.position;
+            }
+
             if (_StickBall[i].use && _StickBall[i].color != Ball.COLOR.OJAMA)
             {
                 //くっついたばかりのボールかどうか？
@@ -77,6 +87,19 @@ public class BallManager : MonoBehaviour
                     //くっついたばかりじゃない状態にする
                     _StickBall[i].put = false;
                 }
+            }
+			//揺らす
+            bool shakeEnable = core.GetComponent<GodTouches.CoreManager>().GetShake();
+            if (shakeEnable && _StickBall[i].use)
+            {
+                Vector3 pos = _StickBall[i].BallObject.transform.position;
+                float x = core.GetComponent<GodTouches.CoreManager>().GetShakeX();
+                float y = core.GetComponent<GodTouches.CoreManager>().GetShakeY();
+                _StickBall[i].BallObject.transform.position = new Vector3(pos.x + x, pos.y + y, pos.z);
+            }
+            else if(!shakeEnable && _StickBall[i].use)
+            {
+                _StickBall[i].BallObject.transform.position = defaultPos[i];
             }
         }
         _Trans = transform;
