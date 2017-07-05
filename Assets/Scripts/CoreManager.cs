@@ -80,13 +80,16 @@ namespace GodTouches
         void Update()
         {
             //ボーナススタート判定
-            if (BonusStartScore <= scorePool && bulletstate != BULLETSTATE.BONUS)
+            if (BonusStartScore <= scorePool && bulletstate != BULLETSTATE.BONUS && bulletstate != BULLETSTATE.NONE )
             {
                 bulletstate = BULLETSTATE.BONUS;
                 BonusTime = BonusStartTime;
 
                 //石川追記
                 g_SEControl.sePlayer("PowerUpSe");
+
+                transform.Find("CoreImage").gameObject.SetActive(false);
+                transform.Find("CoreImage2").gameObject.SetActive(true);
 
                 //トランザム生成
                 GameObject TAgo = Instantiate(_transAm) as GameObject;
@@ -95,10 +98,13 @@ namespace GodTouches
 
             //ボーナス終了判定
             BonusTime -= Time.deltaTime;
-            if (BonusTime < 0 && bulletstate != BULLETSTATE.NORMAL)
+            if (BonusTime < 0 && bulletstate != BULLETSTATE.NORMAL && bulletstate != BULLETSTATE.NONE )
             {
                 bulletstate = BULLETSTATE.NORMAL;
                 scorePool = 0;
+
+                transform.Find("CoreImage").gameObject.SetActive(true);
+                transform.Find("CoreImage2").gameObject.SetActive(false);
 
                 //石川追記
                 g_SEControl.sePlayer("PowerDownSe");
@@ -131,29 +137,17 @@ namespace GodTouches
 
             if (GodTouch.GetPhase() == GodPhase.Began && StartManager._b)
             {
-                //ポーズUIの所だけ触れないように。
-                Vector3 touch = GodTouch.GetPosition();
-
-
-                if (touch.x > 442.0f && touch.y >= 386.0f )
-                {
-                    bulletstate = BULLETSTATE.NONE;
-                }
-
                 GameObject search = null;
 
                 switch (bulletstate)
                 {
                     case BULLETSTATE.NORMAL:
                         {
-                            //石川追記
-                            g_SEControl.sePlayer("Shot");
-
-                            transform.Find("CoreImage").gameObject.SetActive(true);
-                            transform.Find("CoreImage2").gameObject.SetActive(false);
                             search = GameObject.FindGameObjectWithTag("bullet");
                             if (search == null)
                             {
+                                //石川追記
+                                g_SEControl.sePlayer("Shot");
                                 GameObject bullets = Instantiate(prefab1) as GameObject;
                                 bullets.GetComponent<Bullet>().frontShot();
                                 GameObject bullets2 = Instantiate(prefab1) as GameObject;
@@ -165,9 +159,6 @@ namespace GodTouches
                         {
                             //石川追記
                             g_SEControl.sePlayer("Shot");
-
-                            transform.Find("CoreImage").gameObject.SetActive(false);
-                            transform.Find("CoreImage2").gameObject.SetActive(true);
                             GameObject bullets = Instantiate(prefab1Bonus) as GameObject;
                             bullets.GetComponent<Bullet>().frontShot();
                             GameObject bullets2 = Instantiate(prefab1Bonus) as GameObject;

@@ -66,8 +66,7 @@ namespace GodTouches
                     //横山変更　当たり判定を消し、見かけ上はまだ存在しているように見せる
                     go.GetComponent<boltControll>().SetDelete();
                     GetComponent<MeshCollider>().enabled = false;
-                    //Destroy(gameObject);      //変更のためここで弾を削除させると困るのでコメントアウト
-                    //
+
 
                     //石川追記
                     g_SEControl.sePlayer("Hit");
