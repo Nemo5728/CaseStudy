@@ -31,6 +31,7 @@ public class ButtonScript : MonoBehaviour {
     }
     public void ButtonAction()
     {
+        bDispImageOff();
         //自分の名前をポーズスクリプトに送って呼び出す。
         GameObject.Find("PauseManeger").GetComponent<PauseScript>().pauseMenuAction( this.gameObject.name );
     }
