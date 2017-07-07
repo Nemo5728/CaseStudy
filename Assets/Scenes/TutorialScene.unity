@@ -630,6 +630,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 69de150ee5dbd4141bb314db9fa83bfa, type: 3}
   - {fileID: 21300000, guid: 5d39471ee15294027a8dcf1b5e76499f, type: 3}
   - {fileID: 21300000, guid: d2c809e67c5dc45b0bbf49e979fe21ce, type: 3}
+  - {fileID: 21300000, guid: bc29c760844d0429ba01aa525e64bed9, type: 3}
+  - {fileID: 21300000, guid: beda961a81c674e6f8cc1910a4b90ad2, type: 3}
   fadeRate: 0.2
 --- !u!1 &1343176946
 GameObject:
