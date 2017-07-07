@@ -44,6 +44,12 @@ public class BallShooter : MonoBehaviour
     //ボールの情報を入れておく
     public static GameObject[] _Ball = new GameObject[512];
 
+    //ランダム生成範囲修正
+    public float xMax = 3.0f;
+    public float xMin = 0.5f;
+    public float yMax = 7.0f;
+    public float yMin = 0.5f;
+
     void Start()
     {
         Ball._moveBallCnt = 0;
@@ -73,6 +79,7 @@ public class BallShooter : MonoBehaviour
 
             x = Random.Range(-3.0f, 3.0f);  //X座標を軸にランダム設定
 
+            /*古いほう
             if (x > -apearPosX && x < apearPosX)
             {
                 y = Random.Range(-7.0f, 7.0f);
@@ -90,8 +97,60 @@ public class BallShooter : MonoBehaviour
                     y = Random.Range(-7.0f, 7.0f);
                 }
             }
+            */
 
-            Vector3 pos = transform.position;
+            //-7~6と7~6の範囲を撮ってランダムでどっちか x,yどっちも　コア範囲外になるように
+            //float x1, x2;
+
+            //x1 = Random.Range(xMax, xMin);
+            //x2 = Random.Range(-xMax, -xMin);
+
+            /*
+			int i = Random.Range(0, 2);
+            if (i == 1)
+            {
+                x = x1;
+            }
+            else
+            {
+                x = x2;
+            }
+            */
+
+            int i;
+			if (x > -apearPosX && x < apearPosX)
+			{
+                i = Random.Range(0, 2);
+				while (y > -apearPosY && y < apearPosY)  //指定範囲外の時ループする
+				{
+					if (i == 1)
+					{
+						y = Random.Range(-yMax, -yMin);
+					}
+					else
+					{
+						y = Random.Range(yMax, yMin);
+					}
+				}
+			}
+
+			else
+			{
+				i = Random.Range(0, 2);
+				while (y > -apearPosY && y < apearPosY)  //指定範囲外の時ループする
+				{
+					if (i == 1)
+					{
+						y = Random.Range(-yMax, -yMin);
+					}
+					else
+					{
+						y = Random.Range(yMax, yMin);
+					}
+				}
+			}
+
+			Vector3 pos = transform.position;
             pos.x = x;
             pos.y = y;
             transform.position = pos;
