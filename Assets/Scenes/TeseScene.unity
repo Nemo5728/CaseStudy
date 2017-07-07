@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465785, g: 0.49641252, b: 0.574817, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -933,6 +933,16 @@ Prefab:
       propertyPath: core
       value: 
       objectReference: {fileID: 869235991}
+    - target: {fileID: 114971744362098968, guid: fb24d2d8795bb7149ac8168ceaa713a4,
+        type: 2}
+      propertyPath: ballManager
+      value: 
+      objectReference: {fileID: 1705242824}
+    - target: {fileID: 114971744362098968, guid: fb24d2d8795bb7149ac8168ceaa713a4,
+        type: 2}
+      propertyPath: BonusStartTime
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fb24d2d8795bb7149ac8168ceaa713a4, type: 2}
   m_IsPrefabParent: 0
@@ -2764,6 +2774,11 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1689074552}
+--- !u!1 &1705242824 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1233378959895434, guid: fb24d2d8795bb7149ac8168ceaa713a4,
+    type: 2}
+  m_PrefabInternal: {fileID: 514058470}
 --- !u!1 &1755734424
 GameObject:
   m_ObjectHideFlags: 0
