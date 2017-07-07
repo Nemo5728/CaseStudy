@@ -27,7 +27,7 @@ namespace GodTouches{
             updateTexture += Time.deltaTime;
             if (updateTexture >= 0.2f && touch)
             {
-                if (spriteCnt < 9 && spriteCnt > 0)
+                if (spriteCnt < 11 && spriteCnt > 0)
                 {
                     image.sprite = sprite[spriteCnt];
                 }
@@ -36,7 +36,7 @@ namespace GodTouches{
                     spriteCnt = 0;
                     image.sprite = sprite[0];
                 }
-                else if (spriteCnt >= 9)
+                else if (spriteCnt >= 11)
                 {
                     //Application.LoadLevel("TeseScene");
                     FadeManager.Instance.LoadLevel("TeseScene", fadeRate);
