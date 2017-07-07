@@ -217,7 +217,7 @@ MonoBehaviour:
   BallSet: {fileID: 1186192739284618, guid: fd99acc237f3f4042975339a889d4a90, type: 2}
   gravity1: 50
   gravity2: 5000
-  effect: {fileID: 1875193521062410, guid: 5aad5599fae2dbd4d90e269fd39d0267, type: 2}
+  effect: {fileID: 1679827548737276, guid: 267f12c0b745378458563fc8f351f7da, type: 2}
   score: {fileID: 1951646304109704, guid: cbf59cf8c7ca64d8c9b54ac995b21d31, type: 2}
 --- !u!135 &135629960945579556
 SphereCollider:
