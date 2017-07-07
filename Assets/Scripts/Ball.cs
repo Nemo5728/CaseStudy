@@ -236,6 +236,8 @@ public class Ball : MonoBehaviour
                     {
                         if (bOne)
                         {
+
+                            GameObject.Find("Main Camera").GetComponent<CameraControl>().ShakeCamera();
                             //5秒後に消える
                             Destroy(this.gameObject);
 

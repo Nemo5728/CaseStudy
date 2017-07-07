@@ -192,7 +192,7 @@ namespace GodTouches
         //揺らすやつ
 		public void ShakeCore()
 		{
-			shakeEnable = true;
+			//shakeEnable = true;
 			shakeCount = shakeTime;
 			defaultPos = transform.position;
 		}
