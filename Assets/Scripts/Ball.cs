@@ -305,9 +305,9 @@ public class Ball : MonoBehaviour
         {
             status = STATUS.DELETE;
 
-            //横山追記
-            GameObject go = Instantiate(effect);
-            go.GetComponent<expControll>().Set(transform.position);
+            ////横山追記
+            //GameObject go = Instantiate(effect);
+            //go.GetComponent<expControll>().Set(transform.position);
 
             //if( BallManager._LastDeleteTime < 0.5f )
             //{

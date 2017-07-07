@@ -7,7 +7,7 @@ public class Explosion : MonoBehaviour
     private float _time;
 
     public GameObject _Flytext;
-
+    public GameObject _Effect;
     // Use this for initialization
     void Start()
     {
