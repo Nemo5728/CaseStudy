@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,8 +27,9 @@ namespace GodTouches
         public int BonusStartScore;
         public int BonusStartTime;
         private float BonusTime;
-        private int scorePool = 0;
-        private float timeleft = 1.0f;
+        private int scorePool = 5000;
+        private float timeleft;
+        private float timer = 0.1f;
 
         public enum BULLETSTATE
         {
@@ -55,6 +56,8 @@ namespace GodTouches
 		private float shakeX;
 		private float shakeY;
 
+        public GameObject ballManager;
+
         // Use this for initialization
         void Start()
         {
@@ -74,6 +77,8 @@ namespace GodTouches
             _state = bulletstate;
 
             SetShakeRange();
+
+            timeleft = timer;
         }
 
         // Update is called once per frame
@@ -98,7 +103,7 @@ namespace GodTouches
 
             //ボーナス終了判定
             BonusTime -= Time.deltaTime;
-            if (BonusTime < 0 && bulletstate != BULLETSTATE.NORMAL && bulletstate != BULLETSTATE.NONE )
+            if (scorePool <= 0 && bulletstate != BULLETSTATE.NORMAL && bulletstate != BULLETSTATE.NONE )
             {
                 bulletstate = BULLETSTATE.NORMAL;
                 scorePool = 0;
@@ -114,8 +119,8 @@ namespace GodTouches
             timeleft -= Time.deltaTime;
             if (timeleft <= 0.0f && bulletstate == BULLETSTATE.BONUS)
             {
-                timeleft = 1.0f;
-                scorePool -= BonusStartScore / BonusStartTime;
+                timeleft = timer;
+                scorePool -= 50;
             }
 
             //揺らします
@@ -177,7 +182,13 @@ namespace GodTouches
         public void SetScore(int score)
         {
             if (bulletstate != BULLETSTATE.BONUS)
+            {
                 scorePool += score;
+                if(scorePool >= BonusStartScore)
+                {
+                    scorePool = BonusStartScore;
+                }
+            }
         }
 
         public int GetScore()
@@ -192,7 +203,7 @@ namespace GodTouches
         //揺らすやつ
 		public void ShakeCore()
 		{
-			shakeEnable = true;
+			//shakeEnable = true;
 			shakeCount = shakeTime;
 			defaultPos = transform.position;
 		}

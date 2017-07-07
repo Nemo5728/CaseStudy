@@ -22,8 +22,8 @@ public class ScoreScript : MonoBehaviour
     {
         if (scorePool > 0)
         {
-            g_Score += 10;
-            scorePool -= 10;
+            g_Score += 50;
+            scorePool -= 50;
         }
 
         int[] num = new int[5];
