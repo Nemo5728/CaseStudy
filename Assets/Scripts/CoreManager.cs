@@ -1,4 +1,4 @@
-﻿﻿using System.Collections;
+﻿﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,7 +27,7 @@ namespace GodTouches
         public int BonusStartScore;
         public int BonusStartTime;
         private float BonusTime;
-        private int scorePool = 5000;
+        private int scorePool = 0;
         private float timeleft;
         private float timer = 0.1f;
 
