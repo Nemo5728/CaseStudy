@@ -432,6 +432,16 @@ Prefab:
       propertyPath: m_Name
       value: StartButton
       objectReference: {fileID: 0}
+    - target: {fileID: 223367392218396276, guid: a3b23b080bd94664c88ca6995083d7e5,
+        type: 2}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 223367392218396276, guid: a3b23b080bd94664c88ca6995083d7e5,
+        type: 2}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1937838254}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a3b23b080bd94664c88ca6995083d7e5, type: 2}
   m_IsPrefabParent: 0
