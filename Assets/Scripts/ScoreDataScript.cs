@@ -29,7 +29,10 @@ public class ScoreDataScript : MonoBehaviour
     {
         for (int i = 0; i < g_ScoreData.Length; i++)
         {
+            //ランキングに保存
             PlayerPrefs.SetInt(g_Ranking[i], g_ScoreData[i]);
+            //デバッグ用に0にする。
+            //PlayerPrefs.SetInt(g_Ranking[i], 0);
         }
     }
     void ReadScore()
