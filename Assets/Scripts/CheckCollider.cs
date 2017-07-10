@@ -177,14 +177,10 @@ public class CheckCollider : MonoBehaviour
                     {
                         if (_BallObj[i] != null)
                         {
-                            BallManager.DeleteBall(_BallObj[i]);
-                            GameObject gobj = Instantiate(score);
-                            gobj.GetComponent<FlyText>().Create(_BallObj[i].transform.position, (int)(addScoreNum * 1.5f));
+                            BallManager.DeleteBall(_BallObj[i], (int)(addScoreNum * 1.5f));
                         }
                     }
-                    BallManager.DeleteBall(_toObj);
-                    GameObject gobjto = Instantiate(score);
-                    gobjto.GetComponent<FlyText>().Create(_toObj.transform.position, (int)(addScoreNum * 1.5f));
+                    BallManager.DeleteBall(_toObj, (int)(addScoreNum * 1.5f));
                     
 
                     BallManager.AllStickBallPull();
@@ -195,14 +191,10 @@ public class CheckCollider : MonoBehaviour
                     {
                         if (_BallObj[i] != null)
                         {
-                            BallManager.DeleteBall(_BallObj[i]);
-                            GameObject gobj = Instantiate(score);
-                            gobj.GetComponent<FlyText>().Create(_BallObj[i].transform.position, (int)addScoreNum);
+                            BallManager.DeleteBall(_BallObj[i], (int)(addScoreNum));
                         }
                     }
-                    BallManager.DeleteBall(_toObj);
-                    GameObject gobjto = Instantiate(score);
-                    gobjto.GetComponent<FlyText>().Create(_toObj.transform.position, (int)addScoreNum);
+                    BallManager.DeleteBall(_toObj,(int)(addScoreNum));
                     
 
                     BallManager.AllStickBallPull();

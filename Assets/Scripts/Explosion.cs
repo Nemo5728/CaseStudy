@@ -30,9 +30,9 @@ public class Explosion : MonoBehaviour
         //消す処理
         if (other.transform.tag == "Ball")
         {
-            BallManager.DeleteBall(other.gameObject);
-            GameObject go = Instantiate(_Flytext);
-            go.GetComponent<FlyText>().Create(other.transform.position, (int)300);
+            BallManager.DeleteBall(other.gameObject, 300);
+            //GameObject go = Instantiate(_Flytext);
+            //go.GetComponent<FlyText>().Create(other.transform.position, (int)300);
         }
 
     }
