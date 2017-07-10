@@ -16,7 +16,6 @@ public class expControll : MonoBehaviour
     public void Set(Vector3 pos)
     {
         transform.position = pos;
-
     }
 
     // Update is called once per frame
