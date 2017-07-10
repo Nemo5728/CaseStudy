@@ -1,10 +1,13 @@
 fileFormatVersion: 2
 guid: a9ed6045f84f148418d6a8b264884d4f
-timeCreated: 1496022287
+timeCreated: 1499657557
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - BallSet: {instanceID: 0}
+  - effect: {instanceID: 0}
+  - score: {fileID: 1951646304109704, guid: cbf59cf8c7ca64d8c9b54ac995b21d31, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

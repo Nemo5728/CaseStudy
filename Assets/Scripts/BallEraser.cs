@@ -45,13 +45,13 @@ public class BallEraser : MonoBehaviour
         //目的地についた。
         if (other.gameObject == _toObj)
         {
-            BallManager.DeleteBall(other.gameObject);
+            BallManager.DeleteBall(other.gameObject, 100);
             Destroy(this.gameObject);
         }
         //途中のボールに触れた(吸い付いてるボールのみ)
         if (other.gameObject.CompareTag("Ball") && other.gameObject.GetComponent<Ball>().GetStatus() == Ball.STATUS.STICK )
         {
-            BallManager.DeleteBall(other.gameObject);
+            BallManager.DeleteBall(other.gameObject, 100);
         }
 
         if (other.gameObject.CompareTag("Frame"))

@@ -58,6 +58,8 @@ public class Ball : MonoBehaviour
     public GameObject effect;
 
     public GameObject score;
+    public int _Score;
+
     private int scoreValue = 100;
 
     //石川追記
@@ -240,6 +242,11 @@ public class Ball : MonoBehaviour
                             GameObject.Find("Main Camera").GetComponent<CameraControl>().ShakeCamera();
                             //5秒後に消える
                             Destroy(this.gameObject);
+
+                            //点数
+
+                            GameObject scorego = Instantiate(score);
+                            scorego.GetComponent<FlyText>().Create(transform.position, _Score );
 
                             //Istrrigerで判定だけなくす（本来の使い方とは違う。istrrigerはトリガー判定を使うときのみ）
                             GetComponent<SphereCollider>().isTrigger = true;

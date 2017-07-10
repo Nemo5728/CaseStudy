@@ -25,6 +25,7 @@ public class BallManager : MonoBehaviour
         public Ball.COLOR color;        //色
         public bool use;                //使ってるか
         public bool put;                //くっついた
+        public int score;               //消すときのスコア
     }
 
     //くっついているボールの情報を入れる
@@ -115,13 +116,14 @@ public class BallManager : MonoBehaviour
         }
     }
 
-    public static void DeleteBall(GameObject go)
+    public static void DeleteBall(GameObject go, int score)
     {
         for (int i = 0; i < 512; i++)
         {
             if (go == _StickBall[i].BallObject)
             {
                 DeleteStickBall(i);
+                _StickBall[i].BallObject.GetComponent<Ball>()._Score = score;
                 break;
             }
         }
